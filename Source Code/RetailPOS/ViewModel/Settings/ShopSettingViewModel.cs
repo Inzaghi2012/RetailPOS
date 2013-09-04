@@ -42,8 +42,17 @@ namespace RetailPOS.ViewModel.Settings
         private PostCodeDTO _selectedPostalCode;
 
         private Visibility _visible;
-        private int _tabIndex;
 
+        //To make Error Message  textblock visible if null value is passed
+        private Visibility _isShopCodeBlankVisible;
+        private Visibility _isShopNameBlankVisible;
+        private Visibility _isTelephoneNoBlankVisible;
+        private Visibility _isStreetBlankVisible;
+        private Visibility _isPostalCodeBlankVisible;
+        private Visibility _isCurrencyBlankVisible;
+        private Visibility _isTaxRateBlankVisible;
+      
+        private int _tabIndex;
         private string _code;
         private string _shopName;
         private string _phone;
@@ -78,6 +87,74 @@ namespace RetailPOS.ViewModel.Settings
             }
         }
 
+        //To make Error Message  textblock visible if null value is passed for shop setting
+
+        #region VisibilityErrorMessage
+        public Visibility IsShopCodeBlankVisible
+        {
+            get { return _isShopCodeBlankVisible; }
+            set
+            {
+                _isShopCodeBlankVisible = value;
+                RaisePropertyChanged("IsShopCodeBlankVisible");
+            }
+        }
+        public Visibility IsShopNameBlankVisible
+        {
+            get { return _isShopNameBlankVisible; }
+            set
+            {
+                _isShopNameBlankVisible = value;
+                RaisePropertyChanged("IsShopNameBlankVisible");
+            }
+        }
+        public Visibility IsTelephoneNoBlankVisible
+        {
+            get { return _isTelephoneNoBlankVisible; }
+            set
+            {
+                _isTelephoneNoBlankVisible = value;
+                RaisePropertyChanged("IsTelephoneNoBlankVisible");
+            }
+        }
+        public Visibility IsStreetBlankVisible
+        {
+            get { return _isStreetBlankVisible; }
+            set
+            {
+                _isStreetBlankVisible = value;
+                RaisePropertyChanged("IsStreetBlankVisible");
+            }
+        }
+        public Visibility IsPostalCodeBlankVisible
+        {
+            get { return _isPostalCodeBlankVisible; }
+            set
+            {
+                _isPostalCodeBlankVisible = value;
+                RaisePropertyChanged("IsPostalCodeBlankVisible");
+            }
+        }
+        public Visibility IsCurrencyBlankVisible
+        {
+            get { return _isCurrencyBlankVisible; }
+            set
+            {
+                _isCurrencyBlankVisible = value;
+                RaisePropertyChanged("IsCurrencyBlankVisible");
+            }
+        }
+        public Visibility IsTaxRateBlankVisible
+        {
+            get { return _isTaxRateBlankVisible; }
+            set
+            {
+                _isTaxRateBlankVisible = value;
+                RaisePropertyChanged("IsTaxRateBlankVisible");
+            }
+        }
+        #endregion
+       
         public string Code
         {
             get { return _code; }
@@ -321,7 +398,13 @@ namespace RetailPOS.ViewModel.Settings
             CancelShopSettingCommand = new RelayCommand(CancelSetting);
             IsScheduledCheck = new RelayCommand<int>(ShowTimer);
             VisibleTimePicker = Visibility.Collapsed;
-
+            IsShopCodeBlankVisible=Visibility.Collapsed;
+            IsShopNameBlankVisible = Visibility.Collapsed;
+            IsTelephoneNoBlankVisible = Visibility.Collapsed;
+            IsCurrencyBlankVisible = Visibility.Collapsed;
+            IsTaxRateBlankVisible = Visibility.Collapsed;
+            IsStreetBlankVisible = Visibility.Collapsed;
+            IsPostalCodeBlankVisible = Visibility.Collapsed;
             ClearControls();
 
             ////Get Country details from database
@@ -397,8 +480,7 @@ namespace RetailPOS.ViewModel.Settings
             if (IsValid())
             {
                 var shopSettingDetails = InitializeShopSettingDetails();
-                ServiceFactory.ServiceClient.SaveShopSetting(shopSettingDetails);
-                
+                ServiceFactory.ServiceClient.SaveShopSetting(shopSettingDetails);                
                 ClearControls();
             }
         }
@@ -457,7 +539,6 @@ namespace RetailPOS.ViewModel.Settings
             ////Clear Tax Controls
             TaxRate = 0;
             Curreny = string.Empty;
-
             TabIndex = 0;
         }
 
@@ -479,13 +560,15 @@ namespace RetailPOS.ViewModel.Settings
                 RaisePropertyChanged(() => Code);
                 RaisePropertyChanged(() => ShopName);
                 RaisePropertyChanged(() => Phone);
+                RaisePropertyChanged(() => SelectedStreet);
+                RaisePropertyChanged(() => SelectedPostalCode);
+                RaisePropertyChanged(() => Curreny);
+                RaisePropertyChanged(() => TaxRate);              
             }
             finally
             {
                 if (Errors.Count > 0)
-                {
-                    var element = string.Join(",", Errors);                  
-                    MessageBox.Show(element);
+                {                 
                     IsValidating = false;                  
                 }
             }
@@ -506,10 +589,75 @@ namespace RetailPOS.ViewModel.Settings
                 Errors.Remove(columnName);
                 switch (columnName)
                 {
-                    case "Code": if (string.IsNullOrEmpty(Code)) result = "Code is required!"; break;
-                    case "ShopName": if (string.IsNullOrEmpty(Code)) result = "ShopName is required!"; break;
-                    case "Phone": if (string.IsNullOrEmpty(Code)) result = "Phone is required!"; break;
-                };
+                    case "Code":
+                        if (string.IsNullOrEmpty(Code))
+                        {
+                            IsShopCodeBlankVisible = Visibility.Visible;
+                            result = " error!";
+                            break;
+                        }
+                        else
+                        {
+                            IsShopCodeBlankVisible = Visibility.Collapsed;
+                            break;
+                        }
+                    case "ShopName": if (string.IsNullOrEmpty(ShopName))
+                        {
+                            IsShopNameBlankVisible = Visibility.Visible;
+                            result = "error";
+                            break;
+                        }
+                        else
+                        {
+                            IsShopNameBlankVisible = Visibility.Collapsed;
+                            break;
+                        }
+                    case "Phone": if (string.IsNullOrEmpty(Phone))
+                        {
+                            IsTelephoneNoBlankVisible = Visibility.Visible;
+                            result = "error";
+                            break;
+                        }
+                        else
+                        {
+                            IsTelephoneNoBlankVisible = Visibility.Collapsed;
+                            break;
+                        }
+                    case "SelectedStreet": if (SelectedStreet == null)
+                        {
+                            IsStreetBlankVisible = Visibility.Visible;
+                            result = "error"; break;
+                        }
+                        else
+                        {
+                            IsStreetBlankVisible = Visibility.Collapsed;
+                            break;
+                        }
+                    case "SelectedPostalCode": if (SelectedPostalCode == null)
+                        {
+                            IsPostalCodeBlankVisible = Visibility.Visible;
+                            result = "error"; break;
+                        }
+                        else
+                        {
+                            IsPostalCodeBlankVisible = Visibility.Collapsed;
+                            break;
+                        }
+                    case "Curreny": if (string.IsNullOrEmpty(Curreny))
+                        { IsCurrencyBlankVisible = Visibility.Visible; result = "error"; break; }
+                        else
+                        {
+                            IsCurrencyBlankVisible = Visibility.Collapsed;
+                            break;
+                        }
+                    case "TaxRate": if (TaxRate <= 0)
+                        { IsTaxRateBlankVisible = Visibility.Visible; result = "error"; break; }
+                        else
+                        {
+                            IsTaxRateBlankVisible = Visibility.Collapsed;
+                            break;
+                        }
+                }
                 if (result != string.Empty) Errors.Add(columnName, result);
                 return result;
             }

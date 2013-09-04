@@ -23,7 +23,7 @@
             <TabItem Header="Add Category">
                 <Grid Margin="0,30,0,0">
                     <Grid.ColumnDefinitions>
-                        <ColumnDefinition Width="100*" />
+                        <ColumnDefinition Width="80*" />
                         <ColumnDefinition Width="200*" />
                     </Grid.ColumnDefinitions>
                     <Grid.RowDefinitions>
@@ -33,11 +33,15 @@
                         <RowDefinition Height="15*" />
                     </Grid.RowDefinitions>
                     <TextBlock Text="Name:" Height="30" Foreground="Black" HorizontalAlignment="Left" Margin="30,5,0,0" FontSize="14" FontWeight="Bold" TextAlignment="Right" VerticalAlignment="Top" Width="142" Grid.RowSpan="2" />
+                    <TextBlock Text="Name is required !" Height="20" Foreground="Red" HorizontalAlignment="Center" Margin="310,5,0,0" FontSize="12" FontWeight="Bold" TextAlignment="Left" VerticalAlignment="Top" Width="130" Grid.Row="0" Grid.Column="1" Visibility="{Binding IsCategoryNameVisible}" />
+
                     <TextBlock Text="Description :" FontSize="14"  Foreground="Black" FontWeight="Bold" Height="30" HorizontalAlignment="Left" Margin="30,5,0,0" TextBlock.TextAlignment="Right" VerticalAlignment="Top" Width="142" Grid.Row="1" />
+                    <TextBlock Text="Description is required!" Height="20" Foreground="Red" HorizontalAlignment="Center" Margin="310,5,0,0" FontSize="12" FontWeight="Bold" TextAlignment="Left" VerticalAlignment="Top" Width="130" Grid.Row="1" Grid.Column="1" Visibility="{Binding IsCategoryDiscriptionVisible}" />
                     <TextBlock Text="Color :" FontSize="14"  Foreground="Black" FontWeight="Bold" Height="25" HorizontalAlignment="Left" Margin="30,5,0,0" TextBlock.TextAlignment="Right" VerticalAlignment="Top" Width="142" Grid.Row="2" />
-                    <TextBox Utility:MaskedTextBoxBehaviour.IsStringSpacOnly="True" Text="{Binding Name}" Grid.Column="1" Height="30" HorizontalAlignment="Left" Margin="15,6,0,0" VerticalAlignment="Top" Width="300" Grid.Row="0" />
-                    <TextBox Grid.Row="1" Utility:MaskedTextBoxBehaviour.IsStringSpaceNumOnly="True" Text="{Binding Description}" Height="95" Grid.Column="1" HorizontalAlignment="Left" Margin="15,6,0,0" VerticalAlignment="Top" Width="300" />
-                    <xctk:ColorPicker ShowDropDownButton="True" DisplayColorAndName="True"  SelectedColor="{Binding SelectedColor,Mode=TwoWay}" ShowAvailableColors="True" Grid.Column="1" Grid.Row="2" HorizontalAlignment="Left" Margin="15,6,0,0" VerticalAlignment="Top" Width="300" Height="30"  />
+                    <TextBlock Text="Pick The Color!" Height="20" Foreground="Red" HorizontalAlignment="Center" Margin="310,5,0,0" FontSize="12" FontWeight="Bold" TextAlignment="Left" VerticalAlignment="Top" Width="130" Grid.Row="2" Grid.Column="1" Visibility="{Binding IsColorVisible}" />
+                    <TextBox Utility:MaskedTextBoxBehaviour.IsStringSpacOnly="True" Text="{Binding Name,ValidatesOnDataErrors=True}" Grid.Column="1" Height="30" HorizontalAlignment="Left" Margin="15,6,0,0" VerticalAlignment="Top" Width="300" Grid.Row="0" />
+                    <TextBox Grid.Row="1" Utility:MaskedTextBoxBehaviour.IsStringSpaceNumOnly="True" Text="{Binding Description,ValidatesOnDataErrors=True}" Height="95" Grid.Column="1" HorizontalAlignment="Left" Margin="15,6,0,0" VerticalAlignment="Top" Width="300" />
+                    <xctk:ColorPicker ShowDropDownButton="True" DisplayColorAndName="True"  SelectedColor="{Binding SelectedColor,Mode=TwoWay,ValidatesOnDataErrors=True}" ShowAvailableColors="True" Grid.Column="1" Grid.Row="2" HorizontalAlignment="Left" Margin="15,6,0,0" VerticalAlignment="Top" Width="300" Height="30"  />
                     <Button Height="30" Command="{Binding SaveCategoryCommand}" TextBlock.FontSize="14" HorizontalAlignment="Right" Width="75" Margin="0,0,10,0" Grid.Row="3">
                         <DockPanel>
                             <Image Source="../../../Images/save-icon.png" Width="16" />
