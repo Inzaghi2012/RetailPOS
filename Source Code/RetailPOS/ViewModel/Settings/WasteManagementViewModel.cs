@@ -9,12 +9,13 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Collections.ObjectModel;
 using System;
+using System.ComponentModel;
 
 #endregion
 
 namespace RetailPOS.ViewModel.Settings
 {
-    public class WasteManagementViewModel : ViewModelBase
+    public class WasteManagementViewModel : ViewModelBase, IDataErrorInfo
     {
         #region Declare Public and Private Data member
 
@@ -208,13 +209,16 @@ namespace RetailPOS.ViewModel.Settings
 
         private void SaveWasteManagement()
         {
-            var wasteManagementDetails = InitializeWasteManagementDetails();
-            ServiceFactory.ServiceClient.SaveWasteManagement(wasteManagementDetails);
+            if (IsValid())
+            {
+                var wasteManagementDetails = InitializeWasteManagementDetails();
+                ServiceFactory.ServiceClient.SaveWasteManagement(wasteManagementDetails);
 
-            ////Get waste management details from database
-            GetWasteManagementDetails(string.Empty);
+                ////Get waste management details from database
+                GetWasteManagementDetails(string.Empty);
 
-            ClearControls();
+                ClearControls();
+            }
         }
 
         private WasteManagementDTO InitializeWasteManagementDetails()
@@ -251,5 +255,151 @@ namespace RetailPOS.ViewModel.Settings
         {
             IsWeightVisible = Visibility.Hidden;
         }
+
+        #region Validation
+
+        public bool IsValidating = false;
+
+        public List<string> Errors = new List<string>();
+
+        //To validate the field
+        //Will check if fields are validated or not
+        public bool IsValid()
+        {
+            IsValidating = true;
+            Errors.Clear();
+            try
+            {
+                RaisePropertyChanged(() => SelectedProduct);
+                RaisePropertyChanged(() => BarCode);
+                RaisePropertyChanged(() => Description);
+                RaisePropertyChanged(() => Quantity);
+                RaisePropertyChanged(() => Weight);
+            }
+            finally
+            {
+                if (Errors.Count > 0)
+                {
+
+                    IsValidating = false;
+                    MessageBox.Show(string.Join(",", Errors));
+                }
+            }
+            return (Errors.Count == 0);
+        }
+
+        public string Error
+        {
+            get { throw new NotImplementedException(); }
+        }
+
+        public string this[string columnName]
+        {
+            get
+            {
+                string result = string.Empty;
+                if (!IsValidating) return result;
+                Errors.Remove(columnName);
+                if (IsWeightVisible == Visibility.Visible)
+                {
+
+                    switch (columnName)
+                    {
+                        case "SelectedProduct":
+                            if (SelectedProduct == null)
+                            {
+                                result = " ProductName is required!";
+                                break;
+                            }
+                            else
+                            {
+                                break;
+                            }
+
+
+                        case "BarCode": if (string.IsNullOrEmpty(BarCode))
+                            {
+                                result = " BarCode is required!";
+                                break;
+                            }
+                            else
+                            { break; }
+
+                        case "Description":
+                            if (string.IsNullOrEmpty(Description))
+                            {
+                                result = " Description is required!";
+                                break;
+                            }
+                            else { break; }
+
+                        case "Quantity":
+                            if (Quantity <= 0)
+                            {
+                                result = " Quantity is required!";
+                                break;
+                            }
+                            else { break; }
+
+                        case "Weight":
+                            if (Weight <= 0)
+                            {
+                                result = " Weight is required!";
+                                break;
+                            }
+                            else { break; }
+
+
+
+                    }
+                }
+                else
+                {
+                    switch (columnName)
+                    {
+                        case "SelectedProduct":
+                            if (SelectedProduct == null)
+                            {
+                                result = " ProductName is required!";
+                                break;
+                            }
+                            else
+                            {
+                                break;
+                            }
+
+
+                        case "BarCode": if (string.IsNullOrEmpty(BarCode))
+                            {
+                                result = " BarCode is required!";
+                                break;
+                            }
+                            else
+                            { break; }
+
+                        case "Description":
+                            if (string.IsNullOrEmpty(Description))
+                            {
+                                result = " Description is required!";
+                                break;
+                            }
+                            else { break; }
+
+                        case "Quantity":
+                            if (Quantity <= 0)
+                            {
+                                result = " Quantity is required!";
+                                break;
+                            }
+                            else { break; }
+                    }
+                }
+                if (result != string.Empty) Errors.Add(result);
+                return result;
+            }
+        }
+
+
+        #endregion
     }
 }

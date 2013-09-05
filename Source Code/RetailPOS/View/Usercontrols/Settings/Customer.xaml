@@ -37,15 +37,30 @@
                         <ColumnDefinition Width="100*" />
                         <ColumnDefinition Width="200*" />
                     </Grid.ColumnDefinitions>
-                    <TextBlock Text="Code:" Height="30" Foreground="Black" HorizontalAlignment="Left" Margin="50,5,0,0" FontSize="14" FontWeight="Bold" TextAlignment="Right" VerticalAlignment="Top" Width="142" />
+                    <TextBlock Height="30" Foreground="Black" HorizontalAlignment="Left" Margin="50,5,0,0" FontSize="14" FontWeight="Bold" TextAlignment="Right" VerticalAlignment="Top" Width="142">
+                       <Run Foreground="Red">*</Run>
+                        <Run Foreground="Black">Code:</Run>
+                    </TextBlock>
                     <TextBlock Text="Type :" FontSize="14"  Foreground="Black" FontWeight="Bold" Height="30" HorizontalAlignment="Left" Margin="50,5,0,0" TextBlock.TextAlignment="Right" VerticalAlignment="Top" Width="142" Grid.Row="1" />
-                    <TextBlock Text="First Name :" FontSize="14"  Foreground="Black" FontWeight="Bold" Height="30" HorizontalAlignment="Left" Margin="50,5,0,0" TextBlock.TextAlignment="Right" VerticalAlignment="Top" Width="142" Grid.Row="2" />
-                    <TextBlock Text="Last Name :" FontSize="14"  Foreground="Black" FontWeight="Bold" Height="30" HorizontalAlignment="Left" Margin="50,5,0,0" TextBlock.TextAlignment="Right" VerticalAlignment="Top" Width="142" Grid.Row="3" />
-                    <TextBlock Text="Email :" FontSize="14"  Foreground="Black" FontWeight="Bold" Height="30" HorizontalAlignment="Left" Margin="50,5,0,0" TextBlock.TextAlignment="Right" VerticalAlignment="Top" Width="142" Grid.Row="4" />
+                    <TextBlock FontSize="14"  Foreground="Black" FontWeight="Bold" Height="30" HorizontalAlignment="Left" Margin="50,5,0,0" TextBlock.TextAlignment="Right" VerticalAlignment="Top" Width="142" Grid.Row="2">
+                        <Run Foreground="Red">*</Run>
+                        <Run Foreground="Black">First Name:</Run>
+                    </TextBlock>
+                    <TextBlock  FontSize="14"  Foreground="Black" FontWeight="Bold" Height="30" HorizontalAlignment="Left" Margin="50,5,0,0" TextBlock.TextAlignment="Right" VerticalAlignment="Top" Width="142" Grid.Row="3">
+                          <Run Foreground="Red">*</Run>
+                        <Run Foreground="Black">Last Name:</Run>
+                    </TextBlock>
+                    <TextBlock FontSize="14"  Foreground="Black" FontWeight="Bold" Height="30" HorizontalAlignment="Left" Margin="50,5,0,0" TextBlock.TextAlignment="Right" VerticalAlignment="Top" Width="142" Grid.Row="4">
+                          <Run Foreground="Red">*</Run>
+                        <Run Foreground="Black">Email:</Run>
+                    </TextBlock>
                     <TextBlock Text="Phone :" FontSize="14"  Foreground="Black" FontWeight="Bold" Height="30" HorizontalAlignment="Left" Margin="50,5,0,0" TextBlock.TextAlignment="Right" VerticalAlignment="Top" Width="142" Grid.Row="5" />
                     <TextBlock Text="Mobile:" FontSize="14"  Foreground="Black" FontWeight="Bold" Height="30" HorizontalAlignment="Left" Margin="50,5,0,0" TextBlock.TextAlignment="Right" VerticalAlignment="Top" Width="142" Grid.Row="6" />
-                    <TextBlock Text="Status:" FontSize="14"  Foreground="Black" FontWeight="Bold" Height="30" HorizontalAlignment="Left" Margin="50,5,0,0" TextBlock.TextAlignment="Right" VerticalAlignment="Top" Width="142" Grid.Row="7" />
-                    <TextBox Grid.Column="1" Utility:MaskedTextBoxBehaviour.IsAlphaNumericOnly="True" Grid.Row="0" MaxLength="255" Height="30" Text="{Binding CustomerCode,ValidatesOnDataErrors=True,UpdateSourceTrigger=PropertyChanged,Mode=TwoWay}" HorizontalAlignment="Left" Margin="15,6,0,0"  VerticalAlignment="Top" Width="250" />
+                    <TextBlock FontSize="14"  Foreground="Black" FontWeight="Bold" Height="30" HorizontalAlignment="Left" Margin="50,5,0,0" TextBlock.TextAlignment="Right" VerticalAlignment="Top" Width="142" Grid.Row="7">
+                          <Run Foreground="Red">*</Run>
+                        <Run Foreground="Black">Status:</Run>
+                    </TextBlock>
+                    <TextBox Grid.Column="1" Utility:MaskedTextBoxBehaviour.IsAlphaNumericOnly="True" Grid.Row="0" MaxLength="255" Height="30" Text="{Binding CustomerCode,ValidatesOnDataErrors=True,Mode=TwoWay}" HorizontalAlignment="Left" Margin="15,6,0,0"  VerticalAlignment="Top" Width="250" />
                     <Toolkit:AutoCompleteBox Grid.Column="1" Grid.Row="1" HorizontalAlignment="Left" SelectedItem="{Binding SelectedType, Mode=TwoWay}" Margin="15,6,0,0"
                                  ItemsSource="{Binding LstType}" Text="{Binding Name, Mode=TwoWay}" IsTextCompletionEnabled="False" FilterMode="StartsWith"
                                      ValueMemberPath="Name" VerticalAlignment="Top" Width="250" Height="30" >
@@ -61,12 +76,12 @@
                             </DataTemplate>
                         </Toolkit:AutoCompleteBox.ItemTemplate>
                     </Toolkit:AutoCompleteBox>
-                    <TextBox Grid.Column="1" Utility:MaskedTextBoxBehaviour.IsStringSpacOnly="True"  Grid.Row="2"  MaxLength="15" Height="30" Text="{Binding FirstName}" HorizontalAlignment="Left" Margin="15,6,0,0"  VerticalAlignment="Top" Width="250" />
-                    <TextBox Grid.Column="1" Utility:MaskedTextBoxBehaviour.IsStringSpacOnly="True" Grid.Row="3"  MaxLength="50" Height="30" Text="{Binding LastName}" HorizontalAlignment="Left" Margin="15,6,0,0"  VerticalAlignment="Top" Width="250" />
-                    <TextBox Grid.Column="1" Utility:MaskedTextBoxBehaviour.IsEmailOnly="True" Grid.Row="4" MaxLength="100" Height="30" HorizontalAlignment="Left" Margin="15,6,0,0" Text="{Binding Email}"  VerticalAlignment="Top" Width="250" />
+                    <TextBox Grid.Column="1" Utility:MaskedTextBoxBehaviour.IsStringSpacOnly="True"  Grid.Row="2"  MaxLength="15" Height="30" Text="{Binding First_Name,ValidatesOnDataErrors=True}" HorizontalAlignment="Left" Margin="15,6,0,0"  VerticalAlignment="Top" Width="250" />
+                    <TextBox Grid.Column="1" Utility:MaskedTextBoxBehaviour.IsStringSpacOnly="True" Grid.Row="3"  MaxLength="50" Height="30" Text="{Binding LastName,ValidatesOnDataErrors=True}" HorizontalAlignment="Left" Margin="15,6,0,0"  VerticalAlignment="Top" Width="250" />
+                    <TextBox Grid.Column="1" Utility:MaskedTextBoxBehaviour.IsEmailOnly="True" Grid.Row="4" MaxLength="100" Height="30" HorizontalAlignment="Left" Margin="15,6,0,0" Text="{Binding Email,ValidatesOnDataErrors=True}"  VerticalAlignment="Top" Width="250" />
                     <TextBox Grid.Column="1" Utility:MaskedTextBoxBehaviour.IsAlphaNumerichyphenOnly="True" Grid.Row="5" Height="30" Text="{Binding Phone}" HorizontalAlignment="Left" Margin="15,6,0,0"  VerticalAlignment="Top" Width="250" />
                     <TextBox Grid.Column="1" Utility:MaskedTextBoxBehaviour.IsNumericOnly="True" Grid.Row="6" Height="30" Text="{Binding Mobile}" HorizontalAlignment="Left" Margin="15,6,0,0"  VerticalAlignment="Top" Width="250" />
-                    <Toolkit:AutoCompleteBox Grid.Column="1" Grid.Row="7" HorizontalAlignment="Left" SelectedItem="{Binding SelectedStatus, Mode=TwoWay}" Margin="15,6,0,0"
+                    <Toolkit:AutoCompleteBox Grid.Column="1" Grid.Row="7" HorizontalAlignment="Left" SelectedItem="{Binding SelectedStatus, Mode=TwoWay,ValidatesOnDataErrors=True}" Margin="15,6,0,0"
                                  ItemsSource="{Binding LstStatus}" Text="{Binding Name, Mode=TwoWay}" IsTextCompletionEnabled="False" FilterMode="StartsWith"
                                      ValueMemberPath="Status" VerticalAlignment="Top" Width="250" Height="30" >
                         <Toolkit:AutoCompleteBox.ItemTemplate>
@@ -150,8 +165,11 @@
                             </DataTemplate>
                         </Toolkit:AutoCompleteBox.ItemTemplate>
                     </Toolkit:AutoCompleteBox>
-                    <TextBlock Text="Street:" FontSize="14"  Foreground="Black" FontWeight="Bold" Height="30" HorizontalAlignment="Left" Margin="50,5,0,0" TextBlock.TextAlignment="Right" VerticalAlignment="Top" Width="142" Grid.Row="5" />
-                    <Toolkit:AutoCompleteBox Grid.Column="1" Grid.Row="5" HorizontalAlignment="Left" SelectedItem="{Binding SelectedStreet, Mode=TwoWay}" Margin="15,6,0,0"
+                    <TextBlock FontSize="14"  Foreground="Black" FontWeight="Bold" Height="30" HorizontalAlignment="Left" Margin="50,5,0,0" TextBlock.TextAlignment="Right" VerticalAlignment="Top" Width="142" Grid.Row="5">
+                        <Run Foreground="Red">*</Run>
+                        <Run Foreground="Black">Street:</Run>
+                    </TextBlock>
+                    <Toolkit:AutoCompleteBox Grid.Column="1" Grid.Row="5" HorizontalAlignment="Left" SelectedItem="{Binding SelectedStreet, Mode=TwoWay,ValidatesOnDataErrors=True}" Margin="15,6,0,0"
                                  ItemsSource="{Binding LstStreet}" Text="{Binding Street1, Mode=TwoWay}" IsTextCompletionEnabled="False" FilterMode="StartsWith"
                                      ValueMemberPath="Street1" VerticalAlignment="Top" Width="250" Height="30" >
                         <Toolkit:AutoCompleteBox.ItemTemplate>
@@ -166,8 +184,11 @@
                             </DataTemplate>
                         </Toolkit:AutoCompleteBox.ItemTemplate>
                     </Toolkit:AutoCompleteBox>
-                    <TextBlock Text="Postal Code:" FontSize="14"  Foreground="Black" FontWeight="Bold" Height="30" HorizontalAlignment="Left" Margin="50,5,0,0" TextBlock.TextAlignment="Right" VerticalAlignment="Top" Width="142" Grid.Row="6" />
-                    <Toolkit:AutoCompleteBox Grid.Column="1" Grid.Row="6" HorizontalAlignment="Left" SelectedItem="{Binding SelectedPostalCode, Mode=TwoWay}" Margin="15,6,0,0"
+                    <TextBlock FontSize="14"  Foreground="Black" FontWeight="Bold" Height="30" HorizontalAlignment="Left" Margin="50,5,0,0" TextBlock.TextAlignment="Right" VerticalAlignment="Top" Width="142" Grid.Row="6">
+                        <Run Foreground="Red">*</Run>
+                        <Run Foreground="Black">Postal Code:</Run>
+                    </TextBlock>
+                    <Toolkit:AutoCompleteBox Grid.Column="1" Grid.Row="6" HorizontalAlignment="Left" SelectedItem="{Binding SelectedPostalCode, Mode=TwoWay,ValidatesOnDataErrors=True}" Margin="15,6,0,0"
                                  ItemsSource="{Binding LstPostalCode}" Text="{Binding PostCode1, Mode=TwoWay}" IsTextCompletionEnabled="False" FilterMode="StartsWith"
                                      ValueMemberPath="PostCode1" VerticalAlignment="Top" Width="250" Height="30" >
                         <Toolkit:AutoCompleteBox.ItemTemplate>
@@ -211,10 +232,16 @@
                         <RowDefinition Height="40"></RowDefinition>
                         <RowDefinition Height="40"></RowDefinition>
                     </Grid.RowDefinitions>
-                    <TextBlock Text="Payment Period:" FontSize="14"  Foreground="Black" FontWeight="Bold" Height="30" HorizontalAlignment="Left" Margin="50,5,0,0" TextBlock.TextAlignment="Right" VerticalAlignment="Top" Width="142" Grid.Row="0" />
-                    <TextBlock Text="Credit Limit:" FontSize="14"  Foreground="Black" FontWeight="Bold" Height="30" HorizontalAlignment="Left" Margin="50,5,0,0" TextBlock.TextAlignment="Right" VerticalAlignment="Top" Width="142" Grid.Row="1" />
-                    <TextBox Text="{Binding PaymentPeriod}" Utility:MaskedTextBoxBehaviour.IsNumericOnly="True" Grid.Column="1" Grid.Row="0" HorizontalAlignment="Left" Margin="15,0,6,0" Width="250" Height="30" />
-                    <TextBox Text="{Binding CreditLimit}" Utility:MaskedTextBoxBehaviour.IsDecimalOnly="True" HorizontalAlignment="Left" Grid.Column="1" Grid.Row="1" Height="30" Width="250" Margin="15,0,6,0"/>
+                    <TextBlock FontSize="14"  Foreground="Black" FontWeight="Bold" Height="30" HorizontalAlignment="Left" Margin="50,5,0,0" TextBlock.TextAlignment="Right" VerticalAlignment="Top" Width="142" Grid.Row="0">
+                          <Run Foreground="Red">*</Run>
+                        <Run Foreground="Black">Payment Period:</Run>
+                    </TextBlock>
+                    <TextBlock FontSize="14"  Foreground="Black" FontWeight="Bold" Height="30" HorizontalAlignment="Left" Margin="50,5,0,0" TextBlock.TextAlignment="Right" VerticalAlignment="Top" Width="142" Grid.Row="1">
+                          <Run Foreground="Red">*</Run>
+                        <Run Foreground="Black">Credit Limit:</Run>
+                    </TextBlock>
+                    <TextBox Text="{Binding PaymentPeriod,ValidatesOnDataErrors=True}" Utility:MaskedTextBoxBehaviour.IsNumericOnly="True" Grid.Column="1" Grid.Row="0" HorizontalAlignment="Left" Margin="15,0,6,0" Width="250" Height="30" />
+                    <TextBox Text="{Binding CreditLimit,ValidatesOnDataErrors=True}" Utility:MaskedTextBoxBehaviour.IsDecimalOnly="True" HorizontalAlignment="Left" Grid.Column="1" Grid.Row="1" Height="30" Width="250" Margin="15,0,6,0"/>
                 </Grid>
             </TabItem>
             <TabItem Header="View / Search Customer">

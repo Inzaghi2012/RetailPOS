@@ -45,11 +45,26 @@
                         <ColumnDefinition Width="200*"></ColumnDefinition>
                         <ColumnDefinition Width="150"></ColumnDefinition>
                     </Grid.ColumnDefinitions>
-                    <TextBlock Text="Select Category:" Grid.Row="0" Grid.Column="0" Height="30" Foreground="Black" HorizontalAlignment="Left" Margin="5,5,0,0" FontSize="14" FontWeight="Bold" TextAlignment="Right" VerticalAlignment="Top" Width="142" />
-                    <TextBlock Text="Bar Code:" Grid.Row="1" Grid.Column="0" Height="30" Foreground="Black" HorizontalAlignment="Left" Margin="5,5,0,0" FontSize="14" FontWeight="Bold" TextAlignment="Right" VerticalAlignment="Top" Width="142" />
-                    <TextBlock Text="Name:" Grid.Row="2" Grid.Column="0" Height="30" Foreground="Black" HorizontalAlignment="Left" Margin="5,5,0,0" FontSize="14" FontWeight="Bold" TextAlignment="Right" VerticalAlignment="Top" Width="142" />
-                    <TextBlock Text="Description:" Grid.Row="3" Grid.Column="0" Height="30" Foreground="Black" HorizontalAlignment="Left" Margin="5,5,0,0" FontSize="14" FontWeight="Bold" TextAlignment="Right" VerticalAlignment="Top" Width="142" />
-                    <TextBlock Text="Status:" Grid.Row="4" Grid.Column="0" Height="30" Foreground="Black" HorizontalAlignment="Left" Margin="5,5,0,0" FontSize="14" FontWeight="Bold" TextAlignment="Right" VerticalAlignment="Top" Width="142" />
+                    <TextBlock Grid.Row="0" Grid.Column="0" Height="30" Foreground="Black" HorizontalAlignment="Left" Margin="5,5,0,0" FontSize="14" FontWeight="Bold" TextAlignment="Right" VerticalAlignment="Top" Width="142">
+                        <Run Foreground="Red">*</Run>
+                         <Run Foreground="Black">Category:</Run>
+                    </TextBlock>
+                    <TextBlock Grid.Row="1" Grid.Column="0" Height="30" Foreground="Black" HorizontalAlignment="Left" Margin="5,5,0,0" FontSize="14" FontWeight="Bold" TextAlignment="Right" VerticalAlignment="Top" Width="142">
+                          <Run Foreground="Red">*</Run>
+                         <Run Foreground="Black">Bar Code:</Run>
+                    </TextBlock>
+                    <TextBlock Grid.Row="2" Grid.Column="0" Height="30" Foreground="Black" HorizontalAlignment="Left" Margin="5,5,0,0" FontSize="14" FontWeight="Bold" TextAlignment="Right" VerticalAlignment="Top" Width="142">
+                            <Run Foreground="Red">*</Run>
+                         <Run Foreground="Black">Name:</Run>
+                    </TextBlock>
+                    <TextBlock Grid.Row="3" Grid.Column="0" Height="30" Foreground="Black" HorizontalAlignment="Left" Margin="5,5,0,0" FontSize="14" FontWeight="Bold" TextAlignment="Right" VerticalAlignment="Top" Width="142">
+                            <Run Foreground="Red">*</Run>
+                         <Run Foreground="Black">Description:</Run>
+                    </TextBlock>
+                    <TextBlock Grid.Row="4" Grid.Column="0" Height="30" Foreground="Black" HorizontalAlignment="Left" Margin="5,5,0,0" FontSize="14" FontWeight="Bold" TextAlignment="Right" VerticalAlignment="Top" Width="142">
+                            <Run Foreground="Red">*</Run>
+                         <Run Foreground="Black">Status:</Run>
+                    </TextBlock>
                     <TextBlock Text="Retail Price:" Grid.Row="5" Grid.Column="0"  Height="30" Foreground="Black" HorizontalAlignment="Left" Margin="5,5,0,0" FontSize="14" FontWeight="Bold" TextAlignment="Right" VerticalAlignment="Top" Width="142" />
                     <TextBlock Text="Whole Sale Price:" Grid.Row="6" Grid.Column="0" Height="30" Foreground="Black" HorizontalAlignment="Left" Margin="5,5,0,0" FontSize="14" FontWeight="Bold" TextAlignment="Right" VerticalAlignment="Top" Width="142" />
                     <TextBlock Text="Purchase Price:" Grid.Row="7" Grid.Column="0" Height="30" Foreground="Black" HorizontalAlignment="Left" Margin="5,5,0,0" FontSize="14" FontWeight="Bold" TextAlignment="Right" VerticalAlignment="Top" Width="142" />
@@ -58,7 +73,7 @@
                     <TextBlock Text="Is Product sold loose:" Grid.Row="10" Grid.Column="0" Height="30" Foreground="Black" HorizontalAlignment="Left" Margin="5,5,0,0" FontSize="14" FontWeight="Bold" TextAlignment="Right" VerticalAlignment="Top" Width="142" />
                     <TextBlock Text="Size:" Grid.Row="11" Grid.Column="0" Visibility="{Binding SetVisibilityForLooseItems}"  Height="30" Foreground="Black" HorizontalAlignment="Left" Margin="5,5,0,0" FontSize="14" FontWeight="Bold" TextAlignment="Right" VerticalAlignment="Top" Width="142" />
                     <TextBlock Text="Weight:" Grid.Row="12" Grid.Column="0" Visibility="{Binding SetVisibilityForLooseItems}" Height="30" Foreground="Black" HorizontalAlignment="Left" Margin="5,5,0,0" FontSize="14" FontWeight="Bold" TextAlignment="Right" VerticalAlignment="Top" Width="142" />
-                    <Toolkit:AutoCompleteBox Grid.Column="1" Grid.Row="0" HorizontalAlignment="Left" SelectedItem="{Binding SelectedCategory, Mode=TwoWay}" Margin="15,0,6,0"
+                    <Toolkit:AutoCompleteBox Grid.Column="1" Grid.Row="0" HorizontalAlignment="Left" SelectedItem="{Binding SelectedCategory, Mode=TwoWay,ValidatesOnDataErrors=True}" Margin="15,0,6,0"
                                  ItemsSource="{Binding LstCategories}" Text="{Binding Name, Mode=TwoWay}" IsTextCompletionEnabled="False" FilterMode="StartsWith"
                                      ValueMemberPath="Name" VerticalAlignment="Top" Width="250" Height="30" >
                         <Toolkit:AutoCompleteBox.ItemTemplate>
@@ -75,7 +90,9 @@
                     </Toolkit:AutoCompleteBox>
                     <TextBlock Text="Quantity:" Grid.Row="13" Grid.Column="0" Height="30" Foreground="Black" HorizontalAlignment="Left" Margin="5,5,0,0" FontSize="14" FontWeight="Bold" TextAlignment="Right" VerticalAlignment="Top" Width="142" />
                    
-                    <TextBox Grid.Column="1" Utility:MaskedTextBoxBehaviour.IsAlphaNumericOnly="True"  Grid.Row="1"  MaxLength="15" Height="30" Text="{Binding BarCode, Mode=TwoWay}" HorizontalAlignment="Left" Margin="15,0,6,0"  VerticalAlignment="Top" Width="250" />
+                    <TextBox Grid.Column="1" Utility:MaskedTextBoxBehaviour.IsAlphaNumericOnly="True"  Grid.Row="1"  MaxLength="15" Height="30" Text="{Binding BarCode, Mode=TwoWay,ValidatesOnDataErrors=True}" HorizontalAlignment="Left" Margin="15,0,6,0"  VerticalAlignment="Top" Width="250">
+                   
+                    </TextBox>
                     <Button Height="35" Command="{Binding GenerateBarCodeCommand}" TextBlock.FontSize="14" Grid.Row="1" Grid.Column="2" HorizontalAlignment="Left" VerticalAlignment="Top" Width="140" >
                         <DockPanel>
                             <TextBlock VerticalAlignment="center" Margin="2 0 0 0" Width="130">
@@ -83,9 +100,9 @@
                             </TextBlock>
                         </DockPanel>
                     </Button>
-                    <TextBox Grid.Column="1" Utility:MaskedTextBoxBehaviour.IsStringSpacOnly="True"  Grid.Row="2"  MaxLength="15" Height="30" Text="{Binding ProductName}" HorizontalAlignment="Left" Margin="15,0,6,0"  VerticalAlignment="Top" Width="250" />
-                    <TextBox Grid.Column="1" Utility:MaskedTextBoxBehaviour.IsStringSpaceNumOnly="True"  Grid.Row="3"  MaxLength="15" Height="30" Text="{Binding Description}" HorizontalAlignment="Left" Margin="15,0,6,0"  VerticalAlignment="Top" Width="250" />
-                    <Toolkit:AutoCompleteBox Grid.Column="1" Grid.Row="4" HorizontalAlignment="Left" SelectedItem="{Binding SelectedStatus, Mode=TwoWay}" Margin="15,0,6,0"
+                    <TextBox Grid.Column="1" Utility:MaskedTextBoxBehaviour.IsStringSpacOnly="True"  Grid.Row="2"  MaxLength="15" Height="30" Text="{Binding ProductName,ValidatesOnDataErrors=True}" HorizontalAlignment="Left" Margin="15,0,6,0"  VerticalAlignment="Top" Width="250" />
+                    <TextBox Grid.Column="1" Utility:MaskedTextBoxBehaviour.IsStringSpaceNumOnly="True"  Grid.Row="3"  MaxLength="15" Height="30" Text="{Binding Description,ValidatesOnDataErrors=True}" HorizontalAlignment="Left" Margin="15,0,6,0"  VerticalAlignment="Top" Width="250" />
+                    <Toolkit:AutoCompleteBox Grid.Column="1" Grid.Row="4" HorizontalAlignment="Left" SelectedItem="{Binding SelectedStatus, Mode=TwoWay,ValidatesOnDataErrors=True}" Margin="15,0,6,0"
                                  ItemsSource="{Binding LstStatus}" Text="{Binding Status, Mode=TwoWay}" IsTextCompletionEnabled="False" FilterMode="StartsWith"
                                      ValueMemberPath="Status" VerticalAlignment="Top" Width="250" Height="30" >
                         <Toolkit:AutoCompleteBox.ItemTemplate>
@@ -120,8 +137,11 @@
                         <RowDefinition></RowDefinition>
                     </Grid.RowDefinitions>
                     <StackPanel Orientation="Horizontal" Grid.Row="0">
-                        <TextBlock Text="Product Pic :" TextAlignment="Right" FontWeight="Bold" FontSize="15" Width="120" Foreground="Black" Grid.Row="1" Margin="0,5,5,0"></TextBlock>
-                        <TextBox Height="30" Margin="0,1,0,0" Name="FileNameTextBox" Text="{Binding FilePath}" Width="300" />
+                        <TextBlock TextAlignment="Right" FontWeight="Bold" FontSize="15" Width="120" Foreground="Black" Grid.Row="1" Margin="0,5,5,0">
+                                <Run Foreground="Red">*</Run>
+                         <Run Foreground="Black">Product Pic:</Run>
+                        </TextBlock>
+                        <TextBox Height="30" Margin="0,1,0,0" Name="FileNameTextBox" Text="{Binding FilePath,ValidatesOnDataErrors=True}" Width="300" />
                         <Button Content="Browse" Height="32" HorizontalAlignment="Right" Grid.Column="1" Grid.Row="1" Margin="5,4,5,0"  Name="button1" VerticalAlignment="Top" Width="57"  />
                     </StackPanel>
                     <Image Grid.Row="1" Height="242" HorizontalAlignment="Center" Margin="26,0,0,20" Name="imgUploaded" Stretch="Fill" VerticalAlignment="Center" Width="341" />

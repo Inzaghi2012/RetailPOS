@@ -8,12 +8,14 @@ using RetailPOS.Core;
 using RetailPOS.RetailPOSService;
 using GalaSoft.MvvmLight.Command;
 using System;
+using System.ComponentModel;
+using Xceed.Wpf.Toolkit;
 
 #endregion
 
 namespace RetailPOS.ViewModel.Settings
 {
-    public class PromotionalOfferViewModel : ViewModelBase
+    public class PromotionalOfferViewModel : ViewModelBase,IDataErrorInfo
     {
         #region Declare Public and Private Data member
 
@@ -230,11 +232,14 @@ namespace RetailPOS.ViewModel.Settings
 
         private void SavePromotionalOfferDetail()
         {
-            var promotionalOfferDetail = InitializePromotionalOfferDetails();
-            ServiceFactory.ServiceClient.SavePromotionalOffer(promotionalOfferDetail);
+            if (IsValid())
+            {
+                var promotionalOfferDetail = InitializePromotionalOfferDetails();
+                ServiceFactory.ServiceClient.SavePromotionalOffer(promotionalOfferDetail);
 
-            ////Clear the controls
-            ClearControls();
+                ////Clear the controls
+                ClearControls();
+            }
         }
 
         private PromotionalOfferDTO InitializePromotionalOfferDetails()
@@ -315,5 +320,113 @@ namespace RetailPOS.ViewModel.Settings
                                                                                     select item);
             }
         }
+
+        #region Validation
+
+        public bool IsValidating = false;
+
+        public List<string> Errors = new List<string>();
+
+        //To validate the field
+        //Will check if fields are validated or not
+        public bool IsValid()
+        {
+            IsValidating = true;
+            Errors.Clear();
+            try
+            {
+                RaisePropertyChanged(() => Name);
+                RaisePropertyChanged(() => Description);
+                RaisePropertyChanged(() => StartDate);
+                RaisePropertyChanged(() => EndDate);
+                RaisePropertyChanged(() => PurchaseQuantity);
+                RaisePropertyChanged(() => SelectedMeasureUnitForPurchaseQuantity);
+            }
+            finally
+            {
+                if (Errors.Count > 0)
+                {
+
+                    IsValidating = false;
+                    MessageBox.Show(string.Join(",", Errors));
+                }
+            }
+            return (Errors.Count == 0);
+        }
+
+        public string Error
+        {
+            get { throw new NotImplementedException(); }
+        }
+
+        public string this[string columnName]
+        {
+            get
+            {
+                string result = string.Empty;
+                if (!IsValidating) return result;
+                Errors.Remove(columnName);
+                switch (columnName)
+                {
+                    case "Name":
+                        if (string.IsNullOrEmpty(Name))
+                        {
+                            result = " Name is required!";
+                            break;
+                        }
+                        else
+                        {
+                            break;
+                        }
+
+
+                    case "Description": if (string.IsNullOrEmpty(Description))
+                        {
+                            result = " Description is required!";
+                            break;
+                        }
+                        else
+                        { break; }
+
+                    case "StartDate":
+                        if (StartDate==null)
+                        {
+                            result = " StartDate is required!";
+                            break;
+                        }
+                        else { break; }
+
+                    case "EndDate":
+                        if (EndDate==null)
+                        {
+                            result = " EndDate is required!";
+                            break;
+                        }
+                        else { break; }
+
+                    case "PurchaseQuantity":
+                        if (PurchaseQuantity<=0)
+                        {
+                            result = " PurchaseQuantity is required!";
+                            break;
+                        }
+                        else { break; }
+                    case "SelectedMeasureUnitForPurchaseQuantity":
+                        if (SelectedMeasureUnitForPurchaseQuantity==null)
+                        {
+                            result = " Unit is required!";
+                            break;
+                        }
+                        else { break; }                
+
+
+                }
+                if (result != string.Empty) Errors.Add(result);
+                return result;
+            }
+        }
+
+
+        #endregion
     }
 }

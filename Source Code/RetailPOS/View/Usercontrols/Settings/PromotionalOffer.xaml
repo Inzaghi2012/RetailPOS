@@ -39,25 +39,40 @@
                             <ColumnDefinition Width="100*"/>
                             <ColumnDefinition Width="250*"/>
                         </Grid.ColumnDefinitions>
-                        <TextBlock Text="Name:" Grid.Row="0" Grid.Column="0" Height="30" Foreground="Black" HorizontalAlignment="Left" Margin="0,5,0,0" FontSize="14" FontWeight="Bold" TextAlignment="Right" VerticalAlignment="Top" Width="142" />
-                        <TextBlock Text="Description:" Grid.Row="1" Grid.Column="0" Height="30" Foreground="Black" HorizontalAlignment="Left" Margin="0,5,0,0" FontSize="14" FontWeight="Bold" TextAlignment="Right" VerticalAlignment="Top" Width="142" />
-                        <TextBlock Text="Start Date:" Grid.Row="2" Grid.Column="0" Height="30" Foreground="Black" HorizontalAlignment="Left" Margin="0,5,0,0" FontSize="14" FontWeight="Bold" TextAlignment="Right" VerticalAlignment="Top" Width="142" />
-                        <TextBlock Text="End Date:" Grid.Row="3" Grid.Column="0" Height="30" Foreground="Black" HorizontalAlignment="Left" Margin="0,5,0,0" FontSize="14" FontWeight="Bold" TextAlignment="Right" VerticalAlignment="Top" Width="142" />
-                        <TextBlock Text="Offer Duration:" Grid.Row="4" Grid.Column="0" Height="30" Foreground="Black" HorizontalAlignment="Left" Margin="0,5,0,0" FontSize="14" FontWeight="Bold" TextAlignment="Right" VerticalAlignment="Top" Width="142" />
-                        <TextBlock Text="Purchase Quantity:" Grid.Row="5" Grid.Column="0" Height="30" Foreground="Black" HorizontalAlignment="Left" Margin="0,5,0,0" FontSize="14" FontWeight="Bold" TextAlignment="Right" VerticalAlignment="Top" Width="142" />
+                        <TextBlock  Grid.Row="0" Grid.Column="0" Height="30" Foreground="Black" HorizontalAlignment="Left" Margin="0,5,0,0" FontSize="14" FontWeight="Bold" TextAlignment="Right" VerticalAlignment="Top" Width="142">
+                             <Run Foreground="Red">*</Run>
+                         <Run Foreground="Black">Name:</Run>
+                        </TextBlock>
+                        <TextBlock Grid.Row="1" Grid.Column="0" Height="30" Foreground="Black" HorizontalAlignment="Left" Margin="0,5,0,0" FontSize="14" FontWeight="Bold" TextAlignment="Right" VerticalAlignment="Top" Width="142">
+                             <Run Foreground="Red">*</Run>
+                         <Run Foreground="Black">Description:</Run>
+                        </TextBlock>
+                        <TextBlock Grid.Row="2" Grid.Column="0" Height="30" Foreground="Black" HorizontalAlignment="Left" Margin="0,5,0,0" FontSize="14" FontWeight="Bold" TextAlignment="Right" VerticalAlignment="Top" Width="142">
+                             <Run Foreground="Red">*</Run>
+                         <Run Foreground="Black">Start Date:</Run>
+                        </TextBlock>
+                        <TextBlock Grid.Row="3" Grid.Column="0" Height="30" Foreground="Black" HorizontalAlignment="Left" Margin="0,5,0,0" FontSize="14" FontWeight="Bold" TextAlignment="Right" VerticalAlignment="Top" Width="142">
+                             <Run Foreground="Red">*</Run>
+                         <Run Foreground="Black">End Date:</Run>
+                        </TextBlock>
+                        <TextBlock Text="Offer Duration:" Grid.Row="4" Grid.Column="0" Height="30" Foreground="Black" HorizontalAlignment="Left" Margin="0,5,0,0" FontSize="14" FontWeight="Bold" TextAlignment="Right" VerticalAlignment="Top" Width="142"></TextBlock>
+                        <TextBlock Grid.Row="5" Grid.Column="0" Height="30" Foreground="Black" HorizontalAlignment="Left" Margin="0,5,0,0" FontSize="14" FontWeight="Bold" TextAlignment="Right" VerticalAlignment="Top" Width="142">
+                             <Run Foreground="Red">*</Run>
+                         <Run Foreground="Black">Purchase Quantity:</Run>
+                        </TextBlock>
                         <TextBlock Text="Offer Quantity:" Grid.Row="6" Grid.Column="0" Height="30" Foreground="Black" HorizontalAlignment="Left" Margin="0,5,0,0" FontSize="14" FontWeight="Bold" TextAlignment="Right" VerticalAlignment="Top" Width="142" />
                         <TextBlock Text="Offer Percentage:" Grid.Row="7" Grid.Column="0" Height="30" Foreground="Black" HorizontalAlignment="Left" Margin="0,5,0,0" FontSize="14" FontWeight="Bold" TextAlignment="Right" VerticalAlignment="Top" Width="142" />
-                        <TextBox Grid.Column="1" Utility:MaskedTextBoxBehaviour.IsStringSpacOnly="True" Grid.Row="0"  MaxLength="15" Height="30" Text="{Binding Name}" HorizontalAlignment="Left" Margin="15,6,0,0"  VerticalAlignment="Top" Width="250" />
-                        <TextBox Grid.Column="1" Utility:MaskedTextBoxBehaviour.IsStringSpacOnly="True" Grid.Row="1"  MaxLength="15" Height="30" Text="{Binding Description}" HorizontalAlignment="Left" Margin="15,6,0,0"  VerticalAlignment="Top" Width="250" />
-                        <DatePicker SelectedDate="{Binding StartDate}" Grid.Column="1" Grid.Row="2" HorizontalAlignment="Left" Margin="15,6,0,0" Width="250" Height="30" />
-                        <DatePicker SelectedDate="{Binding EndDate}" Grid.Column="1" Grid.Row="3" HorizontalAlignment="Left" Width="250" Height="30" Margin="15,6,0,0" />
+                        <TextBox Grid.Column="1" Utility:MaskedTextBoxBehaviour.IsStringSpacOnly="True" Grid.Row="0"  MaxLength="15" Height="30" Text="{Binding Name,ValidatesOnDataErrors=True}" HorizontalAlignment="Left" Margin="15,6,0,0"  VerticalAlignment="Top" Width="250" />
+                        <TextBox Grid.Column="1" Utility:MaskedTextBoxBehaviour.IsStringSpacOnly="True" Grid.Row="1"  MaxLength="15" Height="30" Text="{Binding Description,ValidatesOnDataErrors=True}" HorizontalAlignment="Left" Margin="15,6,0,0"  VerticalAlignment="Top" Width="250" />
+                        <DatePicker SelectedDate="{Binding StartDate,ValidatesOnDataErrors=True}" Grid.Column="1" Grid.Row="2" HorizontalAlignment="Left" Margin="15,6,0,0" Width="250" Height="30" />
+                        <DatePicker SelectedDate="{Binding EndDate,ValidatesOnDataErrors=True}" Grid.Column="1" Grid.Row="3" HorizontalAlignment="Left" Width="250" Height="30" Margin="15,6,0,0" />
                         <TextBox Grid.Column="1" Grid.Row="4"  MaxLength="15" Height="30" Text="{Binding Duration}" IsReadOnly="True" HorizontalAlignment="Left" Margin="15,6,0,0"  VerticalAlignment="Top" Width="250" />
-                        <TextBox Grid.Column="1" Utility:MaskedTextBoxBehaviour.IsNumericOnly="True" Grid.Row="5"  MaxLength="15" Height="30" Text="{Binding PurchaseQuantity}" HorizontalAlignment="Left" Margin="15,6,0,0"  VerticalAlignment="Top" Width="150" />
-                        <ComboBox Grid.Row="5" ItemsSource="{Binding LstMeasureUnit}" DisplayMemberPath="Name"  SelectedValuePath="Id" SelectedItem="{Binding SelectedMeasureUnitForPurchaseQuantity,Mode=TwoWay}" Grid.Column="1" Height="30" HorizontalAlignment="Left" Margin="175,2,0,0" Width="90" />
+                        <TextBox Grid.Column="1" Utility:MaskedTextBoxBehaviour.IsNumericOnly="True" Grid.Row="5"  MaxLength="15" Height="30" Text="{Binding PurchaseQuantity,ValidatesOnDataErrors=True}" HorizontalAlignment="Left" Margin="15,6,0,0"  VerticalAlignment="Top" Width="150" />
+                        <ComboBox Grid.Row="5" ItemsSource="{Binding LstMeasureUnit}" DisplayMemberPath="Name"  SelectedValuePath="Id" SelectedItem="{Binding SelectedMeasureUnitForPurchaseQuantity,Mode=TwoWay,ValidatesOnDataErrors=True}" Grid.Column="1" Height="30" HorizontalAlignment="Left" Margin="175,2,0,0" Width="90" />
                         <TextBox Grid.Column="1" Utility:MaskedTextBoxBehaviour.IsDecimalOnly="True" Grid.Row="6"  MaxLength="15" Height="30" Text="{Binding OfferQuantity}" HorizontalAlignment="Left" Margin="15,6,0,0"  VerticalAlignment="Top" Width="150" />
                         <ComboBox Grid.Row="6" ItemsSource="{Binding LstMeasureUnit}" DisplayMemberPath="Name"  SelectedValuePath="Id" SelectedItem="{Binding SelectedMeasureUnitForOfferQuantity,Mode=TwoWay}" Grid.Column="1" Height="30" HorizontalAlignment="Left" Margin="175,2,0,0" Width="90" />
                         <TextBox Grid.Column="1" Utility:MaskedTextBoxBehaviour.IsDecimalOnly="True" Grid.Row="7"  MaxLength="15" Height="30" Text="{Binding OfferPercentage}" HorizontalAlignment="Left" Margin="15,6,0,0"  VerticalAlignment="Top" Width="250" />
-                        <Button Grid.Column="0" Grid.Row="8" Height="30" Canvas.Right="143" Margin="0,0,25,0" Command="{Binding SavePromotionalOffer}"  TextBlock.FontSize="14"   HorizontalAlignment="Right" Width="75" >
+                        <Button Grid.Column="0" Grid.Row="8" Height="30" Canvas.Right="143" Margin="0,0,25,0" Command="{Binding SavePromotionalOfferCommand}"  TextBlock.FontSize="14"   HorizontalAlignment="Right" Width="75" >
                             <DockPanel>
                                 <Image Source="../../../Images/save-icon.png" Width="16" />
                                 <TextBlock TextWrapping="Wrap" VerticalAlignment="center" Margin="2 0 0 0">

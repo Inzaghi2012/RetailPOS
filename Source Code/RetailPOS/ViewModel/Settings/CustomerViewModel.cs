@@ -9,6 +9,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System;
 using System.ComponentModel;
+using Xceed.Wpf.Toolkit;
 
 #endregion
 
@@ -448,13 +449,16 @@ namespace RetailPOS.ViewModel.Settings
         /// </summary>
         private void SaveCustomerDetail()
         {
-            var customerdetail = InitializeSaveCustomerDetail();
-            ServiceFactory.ServiceClient.SaveCustomerDetail(customerdetail);
+            if (IsValid())
+            {
+                var customerdetail = InitializeSaveCustomerDetail();
+                ServiceFactory.ServiceClient.SaveCustomerDetail(customerdetail);
 
-            GetCustomer(string.Empty);
+                GetCustomer(string.Empty);
 
-            ////Clear the controls
-            ClearControls();
+                ////Clear the controls
+                ClearControls();
+            }
         }
 
         /// <summary>
@@ -594,7 +598,43 @@ namespace RetailPOS.ViewModel.Settings
 
         #endregion
 
-        #region IData Error Info Member
+      
+        #region Validation
+
+        public bool IsValidating = false;
+
+        public List<string> Errors = new List<string>();
+
+        //To validate the field
+        //Will check if fields are validated or not
+        public bool IsValid()
+        {
+            IsValidating = true;
+            Errors.Clear();
+            try
+            {
+                RaisePropertyChanged(() => CustomerCode);
+                RaisePropertyChanged(() => First_Name);
+                RaisePropertyChanged(() => LastName);
+                RaisePropertyChanged(() => Email);     
+                RaisePropertyChanged(() => SelectedStatus);
+                RaisePropertyChanged(() => SelectedStreet);
+                RaisePropertyChanged(() => SelectedPostalCode);
+                RaisePropertyChanged(() => PaymentPeriod);
+                RaisePropertyChanged(() => CreditLimit);             
+
+            }
+            finally
+            {
+                if (Errors.Count > 0)
+                {
+
+                    IsValidating = false;
+                    MessageBox.Show(string.Join(",", Errors));
+                }
+            }
+            return (Errors.Count == 0);
+        }
 
         public string Error
         {
@@ -605,23 +645,88 @@ namespace RetailPOS.ViewModel.Settings
         {
             get
             {
-                string result = null;
-
-                if (columnName == "CustomerCode")
+                string result = string.Empty;
+                if (!IsValidating) return result;
+                Errors.Remove(columnName);
+                switch (columnName)
                 {
-                    if (string.IsNullOrEmpty(CustomerCode))
-                        result = "CustomerCode has to be Entered!";
-                    //else if (Quantity.Length < 5)
-                    //    result = "Quantity's length has to be at least 5 characters!";
-                }
-                //else if (columnName == "LastName")
-                //{
-                //    if (String.IsNullOrEmpty(LastName))
-                //        result = "LastName has to be set!";
-                //    else if (LastName.Length < 5)
-                //        result = "LastName's length has to be at least 5 characters!";
-                //}
+                    case "CustomerCode":
+                        if (CustomerCode == null)
+                        {
+                            result = " CustomerCode is required!";
+                            break;
+                        }
+                        else
+                        {
+                            break;
+                        }
 
+
+                    case "First_Name": if (string.IsNullOrEmpty(First_Name))
+                        {
+                            result = " FirstName is required!";
+                            break;
+                        }
+                        else
+                        { break; }
+
+                    case "LastName":
+                        if (string.IsNullOrEmpty(LastName))
+                        {
+                            result = " LastName is required!";
+                            break;
+                        }
+                        else { break; }
+
+                    case "Email":
+                        if (string.IsNullOrEmpty(Email))
+                        {
+                            result = " Email is required!";
+                            break;
+                        }
+                        else { break; }
+
+                    case "SelectedStatus":
+                        if (SelectedStatus==null)
+                        {
+                            result = " Status is required!";
+                            break;
+                        }
+                        else { break; }
+
+                    case "SelectedStreet":
+                        if (SelectedStreet == null)
+                        {
+                            result = " Street is required!";
+                            break;
+                        }
+                        else { break; }
+                    case "SelectedPostalCode":
+                        if (SelectedPostalCode == null)
+                        {
+                            result = " Postal Code is required!";
+                            break;
+                        }
+                        else { break; }
+                    case "PaymentPeriod":
+                        if (PaymentPeriod<=0)
+                        {
+                            result = " PaymentPeriod is required!";
+                            break;
+                        }
+                        else { break; }
+                    case "CreditLimit":
+                        if (CreditLimit<=0)
+                        {
+                            result = " CreditLimit is required!";
+                            break;
+                        }
+                        else { break; }
+
+
+
+                }
+                if (result != string.Empty) Errors.Add(result);
                 return result;
             }
         }

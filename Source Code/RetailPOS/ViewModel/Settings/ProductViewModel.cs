@@ -10,12 +10,13 @@ using GalaSoft.MvvmLight.Command;
 using System.Collections.Generic;
 using RetailPOS.Constants;
 using System;
+using System.ComponentModel;
 
 #endregion
 
 namespace RetailPOS.ViewModel.Settings
 {
-    public class AddProductViewModel : ViewModelBase
+    public class AddProductViewModel : ViewModelBase,IDataErrorInfo
     {
         #region Declare Public and Private Data member
 
@@ -296,11 +297,15 @@ namespace RetailPOS.ViewModel.Settings
 
         private void SaveProductSetting()
         {
-            var productDetails = InitializeProductDetails();
-            ServiceFactory.ServiceClient.SaveProductDetails(productDetails);
+            if (IsValid())
+            {
+                var productDetails = InitializeProductDetails();
+                ServiceFactory.ServiceClient.SaveProductDetails(productDetails);
 
-            ////Get all product by name
-            GetProducts(string.Empty);
+                ////Get all product by name
+                GetProducts(string.Empty);
+                ClearControls();
+            }
         }
 
             ////Clear the controls
@@ -396,6 +401,107 @@ namespace RetailPOS.ViewModel.Settings
             Name = string.Empty;
             GetProducts(string.Empty);
         }
+
+        #endregion
+
+        #region Validation
+
+        public bool IsValidating = false;
+
+        public List<string> Errors = new List<string>();
+
+        //To validate the field
+        //Will check if fields are validated or not
+        public bool IsValid()
+        {
+            IsValidating = true;
+            Errors.Clear();
+            try
+            {
+                RaisePropertyChanged(() => SelectedCategory);
+                RaisePropertyChanged(() => BarCode);
+                RaisePropertyChanged(() => ProductName);
+                RaisePropertyChanged(() => Description);
+                RaisePropertyChanged(() => SelectedStatus);              
+            }
+            finally
+            {
+                if (Errors.Count > 0)
+                {
+                 
+                    IsValidating = false;
+                    MessageBox.Show(string.Join(",", Errors));
+                }
+            }
+            return (Errors.Count == 0);
+        }
+
+        public string Error
+        {
+            get { throw new NotImplementedException(); }
+        }
+
+        public string this[string columnName]
+        {
+            get
+            {
+                string result = string.Empty;
+                if (!IsValidating) return result;
+                Errors.Remove(columnName);
+                switch (columnName)
+                {
+                    case "SelectedCategory":
+                        if (SelectedCategory == null)
+                        {
+                            result = " Category is required!";
+                            break;
+                        }
+                        else
+                        {
+                            break;
+                        }
+
+
+                    case "BarCode": if (string.IsNullOrEmpty(BarCode))
+                        {
+                            result = " BarCode is required!";
+                            break;
+                        }
+                        else
+                        { break; }
+                        
+                    case "ProductName":
+                        if (string.IsNullOrEmpty(ProductName))
+                        {
+                            result = " ProductName is required!";
+                            break;
+                        }
+                        else { break; }
+                        
+                    case "Description":
+                        if (string.IsNullOrEmpty(Description))
+                        {
+                            result = " Description is required!";
+                            break;
+                        }
+                        else { break; }
+                        
+                    case "SelectedStatus":
+                        if (SelectedStatus==null)
+                        {
+                            result = " Status is required!";
+                            break;
+                        }
+                        else { break; }
+                        
+                
+                   
+                }
+                if (result != string.Empty) Errors.Add(result);
+                return result;
+            }
+        }
+
 
         #endregion
     }
