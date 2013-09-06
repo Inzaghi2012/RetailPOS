@@ -1428,10 +1428,10 @@ namespace RetailPOS.RetailPOSService {
         private short IdField;
         
         [System.Runtime.Serialization.OptionalFieldAttribute()]
-        private string Town_City1Field;
+        private int countryIDField;
         
         [System.Runtime.Serialization.OptionalFieldAttribute()]
-        private int countryIDField;
+        private string towncityField;
         
         [System.Runtime.Serialization.DataMemberAttribute()]
         public short Id {
@@ -1447,19 +1447,6 @@ namespace RetailPOS.RetailPOSService {
         }
         
         [System.Runtime.Serialization.DataMemberAttribute()]
-        public string Town_City1 {
-            get {
-                return this.Town_City1Field;
-            }
-            set {
-                if ((object.ReferenceEquals(this.Town_City1Field, value) != true)) {
-                    this.Town_City1Field = value;
-                    this.RaisePropertyChanged("Town_City1");
-                }
-            }
-        }
-        
-        [System.Runtime.Serialization.DataMemberAttribute()]
         public int countryID {
             get {
                 return this.countryIDField;
@@ -1468,6 +1455,19 @@ namespace RetailPOS.RetailPOSService {
                 if ((this.countryIDField.Equals(value) != true)) {
                     this.countryIDField = value;
                     this.RaisePropertyChanged("countryID");
+                }
+            }
+        }
+        
+        [System.Runtime.Serialization.DataMemberAttribute()]
+        public string towncity {
+            get {
+                return this.towncityField;
+            }
+            set {
+                if ((object.ReferenceEquals(this.towncityField, value) != true)) {
+                    this.towncityField = value;
+                    this.RaisePropertyChanged("towncity");
                 }
             }
         }

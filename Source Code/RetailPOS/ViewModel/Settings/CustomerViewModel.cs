@@ -60,6 +60,12 @@ namespace RetailPOS.ViewModel.Settings
         private PostCodeDTO _selectedPostalCode;
         private CustomerDTO _customerName;
 
+        //To make Address detail field Enable and disable
+        private bool _isCityTownEnable;
+        private bool _isAreaDistrictEnable;
+        private bool _isStreetEnable;
+        private bool _isPostalCodeEnable;
+
         #endregion
 
         #region Public Properties
@@ -174,8 +180,10 @@ namespace RetailPOS.ViewModel.Settings
 
                 if (SelectedCountry != null)
                 {
+                  
                     ////Get Town cities based on selected country
                     GetTownByContryId();
+                    IsCityTownEnable = true;
                 }
             }
         }
@@ -192,6 +200,7 @@ namespace RetailPOS.ViewModel.Settings
                 {
                     ////Get Localities based on selected towncity
                     GetLocalityByTownCity();
+                    IsAreaDistrictEnable = true;
                 }
             }
         }
@@ -211,6 +220,8 @@ namespace RetailPOS.ViewModel.Settings
 
                     ////Get postal code based on selected locality
                     GetPostalCodeByLocality();
+                    IsStreetEnable = true;
+                    IsPostalCodeEnable = true;
                 }
             }
         }
@@ -371,7 +382,47 @@ namespace RetailPOS.ViewModel.Settings
                 RaisePropertyChanged("Id");
             }
         }
-        
+        //To make City field enable on country selection
+
+        public bool IsCityTownEnable
+        {
+            get { return _isCityTownEnable; }
+            set
+            {
+                _isCityTownEnable = value;
+                RaisePropertyChanged("IsCityTownEnable");
+            }
+        }
+        //To make Area enable on city selection
+        public bool IsAreaDistrictEnable
+        {
+            get { return _isAreaDistrictEnable; }
+            set
+            {
+                _isAreaDistrictEnable = value;
+                RaisePropertyChanged("IsAreaDistrictEnable");
+            }
+        }
+        //To make Street enable on Area Selection
+        public bool IsStreetEnable
+        {
+            get { return _isStreetEnable; }
+            set
+            {
+                _isStreetEnable = value;
+                RaisePropertyChanged("IsStreetEnable");
+            }
+        }
+        //To make Postal enable on street selection
+        public bool IsPostalCodeEnable
+        {
+            get { return _isPostalCodeEnable; }
+            set
+            {
+                _isPostalCodeEnable = value;
+                RaisePropertyChanged("IsPostalCodeEnable");
+            }
+        }
         #endregion
 
         #region Constructor
@@ -417,7 +468,8 @@ namespace RetailPOS.ViewModel.Settings
 
         private void CancelSetting()
         {
-            CustomerViewModel viewModel = new CustomerViewModel();
+           // CustomerViewModel viewModel = new CustomerViewModel();
+            ClearControls();
         }
 
         private void CancelPurchaseHistorySearch()
@@ -467,6 +519,9 @@ namespace RetailPOS.ViewModel.Settings
         /// <returns></returns>
         private CustomerDTO InitializeSaveCustomerDetail()
         {
+            //CustomerDTO obj = new CustomerDTO();
+            //obj.Address = InitializeAddressDetails();
+
             return new CustomerDTO
             {
                 Code = CustomerCode,
@@ -524,6 +579,11 @@ namespace RetailPOS.ViewModel.Settings
             SelectedLocality = null;
             SelectedStreet = null;
             SelectedPostalCode = null;
+            //Hide Adress field
+            IsCityTownEnable = false;
+            IsAreaDistrictEnable = false;
+            IsStreetEnable = false;
+            IsPostalCodeEnable = false;
         }
 
         /// <summary>
@@ -618,10 +678,13 @@ namespace RetailPOS.ViewModel.Settings
                 RaisePropertyChanged(() => LastName);
                 RaisePropertyChanged(() => Email);     
                 RaisePropertyChanged(() => SelectedStatus);
+                RaisePropertyChanged(() => SelectedCountry);
+                RaisePropertyChanged(() => SelectedTownCity);
+                RaisePropertyChanged(() => SelectedLocality);
                 RaisePropertyChanged(() => SelectedStreet);
                 RaisePropertyChanged(() => SelectedPostalCode);
                 RaisePropertyChanged(() => PaymentPeriod);
-                RaisePropertyChanged(() => CreditLimit);             
+                RaisePropertyChanged(() => CreditLimit);            
 
             }
             finally
@@ -693,21 +756,58 @@ namespace RetailPOS.ViewModel.Settings
                             break;
                         }
                         else { break; }
+                    case "SelectedCountry": if (SelectedCountry == null)
+                        {
 
-                    case "SelectedStreet":
-                        if (SelectedStreet == null)
+                            result = "Country is required !"; break;
+                        }
+                        else
                         {
-                            result = " Street is required!";
+                            IsCityTownEnable = true;
                             break;
                         }
-                        else { break; }
-                    case "SelectedPostalCode":
-                        if (SelectedPostalCode == null)
+                    case "SelectedTownCity": if (SelectedTownCity == null)
                         {
-                            result = " Postal Code is required!";
+
+                            result = "Town/City is required !"; break;
+                        }
+                        else
+                        {
+                            IsAreaDistrictEnable = true;
                             break;
                         }
-                        else { break; }
+                    case "SelectedLocality": if (SelectedLocality == null)
+                        {
+
+                            result = "Area/District is required !"; break;
+                        }
+                        else
+                        {
+                            IsStreetEnable = true;
+                            break;
+                        }
+                    case "SelectedStreet": if (SelectedStreet == null)
+                        {
+
+                            result = "Street is required !"; break;
+                        }
+                        else
+                        {
+                            IsPostalCodeEnable = true;
+                            break;
+                        }
+
+                    case "SelectedPostalCode": if (SelectedPostalCode == null)
+                        {
+
+                            result = "PostalCode is required !"; break;
+                        }
+                        else
+                        {
+
+                            break;
+                        }                 
+                      
                     case "PaymentPeriod":
                         if (PaymentPeriod<=0)
                         {

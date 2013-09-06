@@ -58,8 +58,8 @@
       <xs:extension xmlns:q4="http://schemas.datacontract.org/2004/07/RetailPOS.CommonLayer.DataTransferObjects" base="q4:BaseDTO">
         <xs:sequence>
           <xs:element minOccurs="0" name="Id" type="xs:short" />
-          <xs:element minOccurs="0" name="Town_City1" nillable="true" type="xs:string" />
           <xs:element minOccurs="0" name="countryID" type="xs:int" />
+          <xs:element minOccurs="0" name="towncity" nillable="true" type="xs:string" />
         </xs:sequence>
       </xs:extension>
     </xs:complexContent>

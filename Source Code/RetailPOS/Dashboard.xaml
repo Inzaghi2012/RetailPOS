@@ -1,6 +1,7 @@
 ﻿<Window x:Class="RetailPOS.Dashboard"
         xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
         xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+            xmlns:WpfKb="clr-namespace:WpfKb.Controls;assembly=WpfKb"
         xmlns:Child="clr-namespace:RetailPOS.View.Usercontrols.MainWindow"
         Title="MainWindow" Height="768" Width="1024"  ResizeMode="NoResize" WindowStartupLocation="CenterScreen" >
     <Grid>
@@ -27,5 +28,13 @@
             <Child:RightPanelSettings x:Name="RightPanel" HorizontalAlignment="Left"  Margin="3,0,0,0" Width="500"></Child:RightPanelSettings>
             <Child:RightPanelPaymentDetail x:Name="RightPanelPaymentDetail" HorizontalAlignment="Left"  Margin="3,0,0,0" Width="513"></Child:RightPanelPaymentDetail>
         </StackPanel>
+        <WpfKb:FloatingTouchScreenKeyboard
+            x:Name="Keyboard"
+            IsOpen="True"
+            Width="700"
+            Height="400"
+            PlacementTarget="{Binding ElementName=LoginCtrl}"
+            Placement="Center" AreAnimationsEnabled="False" IsDragHelperAllowedToHide="True" />
     </Grid>
+  
 </Window>

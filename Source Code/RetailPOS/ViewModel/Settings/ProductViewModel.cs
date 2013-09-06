@@ -339,6 +339,7 @@ namespace RetailPOS.ViewModel.Settings
             BarCode = string.Empty;
             ProductName = string.Empty;
             Description = string.Empty;
+            //PurchaseQuantity = string.Empty;
             SelectedStatus = null;
             RetailPrice = 0;
             WholeSalePrice = 0;
@@ -352,7 +353,8 @@ namespace RetailPOS.ViewModel.Settings
         
         private void CancelSetting()
         {
-            AddProductViewModel viewModel = new AddProductViewModel();
+            //AddProductViewModel viewModel = new AddProductViewModel();
+            ClearControls();
         }
 
         /// <summary>

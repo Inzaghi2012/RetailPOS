@@ -117,8 +117,11 @@
                     <TextBox Grid.Column="1" Utility:MaskedTextBoxBehaviour.IsStringSpaceNumOnly="True" Grid.Row="0" MaxLength="255" Height="30" Text="{Binding BuildingName}" HorizontalAlignment="Left" Margin="15,6,0,0"  VerticalAlignment="Top" Width="250" />
                     <TextBox Grid.Column="1" Utility:MaskedTextBoxBehaviour.IsStringSpaceNumOnly="True" Grid.Row="1" MaxLength="255" Height="30" Text="{Binding HouseNo}" HorizontalAlignment="Left" Margin="15,6,0,0"  VerticalAlignment="Top" Width="250" />
                     <TextBlock Text="House Number:" FontSize="14" Foreground="Black" FontWeight="Bold" Height="30" HorizontalAlignment="Left" Margin="50,5,0,0" TextBlock.TextAlignment="Right" VerticalAlignment="Top" Width="142" Grid.Row="1" />
-                    <TextBlock Text="Country:" FontSize="14"  Foreground="Black" FontWeight="Bold" Height="30" HorizontalAlignment="Left" Margin="50,5,0,0" TextBlock.TextAlignment="Right" VerticalAlignment="Top" Width="142" Grid.Row="2" />
-                    <Toolkit:AutoCompleteBox Grid.Column="1" Grid.Row="2" HorizontalAlignment="Left" SelectedItem="{Binding SelectedCountry, Mode=TwoWay}" Margin="15,6,0,0"
+                    <TextBlock FontSize="14"  Foreground="Black" FontWeight="Bold" Height="30" HorizontalAlignment="Left" Margin="50,5,0,0" TextBlock.TextAlignment="Right" VerticalAlignment="Top" Width="142" Grid.Row="2">
+                           <Run Foreground="Red">*</Run>
+                        <Run Foreground="Black">Country:</Run>
+                    </TextBlock>
+                    <Toolkit:AutoCompleteBox Grid.Column="1" Grid.Row="2" HorizontalAlignment="Left" SelectedItem="{Binding SelectedCountry, Mode=TwoWay,ValidatesOnDataErrors=True}" Margin="15,6,0,0"
                                  ItemsSource="{Binding LstCountry}" Text="{Binding Name, Mode=TwoWay}" IsTextCompletionEnabled="False" FilterMode="StartsWith"
                                      ValueMemberPath="Name" VerticalAlignment="Top" Width="250" Height="30" >
                         <Toolkit:AutoCompleteBox.ItemTemplate>
@@ -133,10 +136,13 @@
                             </DataTemplate>
                         </Toolkit:AutoCompleteBox.ItemTemplate>
                     </Toolkit:AutoCompleteBox>
-                    <TextBlock Text="City/Town/Village:" FontSize="14"  Foreground="Black" FontWeight="Bold" Height="30" HorizontalAlignment="Left" Margin="50,5,0,0" TextBlock.TextAlignment="Right" VerticalAlignment="Top" Width="142" Grid.Row="3" />
-                    <Toolkit:AutoCompleteBox Grid.Column="1" Grid.Row="3" HorizontalAlignment="Left" SelectedItem="{Binding SelectedTownCity, Mode=TwoWay}" Margin="15,6,0,0"
-                                 ItemsSource="{Binding LstTownCity}" Text="{Binding Town_City1, Mode=TwoWay}" IsTextCompletionEnabled="False" FilterMode="StartsWith"
-                                     ValueMemberPath="Town_City1" VerticalAlignment="Top" Width="250" Height="30" >
+                    <TextBlock FontSize="14"  Foreground="Black" FontWeight="Bold" Height="30" HorizontalAlignment="Left" Margin="50,5,0,0" TextBlock.TextAlignment="Right" VerticalAlignment="Top" Width="142" Grid.Row="3">
+                          <Run Foreground="Red">*</Run>
+                        <Run Foreground="Black">City/Town/Village:</Run>
+                    </TextBlock>
+                    <Toolkit:AutoCompleteBox Grid.Column="1" Grid.Row="3" HorizontalAlignment="Left" SelectedItem="{Binding SelectedTownCity, Mode=TwoWay,ValidatesOnDataErrors=True}" Margin="15,6,0,0"
+                                 ItemsSource="{Binding LstTownCity}" Text="{Binding towncity, Mode=TwoWay}" IsTextCompletionEnabled="False" FilterMode="StartsWith"
+                                     ValueMemberPath="towncity" VerticalAlignment="Top" Width="250" Height="30" IsEnabled="{Binding IsCityTownEnable}" >
                         <Toolkit:AutoCompleteBox.ItemTemplate>
                             <DataTemplate>
                                 <Grid>
@@ -144,15 +150,18 @@
                                         <RowDefinition></RowDefinition>
                                         <RowDefinition></RowDefinition>
                                     </Grid.RowDefinitions>
-                                    <TextBlock Grid.Row="0" Text="{Binding Town_City1}" TextBlock.FontWeight="Bold" Width="180"></TextBlock>
+                                    <TextBlock Grid.Row="0" Text="{Binding towncity}" TextBlock.FontWeight="Bold" Width="180"></TextBlock>
                                 </Grid>
                             </DataTemplate>
                         </Toolkit:AutoCompleteBox.ItemTemplate>
                     </Toolkit:AutoCompleteBox>
-                    <TextBlock Text="City Area/District:" FontSize="14"  Foreground="Black" FontWeight="Bold" Height="30" HorizontalAlignment="Left" Margin="50,5,0,0" TextBlock.TextAlignment="Right" VerticalAlignment="Top" Width="142" Grid.Row="4" />
-                    <Toolkit:AutoCompleteBox Grid.Column="1" Grid.Row="4" HorizontalAlignment="Left" SelectedItem="{Binding SelectedLocality, Mode=TwoWay}" Margin="15,6,0,0"
+                    <TextBlock FontSize="14"  Foreground="Black" FontWeight="Bold" Height="30" HorizontalAlignment="Left" Margin="50,5,0,0" TextBlock.TextAlignment="Right" VerticalAlignment="Top" Width="142" Grid.Row="4">
+                         <Run Foreground="Red">*</Run>
+                        <Run Foreground="Black">City Area/District:</Run>
+                    </TextBlock>
+                    <Toolkit:AutoCompleteBox Grid.Column="1" Grid.Row="4" HorizontalAlignment="Left" SelectedItem="{Binding SelectedLocality, Mode=TwoWay,ValidatesOnDataErrors=True}" Margin="15,6,0,0"
                                  ItemsSource="{Binding LstLocality}" Text="{Binding Locality1, Mode=TwoWay}" IsTextCompletionEnabled="False" FilterMode="StartsWith"
-                                     ValueMemberPath="Locality1" VerticalAlignment="Top" Width="250" Height="30" >
+                                     ValueMemberPath="Locality1" VerticalAlignment="Top" Width="250" Height="30" IsEnabled="{Binding IsAreaDistrictEnable}" >
                         <Toolkit:AutoCompleteBox.ItemTemplate>
                             <DataTemplate>
                                 <Grid>
@@ -171,7 +180,7 @@
                     </TextBlock>
                     <Toolkit:AutoCompleteBox Grid.Column="1" Grid.Row="5" HorizontalAlignment="Left" SelectedItem="{Binding SelectedStreet, Mode=TwoWay,ValidatesOnDataErrors=True}" Margin="15,6,0,0"
                                  ItemsSource="{Binding LstStreet}" Text="{Binding Street1, Mode=TwoWay}" IsTextCompletionEnabled="False" FilterMode="StartsWith"
-                                     ValueMemberPath="Street1" VerticalAlignment="Top" Width="250" Height="30" >
+                                     ValueMemberPath="Street1" VerticalAlignment="Top" Width="250" Height="30" IsEnabled="{Binding IsStreetEnable}" >
                         <Toolkit:AutoCompleteBox.ItemTemplate>
                             <DataTemplate>
                                 <Grid>
@@ -190,7 +199,7 @@
                     </TextBlock>
                     <Toolkit:AutoCompleteBox Grid.Column="1" Grid.Row="6" HorizontalAlignment="Left" SelectedItem="{Binding SelectedPostalCode, Mode=TwoWay,ValidatesOnDataErrors=True}" Margin="15,6,0,0"
                                  ItemsSource="{Binding LstPostalCode}" Text="{Binding PostCode1, Mode=TwoWay}" IsTextCompletionEnabled="False" FilterMode="StartsWith"
-                                     ValueMemberPath="PostCode1" VerticalAlignment="Top" Width="250" Height="30" >
+                                     ValueMemberPath="PostCode1" VerticalAlignment="Top" Width="250" Height="30" IsEnabled="{Binding IsPostalCodeEnable}" >
                         <Toolkit:AutoCompleteBox.ItemTemplate>
                             <DataTemplate>
                                 <Grid>

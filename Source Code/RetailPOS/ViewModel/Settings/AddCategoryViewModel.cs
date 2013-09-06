@@ -273,6 +273,7 @@ namespace RetailPOS.ViewModel
 
         private void CancelCategorySetting()
         {
+            ClearControls();
         }
 
         /// <summary>

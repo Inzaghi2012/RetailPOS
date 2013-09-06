@@ -12,7 +12,7 @@
     <UserControl.Resources>
         <ResourceDictionary Source="../../../Themes/BureauBlue.xaml"></ResourceDictionary>
     </UserControl.Resources>
-    <Grid Height="590">
+    <Grid Height="580">
         <Grid.RowDefinitions>
             <RowDefinition></RowDefinition>
             <RowDefinition Height="20"></RowDefinition>
