@@ -19,7 +19,7 @@ using System.ComponentModel;
 
 namespace RetailPOS.ViewModel
 {
-    public class ProductGridViewModel : ViewModelBase
+    public partial class ProductGridViewModel : ViewModelBase
     {
       
 
@@ -492,6 +492,27 @@ namespace RetailPOS.ViewModel
             OpenDiscountentryPopUp = new RelayCommand(OpenDiscountentryPopUpClick);      
             GetSearchAttributes();
 
+            ////Replacement of CategoryViewModel
+            ////The code has been changed from seperate view model to a combined view model named under ProductViewModel
+            lstCategories = new ObservableCollection<ProductCategoryDTO>();
+            lstLooseCategories = new ObservableCollection<ProductCategoryDTO>();
+            LstProduct = new ObservableCollection<ProductDTO>();
+            LstSearchProduct = new List<ProductDTO>();
+
+            Mediator.Register("CloseProductPopUpWindow", OnCloseProductPopUpWindow);
+
+            AddCategories();
+            AddLooseCategories();
+            FillCommonProducts();
+            GetSearchAttributes();
+
+            ShowProductCommand = new RelayCommand<object>(BindGrid);
+
+            FillProductCommand = new RelayCommand<ProductCategoryDTO>(FillProducts);
+            OpenFirstPopupCommand = new RelayCommand(OpenFirstPopupClick);
+            OpenLooseCatPopupCommand = new RelayCommand(OpenLooseCatPopupClick);
+            RefershListBoxCommand = new RelayCommand(RefereshListBox);
+
             IsVisibleOnAddNewCustomerClick = Visibility.Visible;
             IsErrorMessageVisible = Visibility.Hidden;
             ClearControls();
@@ -681,17 +702,17 @@ namespace RetailPOS.ViewModel
                 {
                     Id = CurrentProduct.Id,
                     Name = CurrentProduct.Name,
-                    Quantity = CurrentProduct.Quantity,
+                    Quantity = CurrentProduct.Quantity==0?1:CurrentProduct.Quantity,
                     Retail_Price = CurrentProduct.Retail_Price,
                     Discount = CurrentProduct.Discount,
-                    Amount = (CurrentProduct.Quantity * CurrentProduct.Retail_Price)
+                    Amount = ((CurrentProduct.Quantity == 0 ? 1 : CurrentProduct.Quantity) * CurrentProduct.Retail_Price)
                 });
             }
             else
             {
                 var found = LstProductDetails.FirstOrDefault(x => x.Id == CurrentProduct.Id);
                 int i = LstProductDetails.IndexOf(found);
-                var quantity = CurrentProduct.Quantity + found.Quantity;
+                var quantity = (CurrentProduct.Quantity == 0 ? 1 : CurrentProduct.Quantity) + found.Quantity;
                 LstProductDetails[i].Quantity = quantity;
 
                 LstProductDetails[i].Amount = (found.Retail_Price * quantity) - found.Discount;

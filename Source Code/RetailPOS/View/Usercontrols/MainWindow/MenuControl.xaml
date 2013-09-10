@@ -71,7 +71,8 @@
                                         </DataGrid.RowStyle>
                                         <DataGrid.Columns>
                                             <DataGridTextColumn Binding="{Binding Path=Id}" Header="" Visibility="Hidden" />
-                                            <DataGridTextColumn Binding="{Binding Path=TotalQuantity}" Header="Total Quantity" Width="*" ElementStyle="{StaticResource CellRightAlign}"/>
+                                            <DataGridTextColumn Binding="{Binding Path=DateTime}" Header="Date" Width="*" ElementStyle="{StaticResource CellRightAlign}"/>
+                                            <DataGridTextColumn Binding="{Binding Path=TotalQuantity}" Header="No Of Items" Width="*" ElementStyle="{StaticResource CellRightAlign}"/>
                                             <DataGridTextColumn Binding="{Binding Path=TotalAmount}" Header="Total Amount" Width="*" ElementStyle="{StaticResource CellRightAlign}" />
                                         </DataGrid.Columns>
                                     </DataGrid>

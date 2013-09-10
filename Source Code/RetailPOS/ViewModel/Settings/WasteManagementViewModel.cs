@@ -177,7 +177,8 @@ namespace RetailPOS.ViewModel.Settings
 
         private void CancelSetting()
         {
-            WasteManagementViewModel viewModel = new WasteManagementViewModel();
+            //WasteManagementViewModel viewModel = new WasteManagementViewModel();
+            ClearControls();
         }
 
         private void CancelSearch()

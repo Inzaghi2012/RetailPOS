@@ -22,7 +22,7 @@ namespace RetailPOS.ViewModel
         public ViewModelLocator()
         {
             ServiceLocator.SetLocatorProvider(() => SimpleIoc.Default);
-            SimpleIoc.Default.Register<CategoryViewModel>();
+            SimpleIoc.Default.Register<ProductGridViewModel>();
             SimpleIoc.Default.Register<LoginViewModel>();
             SimpleIoc.Default.Register<SearchViewModel>();
             SimpleIoc.Default.Register<UserInfoViewModel>();
@@ -59,15 +59,15 @@ namespace RetailPOS.ViewModel
         /// <summary>
         /// Represents Category View Model
         /// </summary>
-        public CategoryViewModel CategoryVM
+        public ProductGridViewModel CategoryVM
         {
             get
             {
-                if (!((SimpleIoc)(ServiceLocator.Current)).IsRegistered<CategoryViewModel>())
+                if (!((SimpleIoc)(ServiceLocator.Current)).IsRegistered<ProductGridViewModel>())
                 {
-                    SimpleIoc.Default.Register<CategoryViewModel>();
+                    SimpleIoc.Default.Register<ProductGridViewModel>();
                 }
-               return ServiceLocator.Current.GetInstance<CategoryViewModel>();
+               return ServiceLocator.Current.GetInstance<ProductGridViewModel>();
             }
         }
 
@@ -379,7 +379,7 @@ namespace RetailPOS.ViewModel
 
         private static void UnRegisterMainWindowSettingsViewModels()
         {
-            SimpleIoc.Default.Unregister<CategoryViewModel>();
+            SimpleIoc.Default.Unregister<ProductGridViewModel>();
             SimpleIoc.Default.Unregister<ProductGridViewModel>();
             SimpleIoc.Default.Unregister<RightPanelPaymentDetailViewModel>();
             SimpleIoc.Default.Unregister<ShowProductViewModel>();

@@ -10,7 +10,7 @@ using System.Windows;
 
 namespace RetailPOS.ViewModel
 {
-    public class CategoryViewModel : ViewModelBase
+    public partial class ProductGridViewModel : ViewModelBase
     {
         #region Declare Public and private Data member
 
@@ -21,7 +21,7 @@ namespace RetailPOS.ViewModel
         
         public RelayCommand OpenFirstPopupCommand { get; private set; }
         public RelayCommand OpenLooseCatPopupCommand { get; private set; }
-        public RelayCommand<ProductCategoryDTO> SelectProductCommand { get; private set; }
+        public RelayCommand<ProductCategoryDTO> FillProductCommand { get; private set; }
         public RelayCommand RefershListBoxCommand { get; private set; }
 
         public IList<ProductDTO> LstSearchProduct { get; private set; }
@@ -29,7 +29,7 @@ namespace RetailPOS.ViewModel
 
         private ObservableCollection<ProductCategoryDTO> _lstCategories;        
         private ObservableCollection<ProductDTO> _lstProduct;
-        private ProductDTO _selectedProduct;
+        //private ProductDTO _selectedProduct;
 
         private bool _firstPopupIsOpen;
         private bool _OpenLooseCatPopupIsOpen;
@@ -39,15 +39,15 @@ namespace RetailPOS.ViewModel
 
         #region Public Properties
 
-        public ProductDTO SelectedProduct
-        {
-            get { return _selectedProduct; }
-            set
-            {
-                _selectedProduct = value;
-                RaisePropertyChanged("SelectedProduct");
-            }
-        }
+        //public ProductDTO SelectedProduct
+        //{
+        //    get { return _selectedProduct; }
+        //    set
+        //    {
+        //        _selectedProduct = value;
+        //        RaisePropertyChanged("SelectedProduct");
+        //    }
+        //}
 
         public ObservableCollection<ProductCategoryDTO> lstCategories
         {
@@ -103,29 +103,29 @@ namespace RetailPOS.ViewModel
 
         #region Constructor
         /// <summary>
-        /// Initializes a new instance of the <see cref="CategoryViewModel"/> class.
+        /// Initializes a new instance of the <see cref="ProductGridViewModel"/> class.
         /// </summary>
-        public CategoryViewModel()
-        {
-            lstCategories = new ObservableCollection<ProductCategoryDTO>();
-            lstLooseCategories = new ObservableCollection<ProductCategoryDTO>();
-            LstProduct = new ObservableCollection<ProductDTO>();
-            LstSearchProduct = new List<ProductDTO>();
+        //public ProductGridViewModel()
+        //{
+        //    lstCategories = new ObservableCollection<ProductCategoryDTO>();
+        //    lstLooseCategories = new ObservableCollection<ProductCategoryDTO>();
+        //    LstProduct = new ObservableCollection<ProductDTO>();
+        //    LstSearchProduct = new List<ProductDTO>();
 
-            Mediator.Register("CloseProductPopUpWindow", OnCloseProductPopUpWindow);
+        //    Mediator.Register("CloseProductPopUpWindow", OnCloseProductPopUpWindow);
 
-            AddCategories();
-            AddLooseCategories();
-            FillCommonProducts();
-            GetSearchAttributes();
+        //    AddCategories();
+        //    AddLooseCategories();
+        //    FillCommonProducts();
+        //    GetSearchAttributes();
 
-            ShowProductCommand = new RelayCommand<object>(OnOpenProductPopUp);
+        //    ShowProductCommand = new RelayCommand<object>(OnOpenProductPopUp);
 
-            SelectProductCommand = new RelayCommand<ProductCategoryDTO>(FillProducts);
-            OpenFirstPopupCommand = new RelayCommand(OpenFirstPopupClick);
-            OpenLooseCatPopupCommand = new RelayCommand(OpenLooseCatPopupClick);
-            RefershListBoxCommand = new RelayCommand(RefereshListBox);
-        }
+        //    FillProductCommand = new RelayCommand<ProductCategoryDTO>(FillProducts);
+        //    OpenFirstPopupCommand = new RelayCommand(OpenFirstPopupClick);
+        //    OpenLooseCatPopupCommand = new RelayCommand(OpenLooseCatPopupClick);
+        //    RefershListBoxCommand = new RelayCommand(RefereshListBox);
+        //}
 
         #endregion
 
@@ -211,20 +211,25 @@ namespace RetailPOS.ViewModel
         /// <summary>
         /// Fills the list search.
         /// </summary>
-        private void GetSearchAttributes()
-        {
-            LstSearchProduct = new ObservableCollection<ProductDTO>(from item in ServiceFactory.ServiceClient.GetAllProducts()
-                                                                    select item).ToList();
-        }
+        /// TODO --- Search the place where its used
+        //private void GetSearchAttributes()
+        //{
+        //    LstSearchProduct = new ObservableCollection<ProductDTO>(from item in ServiceFactory.ServiceClient.GetAllProducts()
+        //                                                            select item).ToList();
+        //}
 
         #endregion
 
         #region ShowProduct.xmal
 
-        private void OnOpenProductPopUp(object selectedProduct)
+        /// <summary>
+        /// To bind Grid on selected item
+        /// </summary>
+        /// <param name="selectedProduct"></param>
+        private void BindGrid(object selectedProduct)
         {
-            Mediator.NotifyColleagues("ShowProductDetails", (ProductDTO)selectedProduct);
-            IsProductPopupOpen = true;
+            SetSelectedProduct(selectedProduct);
+            BindProductDetails(selectedProduct);
         }
 
         #endregion

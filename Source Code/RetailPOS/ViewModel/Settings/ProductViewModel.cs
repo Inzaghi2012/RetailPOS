@@ -11,6 +11,10 @@ using System.Collections.Generic;
 using RetailPOS.Constants;
 using System;
 using System.ComponentModel;
+using Microsoft.Win32;
+using System.IO;
+using System.Windows.Media;
+using System.Drawing;
 
 #endregion
 
@@ -28,6 +32,9 @@ namespace RetailPOS.ViewModel.Settings
         public RelayCommand SearchProductCommand { get; set; }
         public RelayCommand CancelSearchCommand { get; set; }
         public RelayCommand GenerateBarCodeCommand { get; private set; }
+
+        //To upload product image
+        public RelayCommand UploadProductImage { get; private set; }
         
         private ProductCategoryDTO _selectedCategory;
         private IList<ProductDTO> _lstProducts;
@@ -46,9 +53,9 @@ namespace RetailPOS.ViewModel.Settings
         private decimal _weight;
         private string _imagePath;
         private string _name;
-
+        private string _filePath;
         private ProductDTO _selectedProduct;
-
+        private ImageSource _imageSource;
         #endregion
 
         #region Public Properties
@@ -238,7 +245,30 @@ namespace RetailPOS.ViewModel.Settings
                 RaisePropertyChanged("LstProducts");
             }
         }
-        
+        /// <summary>
+        /// To diaplay image path
+        /// </summary>
+        public string FilePath
+        {
+            get { return _filePath; }
+            set
+            {
+                _filePath = value;
+                RaisePropertyChanged("FilePath");
+            }
+        }
+        /// <summary>
+        /// To display image in image box
+        /// </summary>
+        public ImageSource ImageSourceForImage
+        {
+            get { return _imageSource; }
+            set
+            {
+                _imageSource = value;
+                RaisePropertyChanged("ImageSource");
+            }
+        }
         #endregion
 
         #region Public Constructor
@@ -264,6 +294,7 @@ namespace RetailPOS.ViewModel.Settings
             SearchProductCommand = new RelayCommand(SearchProducts);
             CancelSearchCommand = new RelayCommand(CancelSearch);
             GenerateBarCodeCommand = new RelayCommand(GenerateBarCode);
+            UploadProductImage = new RelayCommand(UploadImage);
 
             LstProducts = new List<ProductDTO>();
 
@@ -326,7 +357,7 @@ namespace RetailPOS.ViewModel.Settings
                 Has_Warranty = HasWarranty,
                 Size = Size,
                 Weight = Weight,
-                Image_Path = "Test"
+                Image_Path = FilePath
             };
         }
 
@@ -402,6 +433,28 @@ namespace RetailPOS.ViewModel.Settings
         {
             Name = string.Empty;
             GetProducts(string.Empty);
+        }
+
+        //To upload product Image
+        private void UploadImage()
+        {
+            OpenFileDialog fileDialog = new OpenFileDialog();
+            fileDialog.Filter = "Image files (*.bmp, *.jpg)|*.bmp;*.jpg"; // Optional file extensions
+            fileDialog.AddExtension = true;
+            if (fileDialog.ShowDialog() == true)
+            {
+                FilePath = fileDialog.FileName;
+               // FileStream fs = new FileStream(fileDialog.FileName, FileMode.Open,FileAccess.Read);
+               // byte[] data = new byte[fs.Length];
+               // fs.Read(data, 0, System.Convert.ToInt32(fs.Length));
+               // fs.Close();
+               // FilePath = data.ToString();          
+
+                ImageSourceConverter imgs = new ImageSourceConverter();
+               // ImageSourceForImage.SetValue(Image.SourceProperty, imgs.ConvertFromString(FilePath));
+                  
+
+            }
         }
 
         #endregion

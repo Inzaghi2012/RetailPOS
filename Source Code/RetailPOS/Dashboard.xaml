@@ -28,13 +28,13 @@
             <Child:RightPanelSettings x:Name="RightPanel" HorizontalAlignment="Left"  Margin="3,0,0,0" Width="500"></Child:RightPanelSettings>
             <Child:RightPanelPaymentDetail x:Name="RightPanelPaymentDetail" HorizontalAlignment="Left"  Margin="3,0,0,0" Width="513"></Child:RightPanelPaymentDetail>
         </StackPanel>
-        <WpfKb:FloatingTouchScreenKeyboard
+        <!--<WpfKb:FloatingTouchScreenKeyboard
             x:Name="Keyboard"
             IsOpen="True"
             Width="700"
             Height="400"
             PlacementTarget="{Binding ElementName=LoginCtrl}"
-            Placement="Center" AreAnimationsEnabled="False" IsDragHelperAllowedToHide="True" />
+            Placement="Center" AreAnimationsEnabled="False" IsDragHelperAllowedToHide="True" />-->
     </Grid>
   
 </Window>

@@ -134,17 +134,17 @@
                 <Grid  Width="500" Margin="0,30,0,0">
                     <Grid.RowDefinitions>
                         <RowDefinition Height="40"></RowDefinition>
-                        <RowDefinition></RowDefinition>
+                        <RowDefinition></RowDefinition>                      
                     </Grid.RowDefinitions>
                     <StackPanel Orientation="Horizontal" Grid.Row="0">
                         <TextBlock TextAlignment="Right" FontWeight="Bold" FontSize="15" Width="120" Foreground="Black" Grid.Row="1" Margin="0,5,5,0">
                                 <Run Foreground="Red">*</Run>
                          <Run Foreground="Black">Product Pic:</Run>
                         </TextBlock>
-                        <TextBox Height="30" Margin="0,1,0,0" Name="FileNameTextBox" Text="{Binding FilePath,ValidatesOnDataErrors=True}" Width="300" />
-                        <Button Content="Browse" Height="32" HorizontalAlignment="Right" Grid.Column="1" Grid.Row="1" Margin="5,4,5,0"  Name="button1" VerticalAlignment="Top" Width="57"  />
+                        <TextBox Height="30" Margin="0,1,0,0" Name="FileNameTextBox" Text="{Binding FilePath,ValidatesOnDataErrors=True,Mode=TwoWay}" Width="300" />
+                        <Button Content="Browse" Height="32" HorizontalAlignment="Right" Grid.Column="1" Grid.Row="1" Margin="5,4,5,0"  Name="button1" VerticalAlignment="Top" Width="57" Command="{Binding UploadProductImage}"  />
                     </StackPanel>
-                    <Image Grid.Row="1" Height="242" HorizontalAlignment="Center" Margin="26,0,0,20" Name="imgUploaded" Stretch="Fill" VerticalAlignment="Center" Width="341" />
+                    <Image Grid.Row="1" Height="242" HorizontalAlignment="Center" Margin="26,0,0,20" Name="imgUploaded" Stretch="Fill" VerticalAlignment="Center" Width="341" Source="{Binding ImageSourceForImage}"  />
                 </Grid>
             </TabItem>
             <TabItem Header="View / Search Products">
