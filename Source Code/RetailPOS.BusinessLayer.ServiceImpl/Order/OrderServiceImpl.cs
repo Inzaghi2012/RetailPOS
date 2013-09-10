@@ -79,12 +79,17 @@ namespace RetailPOS.BusinessLayer.ServiceImpl.Order
                               join orderChild in base.OrderChildRepository.GetList().ToList()
                               on orderMaster.id equals orderChild.order_id
                               orderby orderMaster.id descending
-                              group orderChild by orderChild.order_id into groupByItem
+                              group new { orderMaster, orderChild } by new { orderChild.order_id, orderMaster.order_date } into groupByItem
+            
+            //orderChild by orderChild.order_id into groupByItem,
+            //                  orderMaster by orderMaster.order_date into groupbyDate)
+                             
                               select new OrderMasterDTO
                               {
-                                  Id = groupByItem.Key,
+                                  Id = groupByItem.Key.order_id,
+                                  Order_Date =groupByItem.Key.order_date,
                                   TotalQuantity = groupByItem.Count(),
-                                  TotalAmount = groupByItem.Sum(sum => sum.amount)
+                                  TotalAmount = groupByItem.Sum(sum => sum.orderChild.amount)
                               }).ToList();
             
             return lstOrderMaster;

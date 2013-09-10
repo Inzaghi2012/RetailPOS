@@ -5,9 +5,11 @@
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
              mc:Ignorable="d" 
              xmlns:Utility="clr-namespace:RetailPOS.Utility"
-             d:DesignHeight="150" d:DesignWidth="282"
+               xmlns:WpfKb="clr-namespace:WpfKb.Controls;assembly=WpfKb"
+             d:DesignHeight="150" d:DesignWidth="282" Name="SearchItemCntrl"
             DataContext="{Binding Source={StaticResource Locator}, Path=SearchVM}" 
             xmlns:toolkit="clr-namespace:System.Windows.Controls;assembly=System.Windows.Controls.Input.Toolkit"
+             xmlns:i="clr-namespace:System.Windows.Interactivity;assembly=System.Windows.Interactivity"
               xmlns:my="clr-namespace:WpfLab.Controls;assembly=WpfLab.Controls">
     <UserControl.Resources>
         <ResourceDictionary Source="../../../Themes/BureauBlue.xaml"></ResourceDictionary>
@@ -37,7 +39,7 @@
                          Text="{Binding Name, Mode=TwoWay}" 
                                      IsTextCompletionEnabled="False" 
                                      FilterMode="StartsWith"
-                                     ValueMemberPath="Name" VerticalAlignment="Top" Width="177" Height="25" >
+                                     ValueMemberPath="Name" VerticalAlignment="Top" Width="177" Height="25">
                     <toolkit:AutoCompleteBox.ItemTemplate>
                         <DataTemplate>
                             <Grid Background="#DFF0D8">
@@ -69,35 +71,40 @@
                             </Grid>
                         </DataTemplate>
                     </toolkit:AutoCompleteBox.ItemTemplate>
+                    <i:Interaction.Triggers>
+                        <i:EventTrigger EventName="MouseEnter">
+                            <i:InvokeCommandAction Command="{Binding MouseEnterCommand}" />
+                        </i:EventTrigger>
+                    </i:Interaction.Triggers>
                 </toolkit:AutoCompleteBox>
-                <toolkit:AutoCompleteBox Height="25" HorizontalAlignment="Left" Margin="11,8,0,0" Name="autoCompleteTxtCustomer" ItemsSource="{Binding LstSearchCustomer}"
+                        <toolkit:AutoCompleteBox Height="25" HorizontalAlignment="Left" Margin="11,8,0,0" Name="autoCompleteTxtCustomer" ItemsSource="{Binding LstSearchCustomer}"
                          SelectedItem="{Binding SelectedCustomer, Mode=TwoWay,UpdateSourceTrigger=Default}" IsTextCompletionEnabled="False"
                          ValueMemberPath="First_Name"
                           FilterMode="StartsWith" VerticalAlignment="Top" Width="177" Grid.Column="1" Grid.Row="1" >
-                    <toolkit:AutoCompleteBox.ItemTemplate>
-                        <DataTemplate>
-                            <Grid Background="#DFF0D8">
-                                <Grid.RowDefinitions>
-                                    <RowDefinition></RowDefinition>
-                                    <RowDefinition></RowDefinition>
-                                </Grid.RowDefinitions>
-                                <TextBlock Grid.Row="0" Text="{Binding Code}" TextBlock.FontWeight="Bold" Foreground="#8DACD1" Width="350"></TextBlock>
-                                <WrapPanel Grid.Row="1" Margin="0 3 0 0"  Width="350">
-                                    <TextBlock Text="Type: "  Foreground="#47896B"  Margin="10 0 0 0" FontWeight="Bold"></TextBlock>
-                                    <TextBlock Text="{Binding  Type_Id}" Foreground="#47896B" ></TextBlock>
-                                    <TextBlock Text="First Name: "  Foreground="#47896B" Margin="10 0 0 0" FontWeight="Bold"></TextBlock>
-                                    <TextBlock Text="{Binding First_Name}" Foreground="#47896B"></TextBlock>
-                                    <TextBlock Text="Last Name: "  Foreground="#47896B" Margin="10 0 0 0" FontWeight="Bold"></TextBlock>
-                                    <TextBlock Text="{Binding Last_Name}" Foreground="#47896B"></TextBlock>
-                                    <TextBlock Text="Email: "  Foreground="#47896B" Margin="10 0 0 0" FontWeight="Bold"></TextBlock>
-                                    <TextBlock Text="" Foreground="#47896B"></TextBlock>
-                                    <TextBlock Text="Credit Limit: "  Foreground="#47896B" Margin="0 0 0 0" FontWeight="Bold"></TextBlock>
-                                    <TextBlock Text="{Binding Credit_Limit}" Foreground="#47896B"></TextBlock>
-                                </WrapPanel>
-                            </Grid>
-                        </DataTemplate>
-                    </toolkit:AutoCompleteBox.ItemTemplate>
-                </toolkit:AutoCompleteBox>
+                            <toolkit:AutoCompleteBox.ItemTemplate>
+                                <DataTemplate>
+                                    <Grid Background="#DFF0D8">
+                                        <Grid.RowDefinitions>
+                                            <RowDefinition></RowDefinition>
+                                            <RowDefinition></RowDefinition>
+                                        </Grid.RowDefinitions>
+                                        <TextBlock Grid.Row="0" Text="{Binding Code}" TextBlock.FontWeight="Bold" Foreground="#8DACD1" Width="350"></TextBlock>
+                                        <WrapPanel Grid.Row="1" Margin="0 3 0 0"  Width="350">
+                                            <TextBlock Text="Type: "  Foreground="#47896B"  Margin="10 0 0 0" FontWeight="Bold"></TextBlock>
+                                            <TextBlock Text="{Binding  Type_Id}" Foreground="#47896B" ></TextBlock>
+                                            <TextBlock Text="First Name: "  Foreground="#47896B" Margin="10 0 0 0" FontWeight="Bold"></TextBlock>
+                                            <TextBlock Text="{Binding First_Name}" Foreground="#47896B"></TextBlock>
+                                            <TextBlock Text="Last Name: "  Foreground="#47896B" Margin="10 0 0 0" FontWeight="Bold"></TextBlock>
+                                            <TextBlock Text="{Binding Last_Name}" Foreground="#47896B"></TextBlock>
+                                            <TextBlock Text="Email: "  Foreground="#47896B" Margin="10 0 0 0" FontWeight="Bold"></TextBlock>
+                                            <TextBlock Text="" Foreground="#47896B"></TextBlock>
+                                            <TextBlock Text="Credit Limit: "  Foreground="#47896B" Margin="0 0 0 0" FontWeight="Bold"></TextBlock>
+                                            <TextBlock Text="{Binding Credit_Limit}" Foreground="#47896B"></TextBlock>
+                                        </WrapPanel>
+                                    </Grid>
+                                </DataTemplate>
+                            </toolkit:AutoCompleteBox.ItemTemplate>
+                        </toolkit:AutoCompleteBox>
             </Grid>
         </GroupBox>
         <my:ModalDialogPopup Width="auto" MaxWidth="500"  IsOpen="{Binding IsProductPopupOpen, Mode=TwoWay}" Title="Product" FontWeight="Bold" ShowCancelButton="False" ShowOKButton="False" Grid.ColumnSpan="1">
@@ -135,7 +142,7 @@
                                         <Binding  ElementName="SelectedProduct"></Binding>
                                     </MultiBinding>
                                 </Button.CommandParameter>-->
-                                    <Button.CommandBindings>
+                                <Button.CommandBindings>
                                     <CommandBinding Command="Save"></CommandBinding>
                                 </Button.CommandBindings>
                             </Button>
@@ -144,5 +151,12 @@
                 </ContentControl>
             </my:ModalDialogPopup.HostedContent>
         </my:ModalDialogPopup>
+        <WpfKb:FloatingTouchScreenKeyboard
+            x:Name="Keyboard"
+            IsOpen="true"
+            Width="700"
+            Height="400" 
+            PlacementTarget="{Binding ElementName=SearchItemCntrl}"
+            Placement="Center" AreAnimationsEnabled="False" IsDragHelperAllowedToHide="True" />
     </Grid>
 </UserControl>
