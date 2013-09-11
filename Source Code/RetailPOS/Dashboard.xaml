@@ -29,13 +29,16 @@
             <Child:RightPanelSettings x:Name="RightPanel" HorizontalAlignment="Left"  Margin="3,0,0,0" Width="500"></Child:RightPanelSettings>
             <Child:RightPanelPaymentDetail x:Name="RightPanelPaymentDetail" HorizontalAlignment="Left"  Margin="3,0,0,0" Width="513"></Child:RightPanelPaymentDetail>
         </StackPanel>
-        <WpfKb:FloatingTouchScreenKeyboard            
+        <StackPanel Grid.Column="0"   Margin="13,410,0,0">
+             <WpfKb:FloatingTouchScreenKeyboard            
             IsOpen="{Binding IsOpen}" Width="900" 
             Height="400"
             DataContext="{Binding Source={StaticResource Locator}, Path=ProductGridVM}"    
-            AreAnimationsEnabled="True" Grid.ColumnSpan="2"  Margin="15,310,0,0" />
+            AreAnimationsEnabled="False"/>
         <!--PlacementTarget="{Binding ElementName=testWindow}"
-         Placement="Center"-->
+        -->
+        </StackPanel>
+       
     </Grid>
   
 </Window>

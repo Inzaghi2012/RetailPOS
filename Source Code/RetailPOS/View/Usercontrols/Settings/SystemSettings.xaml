@@ -107,10 +107,12 @@
             <ctrl:SetAsideOrderView x:Name="ctrlSetAsideOrder" Margin="15" Width="842"></ctrl:SetAsideOrderView>
 
         </StackPanel>
-        <WpfKb:FloatingTouchScreenKeyboard            
+        <StackPanel Grid.Row="2"   Margin="10,350,0,0">
+            <WpfKb:FloatingTouchScreenKeyboard            
             IsOpen="{Binding IsOpen}" Width="900" 
             Height="400"  
-            AreAnimationsEnabled="False" Margin="15,360,0,0"/>
+            AreAnimationsEnabled="False"/>
+        </StackPanel>
         <!--PlacementTarget="{Binding ElementName=testWindow}"
          Placement="Center"-->
     </Grid>
