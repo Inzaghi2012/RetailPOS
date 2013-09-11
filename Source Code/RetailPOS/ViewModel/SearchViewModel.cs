@@ -11,13 +11,14 @@ using RetailPOS.RetailPOSService;
 using RetailPOS.Utility;
 using System.Windows.Data;
 using System;
+using System.ComponentModel;
 
 
 #endregion
 
 namespace RetailPOS.ViewModel
 {
-    public class SearchViewModel : ViewModelBase//, IMultiValueConverter
+    public class SearchViewModel : ViewModelBase, IDataErrorInfo//, IMultiValueConverter
     {
         //public object Convert(object[] values, Type targetType, object parameter, System.Globalization.CultureInfo culture)
         //{
@@ -395,7 +396,7 @@ namespace RetailPOS.ViewModel
             ProductName = SelectedProduct.Name;
             ProductCode = SelectedProduct.BarCode;
             ProductPrice = SelectedProduct.Retail_Price.HasValue ? SelectedProduct.Retail_Price.Value : 0;
-            SelectedProduct.Quantity = ProductQuantity = 0;
+            SelectedProduct.Quantity = ProductQuantity = 1;
             SelectedProduct.Discount = 0;
             ProductDescription = SelectedProduct.Description;
 
@@ -428,6 +429,72 @@ namespace RetailPOS.ViewModel
                 Balance = 0
             };
         }
+        #endregion
+
+        #region Validation
+
+        public bool IsValidating = false;
+
+        public List<string> Errors = new List<string>();
+
+        //To validate the field
+        //Will check if fields are validated or not
+        public bool IsValid()
+        {
+            IsValidating = true;
+            Errors.Clear();
+            try
+            {
+                RaisePropertyChanged(() => ProductQuantity);
+              
+
+            }
+            finally
+            {
+                if (Errors.Count > 0)
+                {
+
+                    IsValidating = false;
+                    MessageBox.Show(string.Join(",", Errors));
+                }
+            }
+            return (Errors.Count == 0);
+        }
+
+        public string Error
+        {
+            get { throw new NotImplementedException(); }
+        }
+
+        public string this[string columnName]
+        {
+            get
+           {
+                string result = string.Empty;
+                if (!IsValidating) return result;
+                Errors.Remove(columnName);
+                switch (columnName)
+                {
+                    case "ProductQuantity":
+                        if (ProductQuantity == null)
+                        {
+                            result = " Quantity is required!";
+                            break;
+                        }
+                        else
+                        {
+                            break;
+                        }               
+
+
+
+                }
+                if (result != string.Empty) Errors.Add(result);
+                return result;
+            }
+        }
+
+
         #endregion
     }
 }
