@@ -74,11 +74,6 @@
                             </Grid>
                         </DataTemplate>
                     </toolkit:AutoCompleteBox.ItemTemplate>
-                    <i:Interaction.Triggers>
-                        <i:EventTrigger EventName="MouseEnter">
-                            <i:InvokeCommandAction Command="{Binding DataContext.MouseEnterCommand}" />
-                        </i:EventTrigger>
-                    </i:Interaction.Triggers>
                 </toolkit:AutoCompleteBox>
                 <toolkit:AutoCompleteBox Height="25" HorizontalAlignment="Left" Margin="11,8,0,0" Name="autoCompleteTxtCustomer" ItemsSource="{Binding LstSearchCustomer}"
                          SelectedItem="{Binding SelectedCustomer, Mode=TwoWay,UpdateSourceTrigger=Default}" IsTextCompletionEnabled="False"
@@ -160,6 +155,6 @@
             Width="700"
             Height="400"
             PlacementTarget="{Binding ElementName=mainWindow}"
-            Placement="Center" AreAnimationsEnabled="False" IsDragHelperAllowedToHide="False" />
+            Placement="Center" AreAnimationsEnabled="True" IsAllowedToFade="False" />
     </Grid>
 </UserControl>

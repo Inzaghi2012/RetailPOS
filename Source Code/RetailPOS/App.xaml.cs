@@ -17,7 +17,7 @@ namespace RetailPOS
         public App()
         {
             this.Startup += this.Application_StartUp;
-            
+
             InitializeComponent();
         }
 

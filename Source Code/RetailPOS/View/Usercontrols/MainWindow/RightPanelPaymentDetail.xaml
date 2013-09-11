@@ -153,14 +153,12 @@
                 <TextBox Name="txtDiscount" Utility:MaskedTextBoxBehaviour.IsDecimalOnly="True"  Grid.Column="1" Grid.Row="0" Height="30" Text="{Binding TotalDiscount}" DataContext="{Binding Source={StaticResource Locator}, Path=ProductGridVM}" IsReadOnlyCaretVisible="False" IsReadOnly="True"></TextBox>
                 <TextBox Name="txtToPay" Utility:MaskedTextBoxBehaviour.IsDecimalOnly="True" Grid.Column="1" Grid.Row="1" Height="30"  DataContext="{Binding Source={StaticResource Locator}, Path=ProductGridVM}" Text="{Binding Total}" IsReadOnly="True"></TextBox>
                 <TextBox Name="txtPaid" Utility:MaskedTextBoxBehaviour.IsDecimalOnly="True" Grid.Column="1" Grid.Row="2" Height="30" Text="{Binding PaidAmount}"></TextBox>
-                <TextBox Name="txtBalance" Utility:MaskedTextBoxBehaviour.IsDecimalOnly="True" Grid.Column="1" Grid.Row="3" Height="30"></TextBox>
-                <CheckBox IsChecked="{Binding IsOpen, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" Content="Open the KB" Grid.Column="1" Grid.Row="3"
-              HorizontalAlignment="Left" VerticalAlignment="Top"/>
-                <WpfKb:FloatingTouchScreenKeyboard            
+                <TextBox Name="txtBalance" Utility:MaskedTextBoxBehaviour.IsDecimalOnly="True" Grid.Column="1" Grid.Row="3" Height="30"></TextBox>              
+                <!--<WpfKb:FloatingTouchScreenKeyboard            
             Width="900" IsOpen="{Binding IsKeyBoardOpen,Mode=TwoWay}"
             Height="400"  Grid.Column="1" Grid.Row="3"
            PlacementTarget="{Binding ElementName=mainWindow}"
-            Placement="Left" />
+            Placement="Left" />-->
             </Grid>
         </GroupBox>
         <StackPanel Grid.Column="3">

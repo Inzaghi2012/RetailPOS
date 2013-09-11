@@ -14,7 +14,11 @@ namespace RetailPOS.ViewModel.Settings
     public class SettingViewModel : ViewModelBase
    {
        #region Declare Public and Private Data member
-       
+
+       /// <summary>
+       /// To control the visibility of the keyboard
+       /// </summary>
+       private bool _isOpen;
        private Visibility _isCategoryVisible;
        private Visibility _isCustomerVisible;
        private Visibility _isProductVisible;
@@ -155,7 +159,16 @@ namespace RetailPOS.ViewModel.Settings
                RaisePropertyChanged("IsSystemSettingVisible");
            }
        }
-
+       ///To control the visibility of keyboard
+       public bool IsOpen
+       {
+           get { return _isOpen; }
+           set
+           {
+               _isOpen = value;
+               RaisePropertyChanged("IsOpen");
+           }
+       }
        #endregion
 
        /// <summary>

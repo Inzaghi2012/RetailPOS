@@ -104,7 +104,10 @@ namespace RetailPOS.ViewModel
         private string _email;
         private string _newMobileNumber;
         private decimal _discount;
-
+        /// <summary>
+        /// To control the visibility of the keyboard
+        /// </summary>
+        private bool _isOpen;
         private CustomerDTO _selectedCustomer;
 
         /// <summary>
@@ -448,6 +451,16 @@ namespace RetailPOS.ViewModel
             {
                 _isDiscountEntryPopUp = value;
                 RaisePropertyChanged("IsDiscountPopupOpen");
+            }
+        }
+        ///To control the visibility of keyboard
+        public bool IsOpen
+        {
+            get { return _isOpen; }
+            set
+            {
+                _isOpen = value;
+                RaisePropertyChanged("IsOpen");
             }
         }
 
