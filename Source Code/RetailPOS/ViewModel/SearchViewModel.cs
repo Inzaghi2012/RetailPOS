@@ -70,7 +70,7 @@ namespace RetailPOS.ViewModel
         private int _id;
 
         //To make keyboard visible
-        private bool _isKeyboardVisible;
+        private bool _IsOpen;
         /// <summary>
         /// To make textblock visibility true or false on add new customer button click
         /// </summary>
@@ -315,12 +315,13 @@ namespace RetailPOS.ViewModel
         }
 
         ///To control the visibility of keyboard
-        public bool IsKeyboardVisible
+        public bool IsOpen
         {
-            get { return _isKeyboardVisible; }
+            get { return _IsOpen; }
             set
             {
-                _isKeyboardVisible = value;
+                _IsOpen = value;
+                RaisePropertyChanged("IsOpen");   
             }
         }
 
@@ -343,12 +344,11 @@ namespace RetailPOS.ViewModel
             GetSearchAttributes();
 
             isVisibleCustomerInfo = Visibility.Collapsed;
-            IsKeyboardVisible = false;
         }
 
         private void MouseEntered()
         {
-            IsKeyboardVisible = true;
+            IsOpen = true;
         }
 
         /// <summary>

@@ -9,7 +9,7 @@
     <Grid>
         <StackPanel Orientation="Horizontal" Height="150">
             <Child:UserInfo x:Name="UInfo" Height="120"  Margin="5,0,0,0" Width="207"></Child:UserInfo>
-            <Child:SearchItem x:Name="Search" Height="150"  Margin="5,0,0,0"></Child:SearchItem>
+            <Child:SearchItem x:Name="Search" Height="150" Margin="5,0,0,0"></Child:SearchItem>            
         </StackPanel>
     </Grid>
 </UserControl>

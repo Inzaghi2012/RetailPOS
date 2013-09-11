@@ -5,12 +5,13 @@
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
              mc:Ignorable="d" 
              xmlns:Utility="clr-namespace:RetailPOS.Utility"
-               xmlns:WpfKb="clr-namespace:WpfKb.Controls;assembly=WpfKb"
-             d:DesignHeight="150" d:DesignWidth="282" Name="SearchItemCntrl"
-            DataContext="{Binding Source={StaticResource Locator}, Path=SearchVM}" 
-            xmlns:toolkit="clr-namespace:System.Windows.Controls;assembly=System.Windows.Controls.Input.Toolkit"
+             xmlns:WpfKb="clr-namespace:WpfKb.Controls;assembly=WpfKb"
+             d:DesignHeight="150" d:DesignWidth="282" 
+             x:Name="mainWindow"
+             DataContext="{Binding Source={StaticResource Locator}, Path=SearchVM}" 
+             xmlns:toolkit="clr-namespace:System.Windows.Controls;assembly=System.Windows.Controls.Input.Toolkit"
              xmlns:i="clr-namespace:System.Windows.Interactivity;assembly=System.Windows.Interactivity"
-              xmlns:my="clr-namespace:WpfLab.Controls;assembly=WpfLab.Controls">
+             xmlns:my="clr-namespace:WpfLab.Controls;assembly=WpfLab.Controls">
     <UserControl.Resources>
         <ResourceDictionary Source="../../../Themes/BureauBlue.xaml"></ResourceDictionary>
     </UserControl.Resources>
@@ -30,14 +31,16 @@
                     <ColumnDefinition Width="90*"></ColumnDefinition>
                     <ColumnDefinition Width="218*"></ColumnDefinition>
                 </Grid.ColumnDefinitions>
+                <!--<CheckBox IsChecked="{Binding IsOpen, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" Content="Open the KB"
+              HorizontalAlignment="Left" VerticalAlignment="Top"/>-->
                 <Label Content="Product :"  Height="28" HorizontalAlignment="Left" Margin="12,12,0,0" Name="lblProduct" VerticalAlignment="Top" Width="69" />
                 <Label Content="Customer :" Height="28" HorizontalAlignment="Left" Margin="12,12,0,0" Name="lblCustomer" VerticalAlignment="Top" Width="69" Grid.Row="1" />
 
                 <Label Content="Loyalty Points:" Grid.Row="2" Height="28" HorizontalAlignment="Left" Margin="2,14,0,0" Name="label1" VerticalAlignment="Top" Width="78" />
                 <TextBlock Grid.Row="2" Height="23" HorizontalAlignment="Left" Margin="11,15,0,0" Name="txtLoyaltyPoints" Text="" VerticalAlignment="Top" Grid.Column="1" />
                 <toolkit:AutoCompleteBox Grid.Column="1" HorizontalAlignment="Left" SelectedItem="{Binding Product, Mode=TwoWay}" Margin="11,8,0,0"  Name="autoCompleteTxtProduct"  ItemsSource="{Binding LstSearchProduct}"                        
-                         Text="{Binding Name, Mode=TwoWay}" 
-                                     IsTextCompletionEnabled="False" 
+                         Text="{Binding Name, Mode=TwoWay}"
+                                     IsTextCompletionEnabled="False"
                                      FilterMode="StartsWith"
                                      ValueMemberPath="Name" VerticalAlignment="Top" Width="177" Height="25">
                     <toolkit:AutoCompleteBox.ItemTemplate>
@@ -73,11 +76,11 @@
                     </toolkit:AutoCompleteBox.ItemTemplate>
                     <i:Interaction.Triggers>
                         <i:EventTrigger EventName="MouseEnter">
-                            <i:InvokeCommandAction Command="{Binding MouseEnterCommand}" />
+                            <i:InvokeCommandAction Command="{Binding DataContext.MouseEnterCommand}" />
                         </i:EventTrigger>
                     </i:Interaction.Triggers>
                 </toolkit:AutoCompleteBox>
-                        <toolkit:AutoCompleteBox Height="25" HorizontalAlignment="Left" Margin="11,8,0,0" Name="autoCompleteTxtCustomer" ItemsSource="{Binding LstSearchCustomer}"
+                <toolkit:AutoCompleteBox Height="25" HorizontalAlignment="Left" Margin="11,8,0,0" Name="autoCompleteTxtCustomer" ItemsSource="{Binding LstSearchCustomer}"
                          SelectedItem="{Binding SelectedCustomer, Mode=TwoWay,UpdateSourceTrigger=Default}" IsTextCompletionEnabled="False"
                          ValueMemberPath="First_Name"
                           FilterMode="StartsWith" VerticalAlignment="Top" Width="177" Grid.Column="1" Grid.Row="1" >
@@ -153,10 +156,10 @@
         </my:ModalDialogPopup>
         <WpfKb:FloatingTouchScreenKeyboard
             x:Name="Keyboard"
-            IsOpen="true"
+            IsOpen="{Binding IsOpen}"
             Width="700"
-            Height="400" 
-            PlacementTarget="{Binding ElementName=SearchItemCntrl}"
-            Placement="Center" AreAnimationsEnabled="False" IsDragHelperAllowedToHide="True" />
+            Height="400"
+            PlacementTarget="{Binding ElementName=mainWindow}"
+            Placement="Center" AreAnimationsEnabled="False" IsDragHelperAllowedToHide="False" />
     </Grid>
 </UserControl>

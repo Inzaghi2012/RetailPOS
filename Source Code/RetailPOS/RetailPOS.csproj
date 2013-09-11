@@ -166,6 +166,9 @@
     <Compile Include="SettingsWindow.xaml.cs">
       <DependentUpon>SettingsWindow.xaml</DependentUpon>
     </Compile>
+    <Compile Include="Test.xaml.cs">
+      <DependentUpon>Test.xaml</DependentUpon>
+    </Compile>
     <Compile Include="Utility\DataContextSpy.cs" />
     <Compile Include="Utility\ExtensionMethods.cs" />
     <Compile Include="Utility\MaskedTextBoxBehaviour.cs" />
@@ -186,6 +189,7 @@
     <Compile Include="ViewModel\Settings\SetAsideOrderViewModel.cs" />
     <Compile Include="ViewModel\Settings\SettingViewModel.cs" />
     <Compile Include="ViewModel\Settings\ShopSettingViewModel.cs" />
+    <Compile Include="ViewModel\TestViewModel.cs" />
     <Compile Include="ViewModel\UserInfoViewModel.cs" />
     <Compile Include="ViewModel\Settings\WasteManagementViewModel.cs" />
     <Compile Include="BarCode.xaml.cs">
@@ -296,6 +300,10 @@
       <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="BarCode.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Test.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>

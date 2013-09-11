@@ -34,10 +34,10 @@
         </Border>
         <WpfKb:FloatingTouchScreenKeyboard
             x:Name="Keyboard"
-            IsOpen="True"
+            IsOpen="true"
             Width="700"
             Height="400"
             PlacementTarget="{Binding ElementName=LoginCtrl}"
-            Placement="Center" AreAnimationsEnabled="False" />
+            Placement="Center" AreAnimationsEnabled="False" IsAllowedToFade="False" IsDragHelperAllowedToHide="True" />
     </Grid>
 </UserControl>

@@ -9,11 +9,11 @@ using GalaSoft.MvvmLight.Command;
 using RetailPOS.Core;
 using RetailPOS.RetailPOSService;
 using System;
-
+using System.ComponentModel;
 #endregion
 
 namespace RetailPOS.ViewModel
-{    
+{
     public class RightPanelPaymentDetailViewModel : ViewModelBase
     {
         #region Declare Public and private Data member
@@ -45,12 +45,44 @@ namespace RetailPOS.ViewModel
         private decimal _creditLimit;
         private decimal _amountToPay;
         private decimal _amountPaid;
-      
+        private bool _IsOpen;
+        private string _IsKeyBoardOpen;
         
         #endregion
 
         #region Public Properties
 
+        //public bool IsOpen
+        //{
+        //    get { return _IsOpen; }
+        //    set
+        //    {
+        //        _IsOpen = value;
+        //        if (PropertyChanged != null)
+        //            PropertyChanged(this, new PropertyChangedEventArgs("IsOpen"));
+        //    }
+        //}
+        //public event PropertyChangedEventHandler PropertyChanged;
+
+        public bool IsOpen
+        {
+            get { return _IsOpen; }
+            set
+            {
+                _IsOpen = value;
+                RaisePropertyChanged("IsOpen");
+                OpenKeyboard();
+            }
+        }
+        public string IsKeyBoardOpen
+        {
+            get { return _IsKeyBoardOpen; }
+            set
+            {
+                _IsKeyBoardOpen = value;
+                RaisePropertyChanged("IsKeyBoardOpen");
+            }
+        }
         public decimal AmountToPay
         {
             get { return _amountToPay; }
@@ -252,7 +284,7 @@ namespace RetailPOS.ViewModel
             lstSearchCustomer = new ObservableCollection<CustomerDTO>(from item in ServiceFactory.ServiceClient.GetAllCustomers()
                                                                       select item).ToList();
             UpdateCustomerPaymentDetail = new RelayCommand(UpdateCustomerBalanceDetail);
-           
+            IsKeyBoardOpen = "False";
         }
 
         #endregion
@@ -329,8 +361,11 @@ namespace RetailPOS.ViewModel
             AmountPaid = 0;
             First_Name = string.Empty;
         }
-     
-      
+
+        private void OpenKeyboard()
+        {
+            IsKeyBoardOpen = "True";          
+        }
        
     }
 }
