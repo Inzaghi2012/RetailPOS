@@ -15,5 +15,10 @@ namespace RetailPOS.BusinessLayer.ServiceImpl.User
         /// </summary>
         [Dependency]
         public IGenericRepository<staff> StaffRepository { get; set; }
+        /// <summary>
+        /// Property to inject the persistence layer implementation class for OrderMaster
+        /// </summary>        
+        [Dependency]
+        public IGenericRepository<ordermaster> OrderMasterRepository { get; set; }
     }
 }

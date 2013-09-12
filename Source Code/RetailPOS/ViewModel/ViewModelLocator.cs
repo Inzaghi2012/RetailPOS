@@ -24,7 +24,7 @@ namespace RetailPOS.ViewModel
             ServiceLocator.SetLocatorProvider(() => SimpleIoc.Default);
             SimpleIoc.Default.Register<ProductGridViewModel>();
             SimpleIoc.Default.Register<LoginViewModel>();
-            SimpleIoc.Default.Register<SearchViewModel>();
+            SimpleIoc.Default.Register<ProductGridViewModel>();
             SimpleIoc.Default.Register<UserInfoViewModel>();
             SimpleIoc.Default.Register<ProductGridViewModel>();
             SimpleIoc.Default.Register<SettingViewModel>();
@@ -89,15 +89,15 @@ namespace RetailPOS.ViewModel
         /// <value>
         /// The search VM.
         /// </value>
-        public SearchViewModel SearchVM
+        public ProductGridViewModel SearchVM
         {
             get
             {
-                if (!((SimpleIoc)(ServiceLocator.Current)).IsRegistered<SearchViewModel>())
+                if (!((SimpleIoc)(ServiceLocator.Current)).IsRegistered<ProductGridViewModel>())
                 {
-                    SimpleIoc.Default.Register<SearchViewModel>();
+                    SimpleIoc.Default.Register<ProductGridViewModel>();
                 }
-                return ServiceLocator.Current.GetInstance<SearchViewModel>();
+                return ServiceLocator.Current.GetInstance<ProductGridViewModel>();
             }
         }
 
@@ -381,7 +381,7 @@ namespace RetailPOS.ViewModel
 
                 case ViewModelType.MenuControl:
                     SimpleIoc.Default.Unregister<MenuControlViewModel>();
-                    SimpleIoc.Default.Unregister<SearchViewModel>();
+                    SimpleIoc.Default.Unregister<ProductGridViewModel>();
                     break;
 
                 case ViewModelType.MainWindow:

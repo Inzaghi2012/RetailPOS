@@ -76,6 +76,11 @@ namespace RetailPOS.ServiceImplementation.ServiceContracts
         [OperationContract]
         bool ValidateUserCredentials(string userName, string password);
 
+        [OperationContract]
+        IList<StaffDTO> GetUserDetail(string userName);
+
+        [OperationContract]
+        IList<OrderMasterDTO> GetOrderNoOfUser();
         #endregion
 
         #region Customers

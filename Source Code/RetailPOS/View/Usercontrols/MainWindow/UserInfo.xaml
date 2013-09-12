@@ -10,7 +10,7 @@
         <ResourceDictionary Source="../../../Themes/BureauBlue.xaml"></ResourceDictionary>
     </UserControl.Resources>
     <Grid>
-    <GroupBox Header="User Info" Height="Auto" Width="Auto" Visibility="{Binding !isVisibleCustomerInfo}">
+    <GroupBox Header="User Info" Height="Auto" Width="Auto" DataContext="{Binding Source={StaticResource Locator},Path=LoginVM}">
     <Grid Width="310" Height="119">
         <Grid.RowDefinitions>
             <RowDefinition Height="27*"></RowDefinition>
@@ -24,7 +24,7 @@
         <Label Content="Staff :" TextBlock.FontWeight="Bold" Height="28" HorizontalAlignment="Left" Margin="12,12,0,0" Name="lblStaff" VerticalAlignment="Top" Width="72" />
         <TextBlock  Grid.Column="1" Height="23" HorizontalAlignment="Left" Margin="8,12,0,0" Name="txtBlkStaffNum" Text="{Binding StaffName}" VerticalAlignment="Top" Width="107" />
         <TextBlock Height="23" HorizontalAlignment="Left" Margin="8,12,0,0" Name="txtOrderNo" Text="{Binding OrderNo}" VerticalAlignment="Top" Width="107" Grid.Column="1" Grid.Row="1" />
-        <Label Content="Ordfer No. :" Height="23" HorizontalAlignment="Left" Margin="12,12,0,0" Name="lblOrderNum" TextBlock.FontWeight="Bold" VerticalAlignment="Top" Width="72" Grid.Row="1" Grid.ColumnSpan="2" Grid.RowSpan="2" />
+        <Label Content="Order No. :" Height="23" HorizontalAlignment="Left" Margin="12,12,0,0" Name="lblOrderNum" TextBlock.FontWeight="Bold" VerticalAlignment="Top" Width="72" Grid.Row="1" Grid.ColumnSpan="2" Grid.RowSpan="2" />
         <Label Content="Date :" Height="28" HorizontalAlignment="Left" Margin="12,12,0,0" Name="lblDate" TextBlock.FontWeight="Bold" VerticalAlignment="Top" Width="72" Grid.Row="2" />
         <TextBlock Height="23" HorizontalAlignment="Left" Margin="8,12,0,0" Name="txtDate" Text="{Binding DateTime}" VerticalAlignment="Top" Width="205" Grid.Column="1" Grid.Row="2" />
     </Grid>

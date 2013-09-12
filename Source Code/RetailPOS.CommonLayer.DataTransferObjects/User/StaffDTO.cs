@@ -1,4 +1,6 @@
 ﻿using System;
+using System.Collections.Generic;
+using RetailPOS.CommonLayer.DataTransferObjects.Order;
 
 namespace RetailPOS.CommonLayer.DataTransferObjects.User
 {
@@ -22,6 +24,6 @@ namespace RetailPOS.CommonLayer.DataTransferObjects.User
         public string OpenId_Id { get; set; }
         public int OpenId_Server_Id { get; set; }
         public string Password { get; set; }
-        public int Security_Group_Id { get; set; } 
+        public int Security_Group_Id { get; set; }      
     }
 }

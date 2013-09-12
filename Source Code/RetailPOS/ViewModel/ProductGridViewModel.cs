@@ -109,7 +109,7 @@ namespace RetailPOS.ViewModel
         /// </summary>
         private bool _isOpen;
         private CustomerDTO _selectedCustomer;
-
+        private ProductDTO _selectedProductFromAutocomBox;
         /// <summary>
         /// To open SetAsideOrder Customer Popup
         /// </summary>
@@ -131,11 +131,27 @@ namespace RetailPOS.ViewModel
             {
                 _selectedCustomer = value;
                 RaisePropertyChanged("SelectedCustomer");
-                
-                BindCustomer();
+
+                if (value != null)
+                {
+                    BindCustomer();
+                }
             }
         }
+        /// <summary>
+        /// To bind the product grid on selected product
+        /// </summary>
+        public ProductDTO SelectedProductFromAutoComBox
+        {
+            get { return _selectedProductFromAutocomBox; }
+            set
+            {
+                _selectedProductFromAutocomBox = value;
+                RaisePropertyChanged("SelectedProductFromAutoComBox");
 
+                BindProductGrid();
+            }
+        }
         public DiscountType SelectedDiscountType
         {
             get { return _selectedDiscount; }
@@ -529,6 +545,11 @@ namespace RetailPOS.ViewModel
             IsVisibleOnAddNewCustomerClick = Visibility.Visible;
             IsErrorMessageVisible = Visibility.Hidden;
             ClearControls();
+
+            //Things from SerachViewModel
+            GetSearchAttributesForSearchView();
+
+            isVisibleCustomerInfo = Visibility.Collapsed;
         }
 
         #endregion
@@ -755,6 +776,43 @@ namespace RetailPOS.ViewModel
             CustomerBalance = SelectedCustomer.Balance;
             MobileNumber = SelectedCustomer.Mobile;
             CustomerName = SelectedCustomer.First_Name + " " + SelectedCustomer.Last_Name;
+        }
+        ///To bind the product grid on selected product
+        private void BindProductGrid()
+        {
+            if (SelectedProductFromAutoComBox != null)
+            {
+                var isExist1 = LstProductDetails.Where(u => u.Id == SelectedProductFromAutoComBox.Id).FirstOrDefault();
+                if (isExist1 == null)
+                {
+                    LstProductDetails.Add(new ProductDTO
+                    {
+                        Id = SelectedProductFromAutoComBox.Id,
+                        Name = SelectedProductFromAutoComBox.Name,
+                        Quantity = SelectedProductFromAutoComBox.Quantity == 0 ? 1 : SelectedProductFromAutoComBox.Quantity,
+                        Retail_Price = SelectedProductFromAutoComBox.Retail_Price,
+                        Discount = SelectedProductFromAutoComBox.Discount,
+                        Amount = ((SelectedProductFromAutoComBox.Quantity == 0 ? 1 : SelectedProductFromAutoComBox.Quantity) * SelectedProductFromAutoComBox.Retail_Price)
+                    });
+                }
+                else
+                {
+                    var found = LstProductDetails.FirstOrDefault(x => x.Id == SelectedProductFromAutoComBox.Id);
+                    int i = LstProductDetails.IndexOf(found);
+                    var quantity = (SelectedProductFromAutoComBox.Quantity == 0 ? 1 : SelectedProductFromAutoComBox.Quantity) + found.Quantity;
+                    LstProductDetails[i].Quantity = quantity;
+
+                    LstProductDetails[i].Amount = (found.Retail_Price * quantity) - found.Discount;
+                    CollectionViewSource.GetDefaultView(this.LstProductDetails).Refresh();
+                }
+
+                var amount = LstProductDetails.Select(u => u.Amount).Sum();
+                var totalDiscount = LstProductDetails.Select(u => u.Discount).Sum();
+                TotalDiscount = (decimal)totalDiscount;
+                Total = (decimal)amount;
+
+               // Mediator.NotifyColleagues("CloseProductPopUpWindow", false);
+            }
         }
 
         /// <summary>

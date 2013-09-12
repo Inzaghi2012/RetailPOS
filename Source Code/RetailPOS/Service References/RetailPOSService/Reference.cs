@@ -95,6 +95,8 @@ namespace RetailPOS.RetailPOSService {
     [System.Runtime.Serialization.KnownTypeAttribute(typeof(RetailPOS.RetailPOSService.CustomerStatusDTO))]
     [System.Runtime.Serialization.KnownTypeAttribute(typeof(RetailPOS.RetailPOSService.ProductDTO))]
     [System.Runtime.Serialization.KnownTypeAttribute(typeof(RetailPOS.RetailPOSService.StaffDTO))]
+    [System.Runtime.Serialization.KnownTypeAttribute(typeof(RetailPOS.RetailPOSService.OrderMasterDTO))]
+    [System.Runtime.Serialization.KnownTypeAttribute(typeof(RetailPOS.RetailPOSService.OrderChildDTO))]
     [System.Runtime.Serialization.KnownTypeAttribute(typeof(RetailPOS.RetailPOSService.CustomerDTO))]
     [System.Runtime.Serialization.KnownTypeAttribute(typeof(RetailPOS.RetailPOSService.AddressDTO))]
     [System.Runtime.Serialization.KnownTypeAttribute(typeof(RetailPOS.RetailPOSService.CustomerTypeDTO))]
@@ -107,8 +109,6 @@ namespace RetailPOS.RetailPOSService {
     [System.Runtime.Serialization.KnownTypeAttribute(typeof(RetailPOS.RetailPOSService.PromotionalOfferDTO))]
     [System.Runtime.Serialization.KnownTypeAttribute(typeof(RetailPOS.RetailPOSService.WasteManagementDTO))]
     [System.Runtime.Serialization.KnownTypeAttribute(typeof(RetailPOS.RetailPOSService.PurchaseHistoryDTO))]
-    [System.Runtime.Serialization.KnownTypeAttribute(typeof(RetailPOS.RetailPOSService.OrderMasterDTO))]
-    [System.Runtime.Serialization.KnownTypeAttribute(typeof(RetailPOS.RetailPOSService.OrderChildDTO))]
     [System.Runtime.Serialization.KnownTypeAttribute(typeof(RetailPOS.RetailPOSService.ProductCategoryDTO))]
     public partial class BaseDTO : object, System.Runtime.Serialization.IExtensibleDataObject, System.ComponentModel.INotifyPropertyChanged {
         
@@ -828,6 +828,422 @@ namespace RetailPOS.RetailPOSService {
                 if ((object.ReferenceEquals(this.UserNameField, value) != true)) {
                     this.UserNameField = value;
                     this.RaisePropertyChanged("UserName");
+                }
+            }
+        }
+    }
+    
+    [System.Diagnostics.DebuggerStepThroughAttribute()]
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Runtime.Serialization", "4.0.0.0")]
+    [System.Runtime.Serialization.DataContractAttribute(Name="OrderMasterDTO", Namespace="http://schemas.datacontract.org/2004/07/RetailPOS.CommonLayer.DataTransferObjects" +
+        ".Order")]
+    [System.SerializableAttribute()]
+    public partial class OrderMasterDTO : RetailPOS.RetailPOSService.BaseDTO {
+        
+        [System.Runtime.Serialization.OptionalFieldAttribute()]
+        private string CustomerNameField;
+        
+        [System.Runtime.Serialization.OptionalFieldAttribute()]
+        private System.Nullable<int> Customer_IdField;
+        
+        [System.Runtime.Serialization.OptionalFieldAttribute()]
+        private System.Nullable<decimal> Discount_totalField;
+        
+        [System.Runtime.Serialization.OptionalFieldAttribute()]
+        private long IdField;
+        
+        [System.Runtime.Serialization.OptionalFieldAttribute()]
+        private System.Nullable<long> Invoice_IdField;
+        
+        [System.Runtime.Serialization.OptionalFieldAttribute()]
+        private System.Collections.Generic.List<RetailPOS.RetailPOSService.OrderChildDTO> OrderChildsField;
+        
+        [System.Runtime.Serialization.OptionalFieldAttribute()]
+        private System.DateTime Order_DateField;
+        
+        [System.Runtime.Serialization.OptionalFieldAttribute()]
+        private string Order_NoField;
+        
+        [System.Runtime.Serialization.OptionalFieldAttribute()]
+        private short Print_Receipt_CopiesField;
+        
+        [System.Runtime.Serialization.OptionalFieldAttribute()]
+        private string Shop_CodeField;
+        
+        [System.Runtime.Serialization.OptionalFieldAttribute()]
+        private System.Nullable<short> StatusField;
+        
+        [System.Runtime.Serialization.OptionalFieldAttribute()]
+        private decimal TotalAmountField;
+        
+        [System.Runtime.Serialization.OptionalFieldAttribute()]
+        private decimal TotalQuantityField;
+        
+        [System.Runtime.Serialization.DataMemberAttribute()]
+        public string CustomerName {
+            get {
+                return this.CustomerNameField;
+            }
+            set {
+                if ((object.ReferenceEquals(this.CustomerNameField, value) != true)) {
+                    this.CustomerNameField = value;
+                    this.RaisePropertyChanged("CustomerName");
+                }
+            }
+        }
+        
+        [System.Runtime.Serialization.DataMemberAttribute()]
+        public System.Nullable<int> Customer_Id {
+            get {
+                return this.Customer_IdField;
+            }
+            set {
+                if ((this.Customer_IdField.Equals(value) != true)) {
+                    this.Customer_IdField = value;
+                    this.RaisePropertyChanged("Customer_Id");
+                }
+            }
+        }
+        
+        [System.Runtime.Serialization.DataMemberAttribute()]
+        public System.Nullable<decimal> Discount_total {
+            get {
+                return this.Discount_totalField;
+            }
+            set {
+                if ((this.Discount_totalField.Equals(value) != true)) {
+                    this.Discount_totalField = value;
+                    this.RaisePropertyChanged("Discount_total");
+                }
+            }
+        }
+        
+        [System.Runtime.Serialization.DataMemberAttribute()]
+        public long Id {
+            get {
+                return this.IdField;
+            }
+            set {
+                if ((this.IdField.Equals(value) != true)) {
+                    this.IdField = value;
+                    this.RaisePropertyChanged("Id");
+                }
+            }
+        }
+        
+        [System.Runtime.Serialization.DataMemberAttribute()]
+        public System.Nullable<long> Invoice_Id {
+            get {
+                return this.Invoice_IdField;
+            }
+            set {
+                if ((this.Invoice_IdField.Equals(value) != true)) {
+                    this.Invoice_IdField = value;
+                    this.RaisePropertyChanged("Invoice_Id");
+                }
+            }
+        }
+        
+        [System.Runtime.Serialization.DataMemberAttribute()]
+        public System.Collections.Generic.List<RetailPOS.RetailPOSService.OrderChildDTO> OrderChilds {
+            get {
+                return this.OrderChildsField;
+            }
+            set {
+                if ((object.ReferenceEquals(this.OrderChildsField, value) != true)) {
+                    this.OrderChildsField = value;
+                    this.RaisePropertyChanged("OrderChilds");
+                }
+            }
+        }
+        
+        [System.Runtime.Serialization.DataMemberAttribute()]
+        public System.DateTime Order_Date {
+            get {
+                return this.Order_DateField;
+            }
+            set {
+                if ((this.Order_DateField.Equals(value) != true)) {
+                    this.Order_DateField = value;
+                    this.RaisePropertyChanged("Order_Date");
+                }
+            }
+        }
+        
+        [System.Runtime.Serialization.DataMemberAttribute()]
+        public string Order_No {
+            get {
+                return this.Order_NoField;
+            }
+            set {
+                if ((object.ReferenceEquals(this.Order_NoField, value) != true)) {
+                    this.Order_NoField = value;
+                    this.RaisePropertyChanged("Order_No");
+                }
+            }
+        }
+        
+        [System.Runtime.Serialization.DataMemberAttribute()]
+        public short Print_Receipt_Copies {
+            get {
+                return this.Print_Receipt_CopiesField;
+            }
+            set {
+                if ((this.Print_Receipt_CopiesField.Equals(value) != true)) {
+                    this.Print_Receipt_CopiesField = value;
+                    this.RaisePropertyChanged("Print_Receipt_Copies");
+                }
+            }
+        }
+        
+        [System.Runtime.Serialization.DataMemberAttribute()]
+        public string Shop_Code {
+            get {
+                return this.Shop_CodeField;
+            }
+            set {
+                if ((object.ReferenceEquals(this.Shop_CodeField, value) != true)) {
+                    this.Shop_CodeField = value;
+                    this.RaisePropertyChanged("Shop_Code");
+                }
+            }
+        }
+        
+        [System.Runtime.Serialization.DataMemberAttribute()]
+        public System.Nullable<short> Status {
+            get {
+                return this.StatusField;
+            }
+            set {
+                if ((this.StatusField.Equals(value) != true)) {
+                    this.StatusField = value;
+                    this.RaisePropertyChanged("Status");
+                }
+            }
+        }
+        
+        [System.Runtime.Serialization.DataMemberAttribute()]
+        public decimal TotalAmount {
+            get {
+                return this.TotalAmountField;
+            }
+            set {
+                if ((this.TotalAmountField.Equals(value) != true)) {
+                    this.TotalAmountField = value;
+                    this.RaisePropertyChanged("TotalAmount");
+                }
+            }
+        }
+        
+        [System.Runtime.Serialization.DataMemberAttribute()]
+        public decimal TotalQuantity {
+            get {
+                return this.TotalQuantityField;
+            }
+            set {
+                if ((this.TotalQuantityField.Equals(value) != true)) {
+                    this.TotalQuantityField = value;
+                    this.RaisePropertyChanged("TotalQuantity");
+                }
+            }
+        }
+    }
+    
+    [System.Diagnostics.DebuggerStepThroughAttribute()]
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Runtime.Serialization", "4.0.0.0")]
+    [System.Runtime.Serialization.DataContractAttribute(Name="OrderChildDTO", Namespace="http://schemas.datacontract.org/2004/07/RetailPOS.CommonLayer.DataTransferObjects" +
+        ".Order")]
+    [System.SerializableAttribute()]
+    public partial class OrderChildDTO : RetailPOS.RetailPOSService.BaseDTO {
+        
+        [System.Runtime.Serialization.OptionalFieldAttribute()]
+        private decimal AmountField;
+        
+        [System.Runtime.Serialization.OptionalFieldAttribute()]
+        private System.Nullable<decimal> DiscountField;
+        
+        [System.Runtime.Serialization.OptionalFieldAttribute()]
+        private short Measure_Unit_IdField;
+        
+        [System.Runtime.Serialization.OptionalFieldAttribute()]
+        private long Order_IdField;
+        
+        [System.Runtime.Serialization.OptionalFieldAttribute()]
+        private string ProductNameField;
+        
+        [System.Runtime.Serialization.OptionalFieldAttribute()]
+        private short Product_IdField;
+        
+        [System.Runtime.Serialization.OptionalFieldAttribute()]
+        private decimal QuantityField;
+        
+        [System.Runtime.Serialization.OptionalFieldAttribute()]
+        private System.Nullable<decimal> Retail_priceField;
+        
+        [System.Runtime.Serialization.OptionalFieldAttribute()]
+        private System.Nullable<decimal> TaxRateField;
+        
+        [System.Runtime.Serialization.OptionalFieldAttribute()]
+        private int TaxedField;
+        
+        [System.Runtime.Serialization.OptionalFieldAttribute()]
+        private System.Nullable<decimal> TotalDiscountField;
+        
+        [System.Runtime.Serialization.OptionalFieldAttribute()]
+        private RetailPOS.RetailPOSService.ProductDTO productField;
+        
+        [System.Runtime.Serialization.DataMemberAttribute()]
+        public decimal Amount {
+            get {
+                return this.AmountField;
+            }
+            set {
+                if ((this.AmountField.Equals(value) != true)) {
+                    this.AmountField = value;
+                    this.RaisePropertyChanged("Amount");
+                }
+            }
+        }
+        
+        [System.Runtime.Serialization.DataMemberAttribute()]
+        public System.Nullable<decimal> Discount {
+            get {
+                return this.DiscountField;
+            }
+            set {
+                if ((this.DiscountField.Equals(value) != true)) {
+                    this.DiscountField = value;
+                    this.RaisePropertyChanged("Discount");
+                }
+            }
+        }
+        
+        [System.Runtime.Serialization.DataMemberAttribute()]
+        public short Measure_Unit_Id {
+            get {
+                return this.Measure_Unit_IdField;
+            }
+            set {
+                if ((this.Measure_Unit_IdField.Equals(value) != true)) {
+                    this.Measure_Unit_IdField = value;
+                    this.RaisePropertyChanged("Measure_Unit_Id");
+                }
+            }
+        }
+        
+        [System.Runtime.Serialization.DataMemberAttribute()]
+        public long Order_Id {
+            get {
+                return this.Order_IdField;
+            }
+            set {
+                if ((this.Order_IdField.Equals(value) != true)) {
+                    this.Order_IdField = value;
+                    this.RaisePropertyChanged("Order_Id");
+                }
+            }
+        }
+        
+        [System.Runtime.Serialization.DataMemberAttribute()]
+        public string ProductName {
+            get {
+                return this.ProductNameField;
+            }
+            set {
+                if ((object.ReferenceEquals(this.ProductNameField, value) != true)) {
+                    this.ProductNameField = value;
+                    this.RaisePropertyChanged("ProductName");
+                }
+            }
+        }
+        
+        [System.Runtime.Serialization.DataMemberAttribute()]
+        public short Product_Id {
+            get {
+                return this.Product_IdField;
+            }
+            set {
+                if ((this.Product_IdField.Equals(value) != true)) {
+                    this.Product_IdField = value;
+                    this.RaisePropertyChanged("Product_Id");
+                }
+            }
+        }
+        
+        [System.Runtime.Serialization.DataMemberAttribute()]
+        public decimal Quantity {
+            get {
+                return this.QuantityField;
+            }
+            set {
+                if ((this.QuantityField.Equals(value) != true)) {
+                    this.QuantityField = value;
+                    this.RaisePropertyChanged("Quantity");
+                }
+            }
+        }
+        
+        [System.Runtime.Serialization.DataMemberAttribute()]
+        public System.Nullable<decimal> Retail_price {
+            get {
+                return this.Retail_priceField;
+            }
+            set {
+                if ((this.Retail_priceField.Equals(value) != true)) {
+                    this.Retail_priceField = value;
+                    this.RaisePropertyChanged("Retail_price");
+                }
+            }
+        }
+        
+        [System.Runtime.Serialization.DataMemberAttribute()]
+        public System.Nullable<decimal> TaxRate {
+            get {
+                return this.TaxRateField;
+            }
+            set {
+                if ((this.TaxRateField.Equals(value) != true)) {
+                    this.TaxRateField = value;
+                    this.RaisePropertyChanged("TaxRate");
+                }
+            }
+        }
+        
+        [System.Runtime.Serialization.DataMemberAttribute()]
+        public int Taxed {
+            get {
+                return this.TaxedField;
+            }
+            set {
+                if ((this.TaxedField.Equals(value) != true)) {
+                    this.TaxedField = value;
+                    this.RaisePropertyChanged("Taxed");
+                }
+            }
+        }
+        
+        [System.Runtime.Serialization.DataMemberAttribute()]
+        public System.Nullable<decimal> TotalDiscount {
+            get {
+                return this.TotalDiscountField;
+            }
+            set {
+                if ((this.TotalDiscountField.Equals(value) != true)) {
+                    this.TotalDiscountField = value;
+                    this.RaisePropertyChanged("TotalDiscount");
+                }
+            }
+        }
+        
+        [System.Runtime.Serialization.DataMemberAttribute()]
+        public RetailPOS.RetailPOSService.ProductDTO product {
+            get {
+                return this.productField;
+            }
+            set {
+                if ((object.ReferenceEquals(this.productField, value) != true)) {
+                    this.productField = value;
+                    this.RaisePropertyChanged("product");
                 }
             }
         }
@@ -2291,422 +2707,6 @@ namespace RetailPOS.RetailPOSService {
     
     [System.Diagnostics.DebuggerStepThroughAttribute()]
     [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Runtime.Serialization", "4.0.0.0")]
-    [System.Runtime.Serialization.DataContractAttribute(Name="OrderMasterDTO", Namespace="http://schemas.datacontract.org/2004/07/RetailPOS.CommonLayer.DataTransferObjects" +
-        ".Order")]
-    [System.SerializableAttribute()]
-    public partial class OrderMasterDTO : RetailPOS.RetailPOSService.BaseDTO {
-        
-        [System.Runtime.Serialization.OptionalFieldAttribute()]
-        private string CustomerNameField;
-        
-        [System.Runtime.Serialization.OptionalFieldAttribute()]
-        private System.Nullable<int> Customer_IdField;
-        
-        [System.Runtime.Serialization.OptionalFieldAttribute()]
-        private System.Nullable<decimal> Discount_totalField;
-        
-        [System.Runtime.Serialization.OptionalFieldAttribute()]
-        private long IdField;
-        
-        [System.Runtime.Serialization.OptionalFieldAttribute()]
-        private System.Nullable<long> Invoice_IdField;
-        
-        [System.Runtime.Serialization.OptionalFieldAttribute()]
-        private System.Collections.Generic.List<RetailPOS.RetailPOSService.OrderChildDTO> OrderChildsField;
-        
-        [System.Runtime.Serialization.OptionalFieldAttribute()]
-        private System.DateTime Order_DateField;
-        
-        [System.Runtime.Serialization.OptionalFieldAttribute()]
-        private string Order_NoField;
-        
-        [System.Runtime.Serialization.OptionalFieldAttribute()]
-        private short Print_Receipt_CopiesField;
-        
-        [System.Runtime.Serialization.OptionalFieldAttribute()]
-        private string Shop_CodeField;
-        
-        [System.Runtime.Serialization.OptionalFieldAttribute()]
-        private System.Nullable<short> StatusField;
-        
-        [System.Runtime.Serialization.OptionalFieldAttribute()]
-        private decimal TotalAmountField;
-        
-        [System.Runtime.Serialization.OptionalFieldAttribute()]
-        private decimal TotalQuantityField;
-        
-        [System.Runtime.Serialization.DataMemberAttribute()]
-        public string CustomerName {
-            get {
-                return this.CustomerNameField;
-            }
-            set {
-                if ((object.ReferenceEquals(this.CustomerNameField, value) != true)) {
-                    this.CustomerNameField = value;
-                    this.RaisePropertyChanged("CustomerName");
-                }
-            }
-        }
-        
-        [System.Runtime.Serialization.DataMemberAttribute()]
-        public System.Nullable<int> Customer_Id {
-            get {
-                return this.Customer_IdField;
-            }
-            set {
-                if ((this.Customer_IdField.Equals(value) != true)) {
-                    this.Customer_IdField = value;
-                    this.RaisePropertyChanged("Customer_Id");
-                }
-            }
-        }
-        
-        [System.Runtime.Serialization.DataMemberAttribute()]
-        public System.Nullable<decimal> Discount_total {
-            get {
-                return this.Discount_totalField;
-            }
-            set {
-                if ((this.Discount_totalField.Equals(value) != true)) {
-                    this.Discount_totalField = value;
-                    this.RaisePropertyChanged("Discount_total");
-                }
-            }
-        }
-        
-        [System.Runtime.Serialization.DataMemberAttribute()]
-        public long Id {
-            get {
-                return this.IdField;
-            }
-            set {
-                if ((this.IdField.Equals(value) != true)) {
-                    this.IdField = value;
-                    this.RaisePropertyChanged("Id");
-                }
-            }
-        }
-        
-        [System.Runtime.Serialization.DataMemberAttribute()]
-        public System.Nullable<long> Invoice_Id {
-            get {
-                return this.Invoice_IdField;
-            }
-            set {
-                if ((this.Invoice_IdField.Equals(value) != true)) {
-                    this.Invoice_IdField = value;
-                    this.RaisePropertyChanged("Invoice_Id");
-                }
-            }
-        }
-        
-        [System.Runtime.Serialization.DataMemberAttribute()]
-        public System.Collections.Generic.List<RetailPOS.RetailPOSService.OrderChildDTO> OrderChilds {
-            get {
-                return this.OrderChildsField;
-            }
-            set {
-                if ((object.ReferenceEquals(this.OrderChildsField, value) != true)) {
-                    this.OrderChildsField = value;
-                    this.RaisePropertyChanged("OrderChilds");
-                }
-            }
-        }
-        
-        [System.Runtime.Serialization.DataMemberAttribute()]
-        public System.DateTime Order_Date {
-            get {
-                return this.Order_DateField;
-            }
-            set {
-                if ((this.Order_DateField.Equals(value) != true)) {
-                    this.Order_DateField = value;
-                    this.RaisePropertyChanged("Order_Date");
-                }
-            }
-        }
-        
-        [System.Runtime.Serialization.DataMemberAttribute()]
-        public string Order_No {
-            get {
-                return this.Order_NoField;
-            }
-            set {
-                if ((object.ReferenceEquals(this.Order_NoField, value) != true)) {
-                    this.Order_NoField = value;
-                    this.RaisePropertyChanged("Order_No");
-                }
-            }
-        }
-        
-        [System.Runtime.Serialization.DataMemberAttribute()]
-        public short Print_Receipt_Copies {
-            get {
-                return this.Print_Receipt_CopiesField;
-            }
-            set {
-                if ((this.Print_Receipt_CopiesField.Equals(value) != true)) {
-                    this.Print_Receipt_CopiesField = value;
-                    this.RaisePropertyChanged("Print_Receipt_Copies");
-                }
-            }
-        }
-        
-        [System.Runtime.Serialization.DataMemberAttribute()]
-        public string Shop_Code {
-            get {
-                return this.Shop_CodeField;
-            }
-            set {
-                if ((object.ReferenceEquals(this.Shop_CodeField, value) != true)) {
-                    this.Shop_CodeField = value;
-                    this.RaisePropertyChanged("Shop_Code");
-                }
-            }
-        }
-        
-        [System.Runtime.Serialization.DataMemberAttribute()]
-        public System.Nullable<short> Status {
-            get {
-                return this.StatusField;
-            }
-            set {
-                if ((this.StatusField.Equals(value) != true)) {
-                    this.StatusField = value;
-                    this.RaisePropertyChanged("Status");
-                }
-            }
-        }
-        
-        [System.Runtime.Serialization.DataMemberAttribute()]
-        public decimal TotalAmount {
-            get {
-                return this.TotalAmountField;
-            }
-            set {
-                if ((this.TotalAmountField.Equals(value) != true)) {
-                    this.TotalAmountField = value;
-                    this.RaisePropertyChanged("TotalAmount");
-                }
-            }
-        }
-        
-        [System.Runtime.Serialization.DataMemberAttribute()]
-        public decimal TotalQuantity {
-            get {
-                return this.TotalQuantityField;
-            }
-            set {
-                if ((this.TotalQuantityField.Equals(value) != true)) {
-                    this.TotalQuantityField = value;
-                    this.RaisePropertyChanged("TotalQuantity");
-                }
-            }
-        }
-    }
-    
-    [System.Diagnostics.DebuggerStepThroughAttribute()]
-    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Runtime.Serialization", "4.0.0.0")]
-    [System.Runtime.Serialization.DataContractAttribute(Name="OrderChildDTO", Namespace="http://schemas.datacontract.org/2004/07/RetailPOS.CommonLayer.DataTransferObjects" +
-        ".Order")]
-    [System.SerializableAttribute()]
-    public partial class OrderChildDTO : RetailPOS.RetailPOSService.BaseDTO {
-        
-        [System.Runtime.Serialization.OptionalFieldAttribute()]
-        private decimal AmountField;
-        
-        [System.Runtime.Serialization.OptionalFieldAttribute()]
-        private System.Nullable<decimal> DiscountField;
-        
-        [System.Runtime.Serialization.OptionalFieldAttribute()]
-        private short Measure_Unit_IdField;
-        
-        [System.Runtime.Serialization.OptionalFieldAttribute()]
-        private long Order_IdField;
-        
-        [System.Runtime.Serialization.OptionalFieldAttribute()]
-        private string ProductNameField;
-        
-        [System.Runtime.Serialization.OptionalFieldAttribute()]
-        private short Product_IdField;
-        
-        [System.Runtime.Serialization.OptionalFieldAttribute()]
-        private decimal QuantityField;
-        
-        [System.Runtime.Serialization.OptionalFieldAttribute()]
-        private System.Nullable<decimal> Retail_priceField;
-        
-        [System.Runtime.Serialization.OptionalFieldAttribute()]
-        private System.Nullable<decimal> TaxRateField;
-        
-        [System.Runtime.Serialization.OptionalFieldAttribute()]
-        private int TaxedField;
-        
-        [System.Runtime.Serialization.OptionalFieldAttribute()]
-        private System.Nullable<decimal> TotalDiscountField;
-        
-        [System.Runtime.Serialization.OptionalFieldAttribute()]
-        private RetailPOS.RetailPOSService.ProductDTO productField;
-        
-        [System.Runtime.Serialization.DataMemberAttribute()]
-        public decimal Amount {
-            get {
-                return this.AmountField;
-            }
-            set {
-                if ((this.AmountField.Equals(value) != true)) {
-                    this.AmountField = value;
-                    this.RaisePropertyChanged("Amount");
-                }
-            }
-        }
-        
-        [System.Runtime.Serialization.DataMemberAttribute()]
-        public System.Nullable<decimal> Discount {
-            get {
-                return this.DiscountField;
-            }
-            set {
-                if ((this.DiscountField.Equals(value) != true)) {
-                    this.DiscountField = value;
-                    this.RaisePropertyChanged("Discount");
-                }
-            }
-        }
-        
-        [System.Runtime.Serialization.DataMemberAttribute()]
-        public short Measure_Unit_Id {
-            get {
-                return this.Measure_Unit_IdField;
-            }
-            set {
-                if ((this.Measure_Unit_IdField.Equals(value) != true)) {
-                    this.Measure_Unit_IdField = value;
-                    this.RaisePropertyChanged("Measure_Unit_Id");
-                }
-            }
-        }
-        
-        [System.Runtime.Serialization.DataMemberAttribute()]
-        public long Order_Id {
-            get {
-                return this.Order_IdField;
-            }
-            set {
-                if ((this.Order_IdField.Equals(value) != true)) {
-                    this.Order_IdField = value;
-                    this.RaisePropertyChanged("Order_Id");
-                }
-            }
-        }
-        
-        [System.Runtime.Serialization.DataMemberAttribute()]
-        public string ProductName {
-            get {
-                return this.ProductNameField;
-            }
-            set {
-                if ((object.ReferenceEquals(this.ProductNameField, value) != true)) {
-                    this.ProductNameField = value;
-                    this.RaisePropertyChanged("ProductName");
-                }
-            }
-        }
-        
-        [System.Runtime.Serialization.DataMemberAttribute()]
-        public short Product_Id {
-            get {
-                return this.Product_IdField;
-            }
-            set {
-                if ((this.Product_IdField.Equals(value) != true)) {
-                    this.Product_IdField = value;
-                    this.RaisePropertyChanged("Product_Id");
-                }
-            }
-        }
-        
-        [System.Runtime.Serialization.DataMemberAttribute()]
-        public decimal Quantity {
-            get {
-                return this.QuantityField;
-            }
-            set {
-                if ((this.QuantityField.Equals(value) != true)) {
-                    this.QuantityField = value;
-                    this.RaisePropertyChanged("Quantity");
-                }
-            }
-        }
-        
-        [System.Runtime.Serialization.DataMemberAttribute()]
-        public System.Nullable<decimal> Retail_price {
-            get {
-                return this.Retail_priceField;
-            }
-            set {
-                if ((this.Retail_priceField.Equals(value) != true)) {
-                    this.Retail_priceField = value;
-                    this.RaisePropertyChanged("Retail_price");
-                }
-            }
-        }
-        
-        [System.Runtime.Serialization.DataMemberAttribute()]
-        public System.Nullable<decimal> TaxRate {
-            get {
-                return this.TaxRateField;
-            }
-            set {
-                if ((this.TaxRateField.Equals(value) != true)) {
-                    this.TaxRateField = value;
-                    this.RaisePropertyChanged("TaxRate");
-                }
-            }
-        }
-        
-        [System.Runtime.Serialization.DataMemberAttribute()]
-        public int Taxed {
-            get {
-                return this.TaxedField;
-            }
-            set {
-                if ((this.TaxedField.Equals(value) != true)) {
-                    this.TaxedField = value;
-                    this.RaisePropertyChanged("Taxed");
-                }
-            }
-        }
-        
-        [System.Runtime.Serialization.DataMemberAttribute()]
-        public System.Nullable<decimal> TotalDiscount {
-            get {
-                return this.TotalDiscountField;
-            }
-            set {
-                if ((this.TotalDiscountField.Equals(value) != true)) {
-                    this.TotalDiscountField = value;
-                    this.RaisePropertyChanged("TotalDiscount");
-                }
-            }
-        }
-        
-        [System.Runtime.Serialization.DataMemberAttribute()]
-        public RetailPOS.RetailPOSService.ProductDTO product {
-            get {
-                return this.productField;
-            }
-            set {
-                if ((object.ReferenceEquals(this.productField, value) != true)) {
-                    this.productField = value;
-                    this.RaisePropertyChanged("product");
-                }
-            }
-        }
-    }
-    
-    [System.Diagnostics.DebuggerStepThroughAttribute()]
-    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Runtime.Serialization", "4.0.0.0")]
     [System.Runtime.Serialization.DataContractAttribute(Name="LocalityDTO", Namespace="http://schemas.datacontract.org/2004/07/RetailPOS.CommonLayer.DataTransferObjects" +
         ".Master")]
     [System.SerializableAttribute()]
@@ -2797,6 +2797,12 @@ namespace RetailPOS.RetailPOSService {
         
         [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IRetailPOSServiceContract/ValidateUserCredentials", ReplyAction="http://tempuri.org/IRetailPOSServiceContract/ValidateUserCredentialsResponse")]
         bool ValidateUserCredentials(string userName, string password);
+        
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IRetailPOSServiceContract/GetUserDetail", ReplyAction="http://tempuri.org/IRetailPOSServiceContract/GetUserDetailResponse")]
+        System.Collections.Generic.List<RetailPOS.RetailPOSService.StaffDTO> GetUserDetail(string userName);
+        
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IRetailPOSServiceContract/GetOrderNoOfUser", ReplyAction="http://tempuri.org/IRetailPOSServiceContract/GetOrderNoOfUserResponse")]
+        System.Collections.Generic.List<RetailPOS.RetailPOSService.OrderMasterDTO> GetOrderNoOfUser();
         
         [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IRetailPOSServiceContract/GetAllCustomers", ReplyAction="http://tempuri.org/IRetailPOSServiceContract/GetAllCustomersResponse")]
         System.Collections.Generic.List<RetailPOS.RetailPOSService.CustomerDTO> GetAllCustomers();
@@ -2929,6 +2935,14 @@ namespace RetailPOS.RetailPOSService {
         
         public bool ValidateUserCredentials(string userName, string password) {
             return base.Channel.ValidateUserCredentials(userName, password);
+        }
+        
+        public System.Collections.Generic.List<RetailPOS.RetailPOSService.StaffDTO> GetUserDetail(string userName) {
+            return base.Channel.GetUserDetail(userName);
+        }
+        
+        public System.Collections.Generic.List<RetailPOS.RetailPOSService.OrderMasterDTO> GetOrderNoOfUser() {
+            return base.Channel.GetOrderNoOfUser();
         }
         
         public System.Collections.Generic.List<RetailPOS.RetailPOSService.CustomerDTO> GetAllCustomers() {

@@ -32,12 +32,12 @@
                 <Label Grid.Row="2" x:Name="lblMessage" Visibility="{Binding MessageVisibility}" Content="Invalid User Credntials" FontWeight="Bold" Foreground="Red" />
             </StackPanel>
         </Border>
-        <WpfKb:FloatingTouchScreenKeyboard
+        <!--<WpfKb:FloatingTouchScreenKeyboard
             x:Name="Keyboard"
             IsOpen="true"
             Width="700"
             Height="400"
             PlacementTarget="{Binding ElementName=LoginCtrl}"
-            Placement="Center" AreAnimationsEnabled="False" IsAllowedToFade="False" IsDragHelperAllowedToHide="True" />
+            Placement="Center" AreAnimationsEnabled="False" IsAllowedToFade="False" IsDragHelperAllowedToHide="True" />-->
     </Grid>
 </UserControl>
