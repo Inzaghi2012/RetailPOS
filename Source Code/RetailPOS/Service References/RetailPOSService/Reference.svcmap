@@ -34,6 +34,7 @@
     <MetadataFile FileName="RetailPOS.CommonLayer.DataTransferObjects.Customer.xsd" MetadataType="Schema" ID="86e36a20-97be-47d8-9fce-6ef21b385a6a" SourceId="1" SourceUrl="http://localhost/RetailPOSService/RetailPOSService.svc/mex" />
     <MetadataFile FileName="RetailPOS.CommonLayer.DataTransferObjects.Master.xsd" MetadataType="Schema" ID="febc9ebf-2381-48b7-9250-b6abc5dd0cda" SourceId="1" SourceUrl="http://localhost/RetailPOSService/RetailPOSService.svc/mex" />
     <MetadataFile FileName="RetailPOS.CommonLayer.DataTransferObjects.Settings.xsd" MetadataType="Schema" ID="cec95695-3f16-4473-a2bf-e6607d631e42" SourceId="1" SourceUrl="http://localhost/RetailPOSService/RetailPOSService.svc/mex" />
+    <MetadataFile FileName="RetailPOS.CommonLayer.DataTransferObjects.Invoice.xsd" MetadataType="Schema" ID="3a1c555d-2480-40fc-b4d4-498acdf29ec5" SourceId="1" SourceUrl="http://localhost/RetailPOSService/RetailPOSService.svc/mex" />
   </Metadata>
   <Extensions>
     <ExtensionFile FileName="configuration91.svcinfo" Name="configuration91.svcinfo" />

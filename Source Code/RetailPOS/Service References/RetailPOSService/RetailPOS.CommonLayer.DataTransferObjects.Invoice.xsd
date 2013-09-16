@@ -1,0 +1,63 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<xs:schema xmlns:tns="http://schemas.datacontract.org/2004/07/RetailPOS.CommonLayer.DataTransferObjects.Invoice" elementFormDefault="qualified" targetNamespace="http://schemas.datacontract.org/2004/07/RetailPOS.CommonLayer.DataTransferObjects.Invoice" xmlns:xs="http://www.w3.org/2001/XMLSchema">
+  <xs:import namespace="http://schemas.datacontract.org/2004/07/RetailPOS.CommonLayer.DataTransferObjects" />
+  <xs:complexType name="ArrayOfInvoicesDTO">
+    <xs:sequence>
+      <xs:element minOccurs="0" maxOccurs="unbounded" name="InvoicesDTO" nillable="true" type="tns:InvoicesDTO" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element name="ArrayOfInvoicesDTO" nillable="true" type="tns:ArrayOfInvoicesDTO" />
+  <xs:complexType name="InvoicesDTO">
+    <xs:complexContent mixed="false">
+      <xs:extension xmlns:q1="http://schemas.datacontract.org/2004/07/RetailPOS.CommonLayer.DataTransferObjects" base="q1:BaseDTO">
+        <xs:sequence>
+          <xs:element minOccurs="0" name="Id" type="xs:int" />
+          <xs:element minOccurs="0" name="InvoiceItems" nillable="true" type="tns:ArrayOfInvoiceItemsDTO" />
+          <xs:element minOccurs="0" name="balance" type="xs:decimal" />
+          <xs:element minOccurs="0" name="credit" type="xs:decimal" />
+          <xs:element minOccurs="0" name="customer_id" type="xs:int" />
+          <xs:element minOccurs="0" name="date" nillable="true" type="xs:dateTime" />
+          <xs:element minOccurs="0" name="datepaid" type="xs:dateTime" />
+          <xs:element minOccurs="0" name="delivery_charge" type="xs:decimal" />
+          <xs:element minOccurs="0" name="discount" type="xs:decimal" />
+          <xs:element minOccurs="0" name="discount_rate" nillable="true" type="xs:decimal" />
+          <xs:element minOccurs="0" name="duedate" nillable="true" type="xs:dateTime" />
+          <xs:element minOccurs="0" name="invoicenum" nillable="true" type="xs:string" />
+          <xs:element minOccurs="0" name="notes" nillable="true" type="xs:int" />
+          <xs:element minOccurs="0" name="paymentmethod" nillable="true" type="xs:string" />
+          <xs:element minOccurs="0" name="promotional_offer_code" nillable="true" type="xs:string" />
+          <xs:element minOccurs="0" name="status" nillable="true" type="xs:string" />
+          <xs:element minOccurs="0" name="subtotal" type="xs:decimal" />
+          <xs:element minOccurs="0" name="tax" type="xs:decimal" />
+          <xs:element minOccurs="0" name="tax2" type="xs:decimal" />
+          <xs:element minOccurs="0" name="taxrate" type="xs:decimal" />
+          <xs:element minOccurs="0" name="taxrate2" type="xs:decimal" />
+          <xs:element minOccurs="0" name="total" type="xs:decimal" />
+        </xs:sequence>
+      </xs:extension>
+    </xs:complexContent>
+  </xs:complexType>
+  <xs:element name="InvoicesDTO" nillable="true" type="tns:InvoicesDTO" />
+  <xs:complexType name="ArrayOfInvoiceItemsDTO">
+    <xs:sequence>
+      <xs:element minOccurs="0" maxOccurs="unbounded" name="InvoiceItemsDTO" nillable="true" type="tns:InvoiceItemsDTO" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element name="ArrayOfInvoiceItemsDTO" nillable="true" type="tns:ArrayOfInvoiceItemsDTO" />
+  <xs:complexType name="InvoiceItemsDTO">
+    <xs:complexContent mixed="false">
+      <xs:extension xmlns:q2="http://schemas.datacontract.org/2004/07/RetailPOS.CommonLayer.DataTransferObjects" base="q2:BaseDTO">
+        <xs:sequence>
+          <xs:element minOccurs="0" name="amount" type="xs:decimal" />
+          <xs:element minOccurs="0" name="customer_id" type="xs:int" />
+          <xs:element minOccurs="0" name="description" nillable="true" type="xs:string" />
+          <xs:element minOccurs="0" name="invoice_id" type="xs:int" />
+          <xs:element minOccurs="0" name="relid" nillable="true" type="xs:int" />
+          <xs:element minOccurs="0" name="taxed" type="xs:int" />
+          <xs:element minOccurs="0" name="type" nillable="true" type="xs:string" />
+        </xs:sequence>
+      </xs:extension>
+    </xs:complexContent>
+  </xs:complexType>
+  <xs:element name="InvoiceItemsDTO" nillable="true" type="tns:InvoiceItemsDTO" />
+</xs:schema>

@@ -49,6 +49,8 @@
     <Compile Include="Admin\ProductServiceImpl.cs" />
     <Compile Include="Customer\CustomerBaseService.cs" />
     <Compile Include="Customer\CustomerServiceImpl.cs" />
+    <Compile Include="Invoice\InvoiceBaseService.cs" />
+    <Compile Include="Invoice\InvoiceServiceImpl.cs" />
     <Compile Include="Masters\CountryServiceImpl.cs" />
     <Compile Include="Masters\LocalityServiceImpl.cs" />
     <Compile Include="Masters\MasterBaseService.cs" />

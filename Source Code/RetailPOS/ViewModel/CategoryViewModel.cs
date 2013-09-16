@@ -224,8 +224,7 @@ namespace RetailPOS.ViewModel
 
         /// <summary>
         /// To bind Grid on selected item
-        /// </summary>
-        /// <param name="selectedProduct"></param>
+        /// </summary>ShowProductCommand
         private void BindGrid(object selectedProduct)
         {
             SetSelectedProduct(selectedProduct);

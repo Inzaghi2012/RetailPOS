@@ -71,7 +71,7 @@ namespace RetailPOS.ViewModel
         private int _id;
 
         //To make keyboard visible
-        private bool _IsOpen;
+      //  private bool _IsOpen;
         /// <summary>
         /// To make textblock visibility true or false on add new customer button click
         /// </summary>
@@ -204,11 +204,6 @@ namespace RetailPOS.ViewModel
             {
                 _newSelectedProduct = value;
                 RaisePropertyChanged("NewSelectedProduct");
-
-                if (value != null)
-                {
-                    BindProduct();
-                }
             }
         }
 
@@ -392,8 +387,7 @@ namespace RetailPOS.ViewModel
         /// </summary>
         private void BindProduct()
         {
-            SetSelectedProduct(NewSelectedProduct);
-            BindProductDetails(NewSelectedProduct);
+            BindProductGrid();
 
             //Id = SelectedProduct.Id;
             //ProductName = SelectedProduct.Name;

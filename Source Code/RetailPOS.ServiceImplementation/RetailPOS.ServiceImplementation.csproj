@@ -48,6 +48,7 @@
     <Compile Include="BaseService.cs" />
     <Compile Include="CategoryService.cs" />
     <Compile Include="CustomerService.cs" />
+    <Compile Include="InvoiceService.cs" />
     <Compile Include="MasterService.cs" />
     <Compile Include="OrderService.cs" />
     <Compile Include="ProductService.cs" />

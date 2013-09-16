@@ -21,8 +21,6 @@ namespace RetailPOS.ViewModel
 {
     public partial class ProductGridViewModel : ViewModelBase
     {
-      
-
         #region Declare Public and Private Data member
 
         public IList<DiscountType> LstDiscountType { get; private set; }
@@ -41,6 +39,7 @@ namespace RetailPOS.ViewModel
         public RelayCommand SaveOrderInQueueCommand { get; private set; }
         public RelayCommand AddDiscount { get; private set; }
         public RelayCommand OpenDiscountentryPopUp { get; private set; }
+        public RelayCommand OpenKeyBoard { get; private set; }     
         /// <summary>
         /// To Make New Customer Field Visible For Creating New User
         /// </summary>
@@ -70,6 +69,8 @@ namespace RetailPOS.ViewModel
         /// To Bind the product grid on selecting the orders saved in queue
         /// </summary>
         public RelayCommand<OrderMasterDTO> OrderInQueueCommand { get; private set; }
+
+        public RelayCommand BindSelectProductToGridCommand { get; private set; }
       
         private DiscountType _selectedDiscount;
         private ProductDTO _selectedProduct;
@@ -148,8 +149,11 @@ namespace RetailPOS.ViewModel
             {
                 _selectedProductFromAutocomBox = value;
                 RaisePropertyChanged("SelectedProductFromAutoComBox");
+                //if (value != null)
+                //{
+                //    BindProductGrid();
 
-                BindProductGrid();
+                //}
             }
         }
         public DiscountType SelectedDiscountType
@@ -518,9 +522,9 @@ namespace RetailPOS.ViewModel
             SaveOrderInQueueCommand = new RelayCommand(SaveOrderInQueue);
             OrderInQueueCommand = new RelayCommand<OrderMasterDTO>(BindProductGridWithOrdersInQueue);
             AddDiscount = new RelayCommand(addDiscount);
-            OpenDiscountentryPopUp = new RelayCommand(OpenDiscountentryPopUpClick);      
-            GetSearchAttributes();
-
+            OpenDiscountentryPopUp = new RelayCommand(OpenDiscountentryPopUpClick);
+            OpenKeyBoard = new RelayCommand(OpenCloseKeyBoard);
+            SaveInvoices = new RelayCommand(SaveInvoiceDetail);
             ////Replacement of CategoryViewModel
             ////The code has been changed from seperate view model to a combined view model named under ProductViewModel
             lstCategories = new ObservableCollection<ProductCategoryDTO>();
@@ -533,7 +537,6 @@ namespace RetailPOS.ViewModel
             AddCategories();
             AddLooseCategories();
             FillCommonProducts();
-            GetSearchAttributes();
 
             ShowProductCommand = new RelayCommand<object>(BindGrid);
 
@@ -541,6 +544,7 @@ namespace RetailPOS.ViewModel
             OpenFirstPopupCommand = new RelayCommand(OpenFirstPopupClick);
             OpenLooseCatPopupCommand = new RelayCommand(OpenLooseCatPopupClick);
             RefershListBoxCommand = new RelayCommand(RefereshListBox);
+            BindSelectProductToGridCommand = new RelayCommand(BindProduct);
 
             IsVisibleOnAddNewCustomerClick = Visibility.Visible;
             IsErrorMessageVisible = Visibility.Hidden;
@@ -550,9 +554,19 @@ namespace RetailPOS.ViewModel
             GetSearchAttributesForSearchView();
 
             isVisibleCustomerInfo = Visibility.Collapsed;
+            //Related to invoice detail(on print button)          
+            LstInvoice = new List<InvoicesDTO>();
+            GetInvoiceListDetail();
+            SaveInvoices = new RelayCommand(SaveInvoiceDetail);
         }
 
         #endregion
+
+        public void BindSelectedProductToGrid(object selectedProduct)
+        {
+            SetSelectedProduct(selectedProduct);
+            BindProductDetails(selectedProduct);
+        }
 
         #region Private Methods     
         /// <summary>
@@ -750,15 +764,17 @@ namespace RetailPOS.ViewModel
                 LstProductDetails[i].Quantity = quantity;
 
                 LstProductDetails[i].Amount = (found.Retail_Price * quantity) - found.Discount;
-                CollectionViewSource.GetDefaultView(this.LstProductDetails).Refresh();
+                //CollectionViewSource.GetDefaultView(this.LstProductDetails).Refresh();
             }
 
+            CollectionViewSource.GetDefaultView(this.LstProductDetails).Refresh();
+            
             var amount = LstProductDetails.Select(u => u.Amount).Sum();
              var totalDiscount = LstProductDetails.Select(u => u.Discount).Sum();          
             TotalDiscount = (decimal)totalDiscount;
             Total = (decimal)amount;
 
-            Mediator.NotifyColleagues("CloseProductPopUpWindow", false);
+            //Mediator.NotifyColleagues("CloseProductPopUpWindow", false);
         }
 
         /// <summary>
@@ -777,8 +793,9 @@ namespace RetailPOS.ViewModel
             MobileNumber = SelectedCustomer.Mobile;
             CustomerName = SelectedCustomer.First_Name + " " + SelectedCustomer.Last_Name;
         }
+
         ///To bind the product grid on selected product
-        private void BindProductGrid()
+        public void BindProductGrid()
         {
             if (SelectedProductFromAutoComBox != null)
             {
@@ -1088,7 +1105,19 @@ namespace RetailPOS.ViewModel
             }
         }
 
-
+        //To open/close the keyboard
+        private void OpenCloseKeyBoard()
+        {
+            if (IsOpen == false)
+            {
+                IsOpen = true;
+            }
+            else
+            {
+                IsOpen = false;
+            }
+        }
+      
         #endregion
     }
 

@@ -11,7 +11,7 @@
              DataContext="{Binding Source={StaticResource Locator}, Path=SearchVM}" 
              xmlns:toolkit="clr-namespace:System.Windows.Controls;assembly=System.Windows.Controls.Input.Toolkit"
              xmlns:i="clr-namespace:System.Windows.Interactivity;assembly=System.Windows.Interactivity"
-        
+             xmlns:cmd="clr-namespace:GalaSoft.MvvmLight.Command;assembly=GalaSoft.MvvmLight.Extras.WPF4"
              xmlns:my="clr-namespace:WpfLab.Controls;assembly=WpfLab.Controls">
     <UserControl.Resources>
         <ResourceDictionary Source="../../../Themes/BureauBlue.xaml"></ResourceDictionary>
@@ -39,78 +39,86 @@
 
                 <Label Content="Loyalty Points:" Grid.Row="2" Height="28" HorizontalAlignment="Left" Margin="2,14,0,0" Name="label1" VerticalAlignment="Top" Width="78" />
                 <TextBlock Grid.Row="2" Height="23" HorizontalAlignment="Left" Margin="11,15,0,0" Name="txtLoyaltyPoints" Text="" VerticalAlignment="Top" Grid.Column="1" />
-                <toolkit:AutoCompleteBox Grid.Column="1" HorizontalAlignment="Left" SelectedItem="{Binding NewSelectedProduct, Mode=TwoWay}" Margin="11,8,0,0"  Name="autoCompleteTxtProduct"  ItemsSource="{Binding LstSearchProduct}"                        
-                                     IsTextCompletionEnabled="False"
-                                     FilterMode="StartsWith"
-                                     ValueMemberPath="Name" VerticalAlignment="Top" Width="177" Height="25">                   
-                        <toolkit:AutoCompleteBox.ItemTemplate>
+                <Utility:AutoCompleteBoxEx Grid.Column="1" HorizontalAlignment="Left" SelectedItem="{Binding SelectedProductFromAutoComBox, Mode=TwoWay}" Margin="11,8,0,0"  x:Name="autoCompleteTxtProduct"  ItemsSource="{Binding LstSearchProduct}"                        
+                                     IsTextCompletionEnabled="True"                           FilterMode="StartsWith"
+                                     ValueMemberPath="Name" VerticalAlignment="Top" Width="177" Height="25">
+                    <i:Interaction.Triggers>
+                        <i:EventTrigger EventName="DropDownClosing">
+                            <cmd:EventToCommand 
+                     Command="{Binding BindSelectProductToGridCommand}"
+                     CommandParameter="{Binding SelectedProductFromAutoComBox, Mode=OneWay}"
+                                 MustToggleIsEnabledValue="True" 
+                     PassEventArgsToCommand="True"/>
+                        </i:EventTrigger>
+                    </i:Interaction.Triggers>
+                    <Utility:AutoCompleteBoxEx.ItemTemplate>
                         <DataTemplate>
-                                <Grid Background="#DFF0D8">
-                                    <Grid.RowDefinitions>
-                                        <RowDefinition></RowDefinition>
-                                        <RowDefinition></RowDefinition>
-                                    </Grid.RowDefinitions>
-                                    <TextBlock Grid.Row="0" Text="{Binding BarCode}" TextBlock.FontWeight="Bold" Foreground="#8DACD1" Width="350"></TextBlock>
-                                    <WrapPanel Grid.Row="1" Margin="0 3 0 0"  Width="350">
-                                        <TextBlock Text="Name: "  Foreground="#47896B" FontWeight="Bold"></TextBlock>
-                                        <TextBlock Text="{Binding  Name}" Foreground="#47896B" ></TextBlock>
-                                        <TextBlock Text="Category: "  Foreground="#47896B" Margin="10 0 0 0" FontWeight="Bold"></TextBlock>
-                                        <TextBlock Text="{Binding Name}" Foreground="#47896B"></TextBlock>
-                                        <TextBlock Text="Status: "  Foreground="#47896B" Margin="10 0 0 0" FontWeight="Bold"></TextBlock>
-                                        <TextBlock Text="{Binding StatusId}" Foreground="#47896B"></TextBlock>
-                                        <TextBlock Text="Size: "  Foreground="#47896B" Margin="10 0 0 0" FontWeight="Bold"></TextBlock>
-                                        <TextBlock Text="{Binding Size}" Foreground="#47896B"></TextBlock>
-                                        <TextBlock Text="Weight: "  Foreground="#47896B" Margin="0 0 0 0" FontWeight="Bold"></TextBlock>
-                                        <TextBlock Text="{Binding Weight}" Foreground="#47896B"></TextBlock>
-                                        <TextBlock Text="Retail: "  Foreground="#47896B" Margin="10 0 0 0" FontWeight="Bold"></TextBlock>
-                                        <TextBlock Text="{Binding Retail_Price}" Foreground="#47896B"></TextBlock>
-                                        <TextBlock Text="WholeSale: "  Foreground="#47896B" Margin="10 0 0 0" FontWeight="Bold"></TextBlock>
-                                        <TextBlock Text="{Binding Wholesale_Price}" Foreground="#47896B"></TextBlock>
-                                        <TextBlock Text="Tax Rate: "  Foreground="#47896B" Margin="10 0 0 0" FontWeight="Bold"></TextBlock>
-                                        <TextBlock Text="{Binding Tax_Rate}" Foreground="#47896B"></TextBlock>
-                                        <TextBlock Text="Warranty: "  Foreground="#47896B" Margin="10 0 0 0" FontWeight="Bold"></TextBlock>
-                                        <TextBlock Text="{Binding Has_Warranty}" Foreground="#47896B"></TextBlock>
-                                    </WrapPanel>
-                                </Grid>
+                            <Grid Background="#DFF0D8">
+                                <Grid.RowDefinitions>
+                                    <RowDefinition></RowDefinition>
+                                    <RowDefinition></RowDefinition>
+                                </Grid.RowDefinitions>
+                                <TextBlock Grid.Row="0" Text="{Binding BarCode}" TextBlock.FontWeight="Bold" Foreground="#8DACD1" Width="350"></TextBlock>
+                                <WrapPanel Grid.Row="1" Margin="0 3 0 0"  Width="350">
+                                    <TextBlock Text="Name: "  Foreground="#47896B" FontWeight="Bold"></TextBlock>
+                                    <TextBlock Text="{Binding  Name}" Foreground="#47896B" ></TextBlock>
+                                    <TextBlock Text="Category: "  Foreground="#47896B" Margin="10 0 0 0" FontWeight="Bold"></TextBlock>
+                                    <TextBlock Text="{Binding Name}" Foreground="#47896B"></TextBlock>
+                                    <TextBlock Text="Status: "  Foreground="#47896B" Margin="10 0 0 0" FontWeight="Bold"></TextBlock>
+                                    <TextBlock Text="{Binding StatusId}" Foreground="#47896B"></TextBlock>
+                                    <TextBlock Text="Size: "  Foreground="#47896B" Margin="10 0 0 0" FontWeight="Bold"></TextBlock>
+                                    <TextBlock Text="{Binding Size}" Foreground="#47896B"></TextBlock>
+                                    <TextBlock Text="Weight: "  Foreground="#47896B" Margin="0 0 0 0" FontWeight="Bold"></TextBlock>
+                                    <TextBlock Text="{Binding Weight}" Foreground="#47896B"></TextBlock>
+                                    <TextBlock Text="Retail: "  Foreground="#47896B" Margin="10 0 0 0" FontWeight="Bold"></TextBlock>
+                                    <TextBlock Text="{Binding Retail_Price}" Foreground="#47896B"></TextBlock>
+                                    <TextBlock Text="WholeSale: "  Foreground="#47896B" Margin="10 0 0 0" FontWeight="Bold"></TextBlock>
+                                    <TextBlock Text="{Binding Wholesale_Price}" Foreground="#47896B"></TextBlock>
+                                    <TextBlock Text="Tax Rate: "  Foreground="#47896B" Margin="10 0 0 0" FontWeight="Bold"></TextBlock>
+                                    <TextBlock Text="{Binding Tax_Rate}" Foreground="#47896B"></TextBlock>
+                                    <TextBlock Text="Warranty: "  Foreground="#47896B" Margin="10 0 0 0" FontWeight="Bold"></TextBlock>
+                                    <TextBlock Text="{Binding Has_Warranty}" Foreground="#47896B"></TextBlock>
+                                </WrapPanel>
+                            </Grid>
                         </DataTemplate>
-                    </toolkit:AutoCompleteBox.ItemTemplate>
-                </toolkit:AutoCompleteBox>
+                    </Utility:AutoCompleteBoxEx.ItemTemplate>
+                </Utility:AutoCompleteBoxEx>
                 <toolkit:AutoCompleteBox Height="25" HorizontalAlignment="Left" Margin="11,8,0,0" Name="autoCompleteTxtCustomer" ItemsSource="{Binding LstSearchCustomer}"
                          SelectedItem="{Binding SelectedCustomer, Mode=TwoWay,UpdateSourceTrigger=Default}" IsTextCompletionEnabled="False"
                          ValueMemberPath="First_Name"
                           FilterMode="StartsWith" VerticalAlignment="Top" Width="177" Grid.Column="1" Grid.Row="1" >
-                            <toolkit:AutoCompleteBox.ItemTemplate>
-                                <DataTemplate>
-                                    <Grid Background="#DFF0D8">
-                                        <Grid.RowDefinitions>
-                                            <RowDefinition></RowDefinition>
-                                            <RowDefinition></RowDefinition>
-                                        </Grid.RowDefinitions>
-                                        <TextBlock Grid.Row="0" Text="{Binding Code}" TextBlock.FontWeight="Bold" Foreground="#8DACD1" Width="350"></TextBlock>
-                                        <WrapPanel Grid.Row="1" Margin="0 3 0 0"  Width="350">
-                                            <TextBlock Text="Type: "  Foreground="#47896B"  Margin="10 0 0 0" FontWeight="Bold"></TextBlock>
-                                            <TextBlock Text="{Binding  Type_Id}" Foreground="#47896B" ></TextBlock>
-                                            <TextBlock Text="First Name: "  Foreground="#47896B" Margin="10 0 0 0" FontWeight="Bold"></TextBlock>
-                                            <TextBlock Text="{Binding First_Name}" Foreground="#47896B"></TextBlock>
-                                            <TextBlock Text="Last Name: "  Foreground="#47896B" Margin="10 0 0 0" FontWeight="Bold"></TextBlock>
-                                            <TextBlock Text="{Binding Last_Name}" Foreground="#47896B"></TextBlock>
-                                            <TextBlock Text="Email: "  Foreground="#47896B" Margin="10 0 0 0" FontWeight="Bold"></TextBlock>
-                                            <TextBlock Text="" Foreground="#47896B"></TextBlock>
-                                            <TextBlock Text="Credit Limit: "  Foreground="#47896B" Margin="0 0 0 0" FontWeight="Bold"></TextBlock>
-                                            <TextBlock Text="{Binding Credit_Limit}" Foreground="#47896B"></TextBlock>
-                                        </WrapPanel>
-                                    </Grid>
-                                </DataTemplate>
-                            </toolkit:AutoCompleteBox.ItemTemplate>
-                        </toolkit:AutoCompleteBox>
+                    <toolkit:AutoCompleteBox.ItemTemplate>
+                        <DataTemplate>
+                            <Grid Background="#DFF0D8">
+                                <Grid.RowDefinitions>
+                                    <RowDefinition></RowDefinition>
+                                    <RowDefinition></RowDefinition>
+                                </Grid.RowDefinitions>
+                                <TextBlock Grid.Row="0" Text="{Binding Code}" TextBlock.FontWeight="Bold" Foreground="#8DACD1" Width="350"></TextBlock>
+                                <WrapPanel Grid.Row="1" Margin="0 3 0 0"  Width="350">
+                                    <TextBlock Text="Type: "  Foreground="#47896B"  Margin="10 0 0 0" FontWeight="Bold"></TextBlock>
+                                    <TextBlock Text="{Binding  Type_Id}" Foreground="#47896B" ></TextBlock>
+                                    <TextBlock Text="First Name: "  Foreground="#47896B" Margin="10 0 0 0" FontWeight="Bold"></TextBlock>
+                                    <TextBlock Text="{Binding First_Name}" Foreground="#47896B"></TextBlock>
+                                    <TextBlock Text="Last Name: "  Foreground="#47896B" Margin="10 0 0 0" FontWeight="Bold"></TextBlock>
+                                    <TextBlock Text="{Binding Last_Name}" Foreground="#47896B"></TextBlock>
+                                    <TextBlock Text="Email: "  Foreground="#47896B" Margin="10 0 0 0" FontWeight="Bold"></TextBlock>
+                                    <TextBlock Text="" Foreground="#47896B"></TextBlock>
+                                    <TextBlock Text="Credit Limit: "  Foreground="#47896B" Margin="0 0 0 0" FontWeight="Bold"></TextBlock>
+                                    <TextBlock Text="{Binding Credit_Limit}" Foreground="#47896B"></TextBlock>
+                                </WrapPanel>
+                            </Grid>
+                        </DataTemplate>
+                    </toolkit:AutoCompleteBox.ItemTemplate>
+                </toolkit:AutoCompleteBox>
             </Grid>
-        </GroupBox>       
-        <WpfKb:FloatingTouchScreenKeyboard
+        </GroupBox>
+        <!--<WpfKb:FloatingTouchScreenKeyboard
             x:Name="Keyboard"
             IsOpen="{Binding IsOpen}"
             Width="700"
             Height="400"
             PlacementTarget="{Binding ElementName=mainWindow}"
-            Placement="Center" AreAnimationsEnabled="True" IsAllowedToFade="False" />
+            Placement="Center" AreAnimationsEnabled="True" IsAllowedToFade="False" />-->
     </Grid>
 </UserControl>

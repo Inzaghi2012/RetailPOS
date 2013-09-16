@@ -9,6 +9,7 @@ using RetailPOS.CommonLayer.DataTransferObjects.Product;
 using RetailPOS.CommonLayer.DataTransferObjects.Settings;
 using RetailPOS.CommonLayer.DataTransferObjects.User;
 using RetailPOS.CommonLayer.DataTransferObjects.Order;
+using RetailPOS.CommonLayer.DataTransferObjects.Invoice;
 
 #endregion
 
@@ -266,6 +267,22 @@ namespace RetailPOS.ServiceImplementation.ServiceContracts
         [OperationContract]
         IList<OrderMasterDTO> GetOrderItemByStatus(int status);
 
+        #endregion
+
+        #region Invoice
+        /// <summary>
+        /// Get all Invoice detail
+        /// </summary>
+        /// <returns>returns list of all invoices present in database</returns>
+        [OperationContract]
+        IList<InvoicesDTO> GetAllInvoices();
+        /// Save Invoice details in database
+        /// </summary>
+        /// <param name="shopSettingDetails">Invoice object to be updated</param>
+        /// <returns>returns boolean value indicating if the records are saved in database</returns>
+        /// <summary>
+        [OperationContract]
+        bool SaveInvoiceDetail(InvoicesDTO invoiceDetail); 
         #endregion
     }
 }

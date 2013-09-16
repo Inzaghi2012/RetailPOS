@@ -19,7 +19,7 @@ namespace RetailPOS.ViewModel
        private int _width;
        private int _height;
        private string _encodedValue;
-       //Barcode b = new Barcode();
+       Barcode b = new Barcode();
 
        public string EncodedValue
        {

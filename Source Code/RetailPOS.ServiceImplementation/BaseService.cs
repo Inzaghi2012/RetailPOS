@@ -10,6 +10,7 @@ using RetailPOS.BusinessLayer.Service.User;
 using RetailPOS.CommonLayer.Unity;
 using RetailPOS.ServiceImplementation.ServiceContracts;
 using RetailPOS.BusinessLayer.Service.Order;
+using RetailPOS.BusinessLayer.Service.Invoice;
 
 #endregion
 
@@ -28,6 +29,7 @@ namespace RetailPOS.ServiceImplementation
             SettingService = RetailPOSUnityContainer.Resolve<ISettingService>();
             MasterService = RetailPOSUnityContainer.Resolve<IMasterService>();
             OrderService = RetailPOSUnityContainer.Resolve<IOrderService>();
+            InvoiceService = RetailPOSUnityContainer.Resolve<IInvoiceService>();
         }
 
         /// <summary>
@@ -101,5 +103,13 @@ namespace RetailPOS.ServiceImplementation
         /// </value>
         [Dependency]
         public IOrderService OrderService { get; set; }
+        /// <summary>
+        /// Gets or sets the invoice service.
+        /// </summary>
+        /// <value>
+        /// The invoice service.
+        /// </value>
+        [Dependency]
+        public IInvoiceService InvoiceService { get; set; }
     }
 }

@@ -44,6 +44,8 @@
     <Compile Include="Customer\CustomerDTO.cs" />
     <Compile Include="Category\ProductCategoryDTO.cs" />
     <Compile Include="Customer\CustomerTypeDTO.cs" />
+    <Compile Include="Invoice\InvoiceItemsDTO.cs" />
+    <Compile Include="Invoice\InvoicesDTO.cs" />
     <Compile Include="Master\AddressDTO.cs" />
     <Compile Include="Master\CountryDTO.cs" />
     <Compile Include="Customer\CustomerStatusDTO.cs" />

@@ -17,6 +17,8 @@ using RetailPOS.PersistenceLayer.EF.Impl;
 using RetailPOS.PersistenceLayer.Repository.Interfaces;
 using RetailPOS.BusinessLayer.Service.Order;
 using RetailPOS.BusinessLayer.ServiceImpl.Order;
+using RetailPOS.BusinessLayer.Service.Invoice;
+using RetailPOS.BusinessLayer.ServiceImpl.Invoice;
 
 #endregion
 
@@ -89,6 +91,9 @@ namespace RetailPOS.CommonLayer.UnityExtension
 
             #endregion
 
+            #region InvoiceService
+            RetailPOSUnityContainer.Register<IInvoiceService, InvoiceServiceImpl>();
+            #endregion
             #endregion
         }
 

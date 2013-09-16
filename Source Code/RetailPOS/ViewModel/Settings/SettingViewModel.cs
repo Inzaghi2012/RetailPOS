@@ -42,7 +42,7 @@ namespace RetailPOS.ViewModel.Settings
        public RelayCommand OpenSearchPurchaseHistory { get; private set; }
        public RelayCommand OpenWasteManegment { get; private set; }
        public RelayCommand OpenSetAsideOrder { get; private set; }
-
+       public RelayCommand OpenKeyBoard { get; private set; }
        public Visibility IsCategoryVisible
        {
            get
@@ -188,6 +188,7 @@ namespace RetailPOS.ViewModel.Settings
            ///To open setasideorderview.xaml
            OpenSetAsideOrder = new RelayCommand(OpensetAsideOrder);
            BackToMainWindow = new RelayCommand(OpenMainWindow);
+           OpenKeyBoard = new RelayCommand(OpenCloseKeyBoard);
        }
 
        /// <summary>
@@ -309,6 +310,18 @@ namespace RetailPOS.ViewModel.Settings
        {
            HideSettings();
            IsSetAsideVisible = Visibility.Visible;
+       }
+       //To open/close the keyboard
+       private void OpenCloseKeyBoard()
+       {
+           if (IsOpen == false)
+           {
+               IsOpen = true;
+           }
+           else
+           {
+               IsOpen = false;
+           }
        }
     }
 }

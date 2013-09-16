@@ -14,6 +14,7 @@ using RetailPOS.CommonLayer.DataTransferObjects.Settings;
 using RetailPOS.CommonLayer.DataTransferObjects.User;
 using RetailPOS.PersistenceLayer.Repository.Entities;
 using RetailPOS.CommonLayer.DataTransferObjects.Order;
+using RetailPOS.CommonLayer.DataTransferObjects.Invoice;
 
 #endregion
 
@@ -38,6 +39,8 @@ namespace RetailPOS.CommonLayer.Mapper
             MapObjectForMasters();
 
             MapObjectForOrders();
+
+            MapObjectForInvoice();
         }
 
         #region Map Object
@@ -131,6 +134,16 @@ namespace RetailPOS.CommonLayer.Mapper
             AutoMapper.Mapper.CreateMap<orderchild, OrderChildDTO>();
             AutoMapper.Mapper.CreateMap<OrderChildDTO, orderchild>();
 
+        }
+        private void MapObjectForInvoice()
+        {
+            //Maps InvoiceDTO object eith invoice object
+            AutoMapper.Mapper.CreateMap<invoice, InvoicesDTO>();
+            AutoMapper.Mapper.CreateMap<InvoicesDTO, invoice>();
+
+            //Maps InvoiceItemDTO object with invoiceitems
+            AutoMapper.Mapper.CreateMap<invoiceitem, InvoiceItemsDTO>();
+            AutoMapper.Mapper.CreateMap<InvoiceItemsDTO, invoiceitem>();
         }
 
         #endregion

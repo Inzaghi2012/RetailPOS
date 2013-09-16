@@ -43,6 +43,7 @@
     <Compile Include="Admin\ICategoryService.cs" />
     <Compile Include="Admin\IProductService.cs" />
     <Compile Include="Customer\ICustomerService.cs" />
+    <Compile Include="Invoice\IInvoiceService.cs" />
     <Compile Include="Masters\IMasterService.cs" />
     <Compile Include="Order\IOrderService.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />

@@ -18,11 +18,16 @@
             <ColumnDefinition></ColumnDefinition>
             <ColumnDefinition></ColumnDefinition>
         </Grid.ColumnDefinitions>
-        <TextBlock TextBlock.FontWeight="Bold" Grid.Row="0" TextBlock.TextAlignment="Left" VerticalAlignment="Center" Width="170" Margin="20,0,0,0" HorizontalAlignment="Left" FontSize="22" TextBlock.Foreground="#FF0064FF"  Text="Show KeyBoard" />
-        <CheckBox IsChecked="{Binding IsOpen, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" Grid.Column="0" Grid.Row="0" Margin="0,0,0,0"
-              HorizontalAlignment="Left" VerticalAlignment="Center"/>
+        <Button Height="45"  HorizontalAlignment="Left" Width="130" Command="{Binding OpenKeyBoard}"  Grid.Column="0" Grid.Row="0" Margin="0,0,0,0" VerticalAlignment="Center">
+            <DockPanel>
+                <Image Source="../../../Images/KeyBoard.jpg" Width="25" />
+                <TextBlock TextWrapping="Wrap" VerticalAlignment="center" Margin="5 0 0 0" Width="100">
+                       <Bold>Show Key Board</Bold>
+                </TextBlock>
+            </DockPanel>
+        </Button>
         <TextBlock TextBlock.FontWeight="Bold" Grid.Row="1" TextBlock.TextAlignment="Left" VerticalAlignment="Center" Width="60" Margin="10,0,0,0" HorizontalAlignment="Left" FontSize="22" TextBlock.Foreground="Red" Text="Total" />
-        <TextBlock TextBlock.FontWeight="Bold" Grid.Row="1" Width="100" HorizontalAlignment="Center" VerticalAlignment="Center" TextBlock.TextAlignment="Left" FontSize="22" TextBlock.Foreground="Red" Text="{Binding Total}" />
+        <TextBlock TextBlock.FontWeight="Bold" Grid.Row="1" Width="150" HorizontalAlignment="Stretch" VerticalAlignment="Center" TextBlock.TextAlignment="Left" FontSize="22" TextBlock.Foreground="Red" Text="{Binding Total}" Margin="64,1,9,1" />
         <!--<TextBlock Height="25" TextBlock.FontWeight="Bold" Grid.Row="1" HorizontalAlignment="Left" Margin="10,0,0,0" VerticalAlignment="Top" Width="60" TextBlock.TextAlignment="Left" FontSize="10" TextBlock.Foreground="Red" Text="Total" />
         <TextBlock Height="25" TextBlock.FontWeight="Bold" Grid.Row="1" HorizontalAlignment="Center" VerticalAlignment="Bottom" Width="100" TextBlock.TextAlignment="Left" FontSize="10" TextBlock.Foreground="Red" Text="{Binding Total}" Margin="62,0,62,7" />-->
      

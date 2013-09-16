@@ -114,7 +114,7 @@
       <HintPath>..\Binaries\System.Windows.Controls.Layout.Toolkit.dll</HintPath>
     </Reference>
     <Reference Include="System.Windows.Forms" />
-    <Reference Include="System.Windows.Interactivity, Version=3.5.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL" />
+    <Reference Include="System.Windows.Interactivity, Version=4.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL" />
     <Reference Include="System.Xml" />
     <Reference Include="Microsoft.CSharp" />
     <Reference Include="System.Core" />
@@ -169,12 +169,15 @@
     <Compile Include="Test.xaml.cs">
       <DependentUpon>Test.xaml</DependentUpon>
     </Compile>
+    <Compile Include="Utility\AutoCompleteBoxEx.cs" />
     <Compile Include="Utility\DataContextSpy.cs" />
     <Compile Include="Utility\ExtensionMethods.cs" />
     <Compile Include="Utility\MaskedTextBoxBehaviour.cs" />
     <Compile Include="Utility\Mediator.cs" />
     <Compile Include="Utility\RowDoubleClickHandler.cs" />
     <Compile Include="Utility\SelectedItemBehaviour.cs" />
+    <Compile Include="ViewModel\GenerateBarCodeViewModel.cs" />
+    <Compile Include="ViewModel\PaymentViewModel.cs" />
     <Compile Include="ViewModel\Settings\AddressViewModel.cs" />
     <Compile Include="ViewModel\Settings\CustomerViewModel.cs" />
     <Compile Include="ViewModel\Settings\ProductViewModel.cs" />
@@ -192,9 +195,6 @@
     <Compile Include="ViewModel\TestViewModel.cs" />
     <Compile Include="ViewModel\UserInfoViewModel.cs" />
     <Compile Include="ViewModel\Settings\WasteManagementViewModel.cs" />
-    <Compile Include="BarCode.xaml.cs">
-      <DependentUpon>BarCode.xaml</DependentUpon>
-    </Compile>
     <Compile Include="View\Usercontrols\MainWindow\ShowProduct.xaml.cs">
       <DependentUpon>ShowProduct.xaml</DependentUpon>
     </Compile>
@@ -206,9 +206,6 @@
     </Compile>
     <Compile Include="View\Usercontrols\Settings\Customer.xaml.cs">
       <DependentUpon>Customer.xaml</DependentUpon>
-    </Compile>
-    <Compile Include="View\Usercontrols\Settings\GenerateBarCode.xaml.cs">
-      <DependentUpon>GenerateBarCode.xaml</DependentUpon>
     </Compile>
     <Compile Include="View\Usercontrols\Settings\Product.xaml.cs">
       <DependentUpon>Product.xaml</DependentUpon>
@@ -299,10 +296,6 @@
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
-    <Page Include="BarCode.xaml">
-      <SubType>Designer</SubType>
-      <Generator>MSBuild:Compile</Generator>
-    </Page>
     <Page Include="Test.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
@@ -320,10 +313,6 @@
       <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="View\Usercontrols\Settings\Customer.xaml">
-      <SubType>Designer</SubType>
-      <Generator>MSBuild:Compile</Generator>
-    </Page>
-    <Page Include="View\Usercontrols\Settings\GenerateBarCode.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
@@ -477,6 +466,9 @@
     <None Include="Service References\RetailPOSService\RetailPOS.CommonLayer.DataTransferObjects.Customer.xsd">
       <SubType>Designer</SubType>
     </None>
+    <None Include="Service References\RetailPOSService\RetailPOS.CommonLayer.DataTransferObjects.Invoice.xsd">
+      <SubType>Designer</SubType>
+    </None>
     <None Include="Service References\RetailPOSService\RetailPOS.CommonLayer.DataTransferObjects.Master.xsd">
       <SubType>Designer</SubType>
     </None>
@@ -505,6 +497,9 @@
       <DependentUpon>Reference.svcmap</DependentUpon>
     </None>
     <None Include="Service References\RetailPOSService\RetailPOS.RetailPOSService.CustomerTypeDTO.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </None>
+    <None Include="Service References\RetailPOSService\RetailPOS.RetailPOSService.InvoicesDTO.datasource">
       <DependentUpon>Reference.svcmap</DependentUpon>
     </None>
     <None Include="Service References\RetailPOSService\RetailPOS.RetailPOSService.LocalityDTO.datasource">
@@ -670,6 +665,12 @@
       <Project>{F2111022-A259-425E-89AB-A5C285136B09}</Project>
       <Name>RetailPOS.CommonLayer.BarCodeGenerator</Name>
     </ProjectReference>
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Images\KeyBoard.jpg" />
+  </ItemGroup>
+  <ItemGroup>
+    <Folder Include="ViewModel\NewFolder1\" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 

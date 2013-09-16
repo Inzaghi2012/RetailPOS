@@ -25,14 +25,18 @@
                        <Bold>Back</Bold>
                     </TextBlock>
                 </DockPanel>
+            </Button>        
+            <Button Height="35"  HorizontalAlignment="Left" Width="130" Command="{Binding OpenKeyBoard}"  Grid.Column="0" Grid.Row="0" Margin="10,0,0,0" VerticalAlignment="Center">
+                <DockPanel>
+                    <Image Source="../../../Images/KeyBoard.jpg" Width="25" />
+                    <TextBlock TextWrapping="Wrap" VerticalAlignment="center" Margin="5 0 0 0" Width="100">
+                       <Bold>Show Key Board</Bold>
+                    </TextBlock>
+                </DockPanel>
             </Button>
-            <CheckBox IsChecked="{Binding IsOpen, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" Grid.Column="0" Grid.Row="0" Margin="10,0,0,0"
-              HorizontalAlignment="Left" VerticalAlignment="Center"/>
-           <TextBlock TextBlock.FontWeight="Bold" Grid.Row="0" TextBlock.TextAlignment="Left" VerticalAlignment="Center" Width="170" Margin="10,0,0,0" HorizontalAlignment="Left" FontSize="22" TextBlock.Foreground="#FF0064FF" Text="Show KeyBoard" />
-         
-        </StackPanel>
-        <WrapPanel Grid.Row="1" FlowDirection="LeftToRight" Margin="3,3,3,0" Height="75" VerticalAlignment="Top">
-            <Button Height="53" Margin="5"  HorizontalAlignment="Right" Width="98" Command="{Binding OpenShopSettingCmd}">
+             </StackPanel>
+        <WrapPanel Grid.Row="1" FlowDirection="LeftToRight" Margin="3,5,3,0" Height="75" VerticalAlignment="Top">
+            <Button Height="53" Margin="3"  HorizontalAlignment="Right" Width="98" Command="{Binding OpenShopSettingCmd}">
                 <DockPanel>                   
                     <TextBlock TextWrapping="Wrap" VerticalAlignment="center" Margin="5 0 0 0">
                        <Bold>Shop Settings</Bold>

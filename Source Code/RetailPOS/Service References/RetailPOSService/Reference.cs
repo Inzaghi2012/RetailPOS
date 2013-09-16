@@ -109,6 +109,8 @@ namespace RetailPOS.RetailPOSService {
     [System.Runtime.Serialization.KnownTypeAttribute(typeof(RetailPOS.RetailPOSService.PromotionalOfferDTO))]
     [System.Runtime.Serialization.KnownTypeAttribute(typeof(RetailPOS.RetailPOSService.WasteManagementDTO))]
     [System.Runtime.Serialization.KnownTypeAttribute(typeof(RetailPOS.RetailPOSService.PurchaseHistoryDTO))]
+    [System.Runtime.Serialization.KnownTypeAttribute(typeof(RetailPOS.RetailPOSService.InvoicesDTO))]
+    [System.Runtime.Serialization.KnownTypeAttribute(typeof(RetailPOS.RetailPOSService.InvoiceItemsDTO))]
     [System.Runtime.Serialization.KnownTypeAttribute(typeof(RetailPOS.RetailPOSService.ProductCategoryDTO))]
     public partial class BaseDTO : object, System.Runtime.Serialization.IExtensibleDataObject, System.ComponentModel.INotifyPropertyChanged {
         
@@ -2707,6 +2709,486 @@ namespace RetailPOS.RetailPOSService {
     
     [System.Diagnostics.DebuggerStepThroughAttribute()]
     [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Runtime.Serialization", "4.0.0.0")]
+    [System.Runtime.Serialization.DataContractAttribute(Name="InvoicesDTO", Namespace="http://schemas.datacontract.org/2004/07/RetailPOS.CommonLayer.DataTransferObjects" +
+        ".Invoice")]
+    [System.SerializableAttribute()]
+    public partial class InvoicesDTO : RetailPOS.RetailPOSService.BaseDTO {
+        
+        [System.Runtime.Serialization.OptionalFieldAttribute()]
+        private int IdField;
+        
+        [System.Runtime.Serialization.OptionalFieldAttribute()]
+        private System.Collections.Generic.List<RetailPOS.RetailPOSService.InvoiceItemsDTO> InvoiceItemsField;
+        
+        [System.Runtime.Serialization.OptionalFieldAttribute()]
+        private decimal balanceField;
+        
+        [System.Runtime.Serialization.OptionalFieldAttribute()]
+        private decimal creditField;
+        
+        [System.Runtime.Serialization.OptionalFieldAttribute()]
+        private int customer_idField;
+        
+        [System.Runtime.Serialization.OptionalFieldAttribute()]
+        private System.Nullable<System.DateTime> dateField;
+        
+        [System.Runtime.Serialization.OptionalFieldAttribute()]
+        private System.DateTime datepaidField;
+        
+        [System.Runtime.Serialization.OptionalFieldAttribute()]
+        private decimal delivery_chargeField;
+        
+        [System.Runtime.Serialization.OptionalFieldAttribute()]
+        private decimal discountField;
+        
+        [System.Runtime.Serialization.OptionalFieldAttribute()]
+        private System.Nullable<decimal> discount_rateField;
+        
+        [System.Runtime.Serialization.OptionalFieldAttribute()]
+        private System.Nullable<System.DateTime> duedateField;
+        
+        [System.Runtime.Serialization.OptionalFieldAttribute()]
+        private string invoicenumField;
+        
+        [System.Runtime.Serialization.OptionalFieldAttribute()]
+        private System.Nullable<int> notesField;
+        
+        [System.Runtime.Serialization.OptionalFieldAttribute()]
+        private string paymentmethodField;
+        
+        [System.Runtime.Serialization.OptionalFieldAttribute()]
+        private string promotional_offer_codeField;
+        
+        [System.Runtime.Serialization.OptionalFieldAttribute()]
+        private string statusField;
+        
+        [System.Runtime.Serialization.OptionalFieldAttribute()]
+        private decimal subtotalField;
+        
+        [System.Runtime.Serialization.OptionalFieldAttribute()]
+        private decimal taxField;
+        
+        [System.Runtime.Serialization.OptionalFieldAttribute()]
+        private decimal tax2Field;
+        
+        [System.Runtime.Serialization.OptionalFieldAttribute()]
+        private decimal taxrateField;
+        
+        [System.Runtime.Serialization.OptionalFieldAttribute()]
+        private decimal taxrate2Field;
+        
+        [System.Runtime.Serialization.OptionalFieldAttribute()]
+        private decimal totalField;
+        
+        [System.Runtime.Serialization.DataMemberAttribute()]
+        public int Id {
+            get {
+                return this.IdField;
+            }
+            set {
+                if ((this.IdField.Equals(value) != true)) {
+                    this.IdField = value;
+                    this.RaisePropertyChanged("Id");
+                }
+            }
+        }
+        
+        [System.Runtime.Serialization.DataMemberAttribute()]
+        public System.Collections.Generic.List<RetailPOS.RetailPOSService.InvoiceItemsDTO> InvoiceItems {
+            get {
+                return this.InvoiceItemsField;
+            }
+            set {
+                if ((object.ReferenceEquals(this.InvoiceItemsField, value) != true)) {
+                    this.InvoiceItemsField = value;
+                    this.RaisePropertyChanged("InvoiceItems");
+                }
+            }
+        }
+        
+        [System.Runtime.Serialization.DataMemberAttribute()]
+        public decimal balance {
+            get {
+                return this.balanceField;
+            }
+            set {
+                if ((this.balanceField.Equals(value) != true)) {
+                    this.balanceField = value;
+                    this.RaisePropertyChanged("balance");
+                }
+            }
+        }
+        
+        [System.Runtime.Serialization.DataMemberAttribute()]
+        public decimal credit {
+            get {
+                return this.creditField;
+            }
+            set {
+                if ((this.creditField.Equals(value) != true)) {
+                    this.creditField = value;
+                    this.RaisePropertyChanged("credit");
+                }
+            }
+        }
+        
+        [System.Runtime.Serialization.DataMemberAttribute()]
+        public int customer_id {
+            get {
+                return this.customer_idField;
+            }
+            set {
+                if ((this.customer_idField.Equals(value) != true)) {
+                    this.customer_idField = value;
+                    this.RaisePropertyChanged("customer_id");
+                }
+            }
+        }
+        
+        [System.Runtime.Serialization.DataMemberAttribute()]
+        public System.Nullable<System.DateTime> date {
+            get {
+                return this.dateField;
+            }
+            set {
+                if ((this.dateField.Equals(value) != true)) {
+                    this.dateField = value;
+                    this.RaisePropertyChanged("date");
+                }
+            }
+        }
+        
+        [System.Runtime.Serialization.DataMemberAttribute()]
+        public System.DateTime datepaid {
+            get {
+                return this.datepaidField;
+            }
+            set {
+                if ((this.datepaidField.Equals(value) != true)) {
+                    this.datepaidField = value;
+                    this.RaisePropertyChanged("datepaid");
+                }
+            }
+        }
+        
+        [System.Runtime.Serialization.DataMemberAttribute()]
+        public decimal delivery_charge {
+            get {
+                return this.delivery_chargeField;
+            }
+            set {
+                if ((this.delivery_chargeField.Equals(value) != true)) {
+                    this.delivery_chargeField = value;
+                    this.RaisePropertyChanged("delivery_charge");
+                }
+            }
+        }
+        
+        [System.Runtime.Serialization.DataMemberAttribute()]
+        public decimal discount {
+            get {
+                return this.discountField;
+            }
+            set {
+                if ((this.discountField.Equals(value) != true)) {
+                    this.discountField = value;
+                    this.RaisePropertyChanged("discount");
+                }
+            }
+        }
+        
+        [System.Runtime.Serialization.DataMemberAttribute()]
+        public System.Nullable<decimal> discount_rate {
+            get {
+                return this.discount_rateField;
+            }
+            set {
+                if ((this.discount_rateField.Equals(value) != true)) {
+                    this.discount_rateField = value;
+                    this.RaisePropertyChanged("discount_rate");
+                }
+            }
+        }
+        
+        [System.Runtime.Serialization.DataMemberAttribute()]
+        public System.Nullable<System.DateTime> duedate {
+            get {
+                return this.duedateField;
+            }
+            set {
+                if ((this.duedateField.Equals(value) != true)) {
+                    this.duedateField = value;
+                    this.RaisePropertyChanged("duedate");
+                }
+            }
+        }
+        
+        [System.Runtime.Serialization.DataMemberAttribute()]
+        public string invoicenum {
+            get {
+                return this.invoicenumField;
+            }
+            set {
+                if ((object.ReferenceEquals(this.invoicenumField, value) != true)) {
+                    this.invoicenumField = value;
+                    this.RaisePropertyChanged("invoicenum");
+                }
+            }
+        }
+        
+        [System.Runtime.Serialization.DataMemberAttribute()]
+        public System.Nullable<int> notes {
+            get {
+                return this.notesField;
+            }
+            set {
+                if ((this.notesField.Equals(value) != true)) {
+                    this.notesField = value;
+                    this.RaisePropertyChanged("notes");
+                }
+            }
+        }
+        
+        [System.Runtime.Serialization.DataMemberAttribute()]
+        public string paymentmethod {
+            get {
+                return this.paymentmethodField;
+            }
+            set {
+                if ((object.ReferenceEquals(this.paymentmethodField, value) != true)) {
+                    this.paymentmethodField = value;
+                    this.RaisePropertyChanged("paymentmethod");
+                }
+            }
+        }
+        
+        [System.Runtime.Serialization.DataMemberAttribute()]
+        public string promotional_offer_code {
+            get {
+                return this.promotional_offer_codeField;
+            }
+            set {
+                if ((object.ReferenceEquals(this.promotional_offer_codeField, value) != true)) {
+                    this.promotional_offer_codeField = value;
+                    this.RaisePropertyChanged("promotional_offer_code");
+                }
+            }
+        }
+        
+        [System.Runtime.Serialization.DataMemberAttribute()]
+        public string status {
+            get {
+                return this.statusField;
+            }
+            set {
+                if ((object.ReferenceEquals(this.statusField, value) != true)) {
+                    this.statusField = value;
+                    this.RaisePropertyChanged("status");
+                }
+            }
+        }
+        
+        [System.Runtime.Serialization.DataMemberAttribute()]
+        public decimal subtotal {
+            get {
+                return this.subtotalField;
+            }
+            set {
+                if ((this.subtotalField.Equals(value) != true)) {
+                    this.subtotalField = value;
+                    this.RaisePropertyChanged("subtotal");
+                }
+            }
+        }
+        
+        [System.Runtime.Serialization.DataMemberAttribute()]
+        public decimal tax {
+            get {
+                return this.taxField;
+            }
+            set {
+                if ((this.taxField.Equals(value) != true)) {
+                    this.taxField = value;
+                    this.RaisePropertyChanged("tax");
+                }
+            }
+        }
+        
+        [System.Runtime.Serialization.DataMemberAttribute()]
+        public decimal tax2 {
+            get {
+                return this.tax2Field;
+            }
+            set {
+                if ((this.tax2Field.Equals(value) != true)) {
+                    this.tax2Field = value;
+                    this.RaisePropertyChanged("tax2");
+                }
+            }
+        }
+        
+        [System.Runtime.Serialization.DataMemberAttribute()]
+        public decimal taxrate {
+            get {
+                return this.taxrateField;
+            }
+            set {
+                if ((this.taxrateField.Equals(value) != true)) {
+                    this.taxrateField = value;
+                    this.RaisePropertyChanged("taxrate");
+                }
+            }
+        }
+        
+        [System.Runtime.Serialization.DataMemberAttribute()]
+        public decimal taxrate2 {
+            get {
+                return this.taxrate2Field;
+            }
+            set {
+                if ((this.taxrate2Field.Equals(value) != true)) {
+                    this.taxrate2Field = value;
+                    this.RaisePropertyChanged("taxrate2");
+                }
+            }
+        }
+        
+        [System.Runtime.Serialization.DataMemberAttribute()]
+        public decimal total {
+            get {
+                return this.totalField;
+            }
+            set {
+                if ((this.totalField.Equals(value) != true)) {
+                    this.totalField = value;
+                    this.RaisePropertyChanged("total");
+                }
+            }
+        }
+    }
+    
+    [System.Diagnostics.DebuggerStepThroughAttribute()]
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Runtime.Serialization", "4.0.0.0")]
+    [System.Runtime.Serialization.DataContractAttribute(Name="InvoiceItemsDTO", Namespace="http://schemas.datacontract.org/2004/07/RetailPOS.CommonLayer.DataTransferObjects" +
+        ".Invoice")]
+    [System.SerializableAttribute()]
+    public partial class InvoiceItemsDTO : RetailPOS.RetailPOSService.BaseDTO {
+        
+        [System.Runtime.Serialization.OptionalFieldAttribute()]
+        private decimal amountField;
+        
+        [System.Runtime.Serialization.OptionalFieldAttribute()]
+        private int customer_idField;
+        
+        [System.Runtime.Serialization.OptionalFieldAttribute()]
+        private string descriptionField;
+        
+        [System.Runtime.Serialization.OptionalFieldAttribute()]
+        private int invoice_idField;
+        
+        [System.Runtime.Serialization.OptionalFieldAttribute()]
+        private System.Nullable<int> relidField;
+        
+        [System.Runtime.Serialization.OptionalFieldAttribute()]
+        private int taxedField;
+        
+        [System.Runtime.Serialization.OptionalFieldAttribute()]
+        private string typeField;
+        
+        [System.Runtime.Serialization.DataMemberAttribute()]
+        public decimal amount {
+            get {
+                return this.amountField;
+            }
+            set {
+                if ((this.amountField.Equals(value) != true)) {
+                    this.amountField = value;
+                    this.RaisePropertyChanged("amount");
+                }
+            }
+        }
+        
+        [System.Runtime.Serialization.DataMemberAttribute()]
+        public int customer_id {
+            get {
+                return this.customer_idField;
+            }
+            set {
+                if ((this.customer_idField.Equals(value) != true)) {
+                    this.customer_idField = value;
+                    this.RaisePropertyChanged("customer_id");
+                }
+            }
+        }
+        
+        [System.Runtime.Serialization.DataMemberAttribute()]
+        public string description {
+            get {
+                return this.descriptionField;
+            }
+            set {
+                if ((object.ReferenceEquals(this.descriptionField, value) != true)) {
+                    this.descriptionField = value;
+                    this.RaisePropertyChanged("description");
+                }
+            }
+        }
+        
+        [System.Runtime.Serialization.DataMemberAttribute()]
+        public int invoice_id {
+            get {
+                return this.invoice_idField;
+            }
+            set {
+                if ((this.invoice_idField.Equals(value) != true)) {
+                    this.invoice_idField = value;
+                    this.RaisePropertyChanged("invoice_id");
+                }
+            }
+        }
+        
+        [System.Runtime.Serialization.DataMemberAttribute()]
+        public System.Nullable<int> relid {
+            get {
+                return this.relidField;
+            }
+            set {
+                if ((this.relidField.Equals(value) != true)) {
+                    this.relidField = value;
+                    this.RaisePropertyChanged("relid");
+                }
+            }
+        }
+        
+        [System.Runtime.Serialization.DataMemberAttribute()]
+        public int taxed {
+            get {
+                return this.taxedField;
+            }
+            set {
+                if ((this.taxedField.Equals(value) != true)) {
+                    this.taxedField = value;
+                    this.RaisePropertyChanged("taxed");
+                }
+            }
+        }
+        
+        [System.Runtime.Serialization.DataMemberAttribute()]
+        public string type {
+            get {
+                return this.typeField;
+            }
+            set {
+                if ((object.ReferenceEquals(this.typeField, value) != true)) {
+                    this.typeField = value;
+                    this.RaisePropertyChanged("type");
+                }
+            }
+        }
+    }
+    
+    [System.Diagnostics.DebuggerStepThroughAttribute()]
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Runtime.Serialization", "4.0.0.0")]
     [System.Runtime.Serialization.DataContractAttribute(Name="LocalityDTO", Namespace="http://schemas.datacontract.org/2004/07/RetailPOS.CommonLayer.DataTransferObjects" +
         ".Master")]
     [System.SerializableAttribute()]
@@ -2872,6 +3354,12 @@ namespace RetailPOS.RetailPOSService {
         
         [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IRetailPOSServiceContract/GetOrderItemByStatus", ReplyAction="http://tempuri.org/IRetailPOSServiceContract/GetOrderItemByStatusResponse")]
         System.Collections.Generic.List<RetailPOS.RetailPOSService.OrderMasterDTO> GetOrderItemByStatus(int status);
+        
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IRetailPOSServiceContract/GetAllInvoices", ReplyAction="http://tempuri.org/IRetailPOSServiceContract/GetAllInvoicesResponse")]
+        System.Collections.Generic.List<RetailPOS.RetailPOSService.InvoicesDTO> GetAllInvoices();
+        
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IRetailPOSServiceContract/SaveInvoiceDetail", ReplyAction="http://tempuri.org/IRetailPOSServiceContract/SaveInvoiceDetailResponse")]
+        bool SaveInvoiceDetail(RetailPOS.RetailPOSService.InvoicesDTO invoiceDetail);
     }
     
     [System.CodeDom.Compiler.GeneratedCodeAttribute("System.ServiceModel", "4.0.0.0")]
@@ -3035,6 +3523,14 @@ namespace RetailPOS.RetailPOSService {
         
         public System.Collections.Generic.List<RetailPOS.RetailPOSService.OrderMasterDTO> GetOrderItemByStatus(int status) {
             return base.Channel.GetOrderItemByStatus(status);
+        }
+        
+        public System.Collections.Generic.List<RetailPOS.RetailPOSService.InvoicesDTO> GetAllInvoices() {
+            return base.Channel.GetAllInvoices();
+        }
+        
+        public bool SaveInvoiceDetail(RetailPOS.RetailPOSService.InvoicesDTO invoiceDetail) {
+            return base.Channel.SaveInvoiceDetail(invoiceDetail);
         }
     }
 }
